@@ -21,7 +21,7 @@ import javax.validation.ConstraintViolationException;
 
 /**
  *
- * @author Roman
+ * @author Roman Gluszny
  */
 @ContextConfiguration
 @TestExecutionListeners(TransactionalTestExecutionListener.class)

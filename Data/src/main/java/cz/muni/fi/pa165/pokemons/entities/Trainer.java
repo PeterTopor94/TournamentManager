@@ -16,7 +16,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Roman
+ * @author Roman Gluszny
  */
 @Entity
 public class Trainer {

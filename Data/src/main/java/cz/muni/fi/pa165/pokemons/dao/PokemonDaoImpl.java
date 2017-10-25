@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Roman
+ * @author Roman Gluszny
  */
 @Repository
 public class PokemonDaoImpl implements PokemonDao {
@@ -39,12 +39,10 @@ public class PokemonDaoImpl implements PokemonDao {
 
     @Override
     public List<Pokemon> findByOwner(Trainer t) {
-        TypedQuery<Pokemon> query = em.createQuery(
-                "SELECT p from Pokemon p WHERE p.owner = :ownerid",
-                Order.class);
-
-        query.setParameter("ownerid", t);
-        return query.getResultList();
+        return em
+                .createQuery("SELECT p from Pokemon p WHERE p.owner = :ownerid",
+                        Pokemon.class).query.setParameter("ownerid", t)
+                .getResultList();
     }
 
     @Override
