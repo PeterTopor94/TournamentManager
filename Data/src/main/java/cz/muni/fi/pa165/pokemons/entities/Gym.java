@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.pokemons.entities;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Entity class representing gym object
@@ -17,6 +18,7 @@ public class Gym
 
     //TODO uncomment when Trainer and Badge entities are ready
 //    @OneToOne
+//    @NotNull
 //    private Badge badge;
 //
 //    /**
@@ -26,10 +28,15 @@ public class Gym
 //    private String city;
 //
 //    @OneToOne
+//    @NotNull
 //    private Trainer gymLeader;
 //
-//    @Column
+//    /**
+//     * dominant type of gym
+//     */
+//    @Column(nullable = false)
 //    @Enumerated
+//    @NotNull
 //    private PokemonType type;
 //
 //    @Override
