@@ -1,14 +1,86 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.pokemons.dao;
+
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Roman
  */
-public class PokemonDaoImpl {
-    
+@Repository
+public class PokemonDaoImpl implements PokemonDao {
+
+    @PersistenceContext
+    private EntityManager em;
+
+    @Override
+    public void create(Pokemon p) {
+        em.persist(p);
+    }
+
+    @Override
+    public void remove(Pokemon p) {
+        em.remove(p);
+    }
+
+    @Override
+    public Pokemon findById(Long id) {
+        return em.find(Pokemon.class, id);
+    }
+
+    @Override
+    public List<Pokemon> findAll() {
+        return em.createQuery("SELECT p FROM Pokemon p", Pokemon.class)
+                .getResultList();
+    }
+
+    @Override
+    public List<Pokemon> findByOwner(Trainer t) {
+        TypedQuery<Pokemon> query = em.createQuery(
+                "SELECT p from Pokemon p WHERE p.owner = :ownerid",
+                Order.class);
+
+        query.setParameter("ownerid", t);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Pokemon> getPokemonsWithName(String name) {
+        try {
+            return em
+                    .createQuery("SELECT p FROM Pokemon p WHERE name = :name",
+                            Pokemon.class).setParameter("name", name)
+                    .getSingleResult();
+        } catch (NoResultException nrf) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Pokemon> getPokemonsWithNickname(String nickname) {
+        try {
+            return em
+                    .createQuery("SELECT p FROM Pokemon p WHERE nickname = :nickname",
+                            Pokemon.class).setParameter("nickname", nickname)
+                    .getSingleResult();
+        } catch (NoResultException nrf) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Pokemon> getPokemonsWithtype(Type t) {
+        try {
+            return em
+                    .createQuery("SELECT p FROM Pokemon p WHERE type = :type",
+                            Pokemon.class).setParameter("type", t)
+                    .getSingleResult();
+        } catch (NoResultException nrf) {
+            return null;
+        }
+    }
+
 }
