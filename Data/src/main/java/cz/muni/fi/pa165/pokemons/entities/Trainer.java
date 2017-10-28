@@ -53,7 +53,18 @@ public class Trainer {
         this.gym = gym;
     }
 
+    @Column
+    private Gym gym;
+
     public Trainer() {
+    }
+
+    public Gym getGym() {
+        return gym;
+    }
+
+    public void setGym(Gym gym) {
+        this.gym = gym;
     }
 
     public Trainer(Long id) {
