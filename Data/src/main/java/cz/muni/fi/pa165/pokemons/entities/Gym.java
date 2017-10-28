@@ -50,21 +50,21 @@ public class Gym
 
         Gym gym = (Gym) o;
 
-        if (id != null ? !id.equals(gym.id) : gym.id != null) return false;
-        if (badge != null ? !badge.equals(gym.badge) : gym.badge != null) return false;
-        if (cityName != null ? !cityName.equals(gym.cityName) : gym.cityName != null) return false;
-        if (gymLeader != null ? !gymLeader.equals(gym.gymLeader) : gym.gymLeader != null) return false;
-        return typology == gym.typology;
+        if (this.id != null ? !this.id.equals(gym.id) : gym.id != null) return false;
+        if (this.badge != null ? !this.badge.equals(gym.badge) : gym.badge != null) return false;
+        if (this.cityName != null ? !this.cityName.equals(gym.cityName) : gym.cityName != null) return false;
+        if (this.gymLeader != null ? !this.gymLeader.equals(gym.gymLeader) : gym.gymLeader != null) return false;
+        return this.typology == gym.typology;
     }
 
     @Override
     public int hashCode()
     {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (badge != null ? badge.hashCode() : 0);
-        result = 31 * result + (cityName != null ? cityName.hashCode() : 0);
-        result = 31 * result + (gymLeader != null ? gymLeader.hashCode() : 0);
-        result = 31 * result + (typology != null ? typology.hashCode() : 0);
+        int result = this.id != null ? this.id.hashCode() : 0;
+        result = 31 * result + (this.badge != null ? this.badge.hashCode() : 0);
+        result = 31 * result + (this.cityName != null ? this.cityName.hashCode() : 0);
+        result = 31 * result + (this.gymLeader != null ? this.gymLeader.hashCode() : 0);
+        result = 31 * result + (this.typology != null ? this.typology.hashCode() : 0);
         return result;
     }
 }
