@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -39,6 +40,18 @@ public class Trainer {
     @NotNull
     @Column(nullable = false)
     private Date dateOfBirth;
+    
+    @OneToOne
+    @Column(nullable = true)
+    private Gym gym;
+
+    public Gym getGym() {
+        return gym;
+    }
+
+    public void setGym(Gym gym) {
+        this.gym = gym;
+    }
 
     public Trainer() {
     }
