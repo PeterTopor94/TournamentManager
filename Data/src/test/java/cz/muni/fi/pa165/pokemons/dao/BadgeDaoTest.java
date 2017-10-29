@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
+import cz.muni.fi.pa165.pokemons.entities.Gym;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,7 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import cz.muni.fi.pa165.pokemons.entities.GymLeader;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import javax.validation.ConstraintViolationException;
@@ -43,8 +43,8 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private GymLeaderDao gymLeaderDao;
 
-    private GymLeader t1;
-    private GymLeader t2;
+    private Trainer t1;
+    private Trainer t2;
 
     @Autowired
     private TrainerDao trainerDao;
@@ -55,13 +55,13 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
     @BeforeMethod
     public void testSetup() {
-        t1 = new GymLeader();
+        t1 = new Trainer();
         t1.setDateOfBirth(new Date(1992, 2, 5));
         t1.setName("John");
         t1.setSurname("Neuman");
         t1.setGym(g1);
 
-        t2 = new GymLeader();
+        t2 = new Trainer();
         t2.setDateOfBirth(new Date(1995, 11, 9));
         t2.setName("Amelia");
         t2.setSurname("Stone");
