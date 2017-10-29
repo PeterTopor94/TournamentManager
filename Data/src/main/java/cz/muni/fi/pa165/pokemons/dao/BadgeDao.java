@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Badge;
+import java.util.List;
 /**
  *
  * @author lubos.beno
@@ -14,14 +15,15 @@ public interface BadgeDao {
     
     public void create (Badge b);
     
-    
     public void remove (Badge b);
     
     public Badge findById(Long id);
     
     public void update (Badge b);
     
+    public List<Badge> findAll();
     
+    public List<Badge> findByOwner(Trainer t);
     
     
     
