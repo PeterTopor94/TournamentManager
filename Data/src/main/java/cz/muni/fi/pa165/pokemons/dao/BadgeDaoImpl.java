@@ -43,12 +43,12 @@ public class BadgeDaoImpl implements BadgeDao {
 
     @Override
     public List<Badge> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createQuery("SELECT badge FROM Badge badge", Badge.class).getResultList();
     }
 
     @Override
     public List<Badge> findByOwner(Trainer t) {
-        em.createQuery("Select ")
+       return em.createQuery("SELECT badge FROM Badge badge WHERE badge.owner = :ownerid", Badge.class).query.setParameter("ownerid",t).getResultList();
     }
     
     
