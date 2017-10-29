@@ -45,6 +45,9 @@ public class Trainer {
     @Column(nullable = true)
     private Gym gym;
 
+    @Column
+    private Gym gym;
+
     public Trainer() {
     }
 
