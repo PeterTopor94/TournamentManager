@@ -29,7 +29,7 @@ public class Badge {
     @NotNull
     @Column(nullable = false)
     private Gym gym;
-   
+
     private ArrayList<Trainer> owners;
 
     public Badge(String cityOfOrigin, Gym gym, ArrayList<Trainer> owners) {

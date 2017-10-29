@@ -22,4 +22,10 @@ public interface BadgeDao {
     public void update (Badge b);
     
     
+    
+    
+    
+    
+    
+    
 }
