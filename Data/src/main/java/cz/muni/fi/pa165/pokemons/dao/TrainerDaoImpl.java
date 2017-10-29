@@ -47,5 +47,7 @@ public class TrainerDaoImpl implements TrainerDao
         TypedQuery<Trainer> query = em.createQuery("SELECT t FROM Trainer t WHERE t.name = :name and t.surname = :surname", Trainer.class);
         query.setParameter("name", name);
         query.setParameter("surname", surname);
+
+        return query.getResultList();
     }
 }
