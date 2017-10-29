@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -32,7 +33,7 @@ public class Badge {
     @Column(nullable = false)
     private Gym gym;
 
-    
+    @ManyToMany
     private ArrayList<Trainer> owners;
 
     public Badge(String cityOfOrigin, Gym gym, ArrayList<Trainer> owners) {
