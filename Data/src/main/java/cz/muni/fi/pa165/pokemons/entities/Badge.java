@@ -6,18 +6,28 @@
 package cz.muni.fi.pa165.pokemons.entities;
 
 import java.util.ArrayList;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author lubos.beno
  */
-
+@Entity
 public class Badge {
     @NotNull
+    @Column(nullable = false)
     private String cityOfOrigin;
     
+    @Id
+    @GeneratedValue
+    private Long id;
+    
     @NotNull
+    @Column(nullable = false)
     private Gym gym;
    
     private ArrayList<Trainer> owners;
