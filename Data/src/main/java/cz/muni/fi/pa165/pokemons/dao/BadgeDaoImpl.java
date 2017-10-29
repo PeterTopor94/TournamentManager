@@ -22,13 +22,13 @@ public class BadgeDaoImpl implements BadgeDao {
     private EntityManager em; 
     
     @Override
-    public void create(Badge b) {
-        em.persist(b);
+    public void create(Badge badge) {
+        em.persist(badge);
     }
 
     @Override
-    public void remove(Badge b) {
-        em.remove(b);
+    public void remove(Badge badge) {
+        em.remove(badge);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class BadgeDaoImpl implements BadgeDao {
     }
 
     @Override
-    public void update(Badge b) {
+    public void update(Badge badge) {
        
     }
 
@@ -47,7 +47,7 @@ public class BadgeDaoImpl implements BadgeDao {
     }
 
     @Override
-    public List<Badge> findByOwner(Trainer t) {
+    public List<Badge> findByOwner(Trainer trainer) {
        return em.createQuery("SELECT badge FROM Badge badge WHERE badge.owner = :ownerid", Badge.class).query.setParameter("ownerid",t).getResultList();
     }
     

@@ -35,6 +35,10 @@ public class Badge {
 
     @ManyToMany
     private ArrayList<Trainer> owners;
+    
+    public Badge(){
+        
+    }
 
     public Badge(String cityOfOrigin, Gym gym, ArrayList<Trainer> owners) {
         this.cityOfOrigin = cityOfOrigin;

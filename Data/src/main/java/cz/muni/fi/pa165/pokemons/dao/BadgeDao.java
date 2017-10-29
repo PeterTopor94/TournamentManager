@@ -14,17 +14,43 @@ import java.util.List;
  */
 public interface BadgeDao {
     
-    public void create (Badge b);
+    /**
+     * Creates new Badge
+     * @param badge Badge to be created
+     */
+    public void create (Badge badge);
     
-    public void remove (Badge b);
+    /**
+     * Removes Badge
+     * @param badge Badge to be removed 
+     */
+    public void remove (Badge badge);
     
+    /**
+     * Returns Badge by Id
+     * @param id of the Badge to be returned
+     * @return Badge
+     */
     public Badge findById(Long id);
     
-    public void update (Badge b);
+    /**
+     * Updates Badge
+     * @param badge Badge that will be updated
+     */
+    public void update (Badge badge);
     
+    /**
+     * Returns all Badges
+     * @return list of all Badges
+     */   
     public List<Badge> findAll();
     
-    public List<Badge> findByOwner(Trainer t);
+    /**
+     * Returns Badges by Trainer
+     * @param trainer of Trainer whom badges to be returned
+     * @return 
+     */
+    public List<Badge> findByOwner(Trainer trainer);
     
     
     
