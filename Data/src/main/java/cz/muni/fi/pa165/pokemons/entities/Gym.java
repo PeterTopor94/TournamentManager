@@ -32,7 +32,7 @@ public class Gym
 
     @OneToOne
     @NotNull
-    private GymLeader gymLeader;
+    private Trainer gymLeader;
 
     /**
      * dominant typology of gym
