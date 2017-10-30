@@ -49,38 +49,74 @@ public class Badge {
         this.owners = new ArrayList(owners);
     }
 
+    /**
+     * Returns city of origin
+     * @return City of origin
+     */
     public String getCityOfOrigin() {
         return this.cityOfOrigin;
     }
 
+    /**
+     * Set city of origin
+     * @param cityOfOrigin 
+     */
     public void setCityOfOrigin(String cityOfOrigin) {
         this.cityOfOrigin = cityOfOrigin;
     }
 
+    /**
+     * Returns gym
+     * @return Gym
+     */
     public Gym getGym() {
         return this.gym;
     }
 
+    /**
+     * Returns Id of the Badge
+     * @return 
+     */
     public Long getId() {
         return this.id;
     }
 
+    /**
+     * Set Id of the badge
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Set Gym of the badge
+     * @param gym 
+     */
     public void setGym(Gym gym) {
         this.gym = gym;
     }
 
+    /**
+     * Returns list of owners of the badge
+     * @return List<Trainer> 
+     */
     public ArrayList<Trainer> getOwners() {
         return Collections.unmodifiableList(owners);
     }
 
+    /**
+     * Add trainer to owners list
+     * @param owner 
+     */
     public void addOwner(Trainer owner) {
         this.owners.add(owner);
     }
 
+    /**
+     * Generates hashCode
+     * @return hashCode
+     */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -91,6 +127,11 @@ public class Badge {
         return hash;
     }
 
+    /**
+     * Method equals
+     * @param obj
+     * @return boolean value
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

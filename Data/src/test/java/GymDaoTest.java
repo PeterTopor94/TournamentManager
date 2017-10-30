@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
  *
  * @author lubos.beno
  */
-@ContextConfiguration
+@ContextConfiguration (classes = DataApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class GymDaoTest extends AbstractTestNGSpringContextTests {
