@@ -23,6 +23,9 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = "cz.muni.fi.pa165.pokemons")
 public class DataApplicationContext
 {
+    /**
+     * Enables automatic translation of exceptions to DataAccessExceptions.
+     */
     @Bean
     public PersistenceExceptionTranslationPostProcessor postProcessor() {
         return new PersistenceExceptionTranslationPostProcessor();
@@ -33,6 +36,9 @@ public class DataApplicationContext
         return new JpaTransactionManager(entityManagerFactory().getObject());
     }
 
+    /**
+     * Starts up a container that emulates behavior prescribed in JPA spec for container-managed EntityManager
+     */
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean jpaFactoryBean = new LocalContainerEntityManagerFactoryBean();
