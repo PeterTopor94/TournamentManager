@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import cz.muni.fi.pa165.pokemons.DataApplicationContext;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
