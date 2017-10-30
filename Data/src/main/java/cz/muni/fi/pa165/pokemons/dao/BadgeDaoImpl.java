@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Badge;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

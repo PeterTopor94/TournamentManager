@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 
+
 /**
  *
  * @author lubos.beno
