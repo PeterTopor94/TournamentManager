@@ -49,7 +49,7 @@ public class Badge {
     }
 
     public String getCityOfOrigin() {
-        return cityOfOrigin;
+        return this.cityOfOrigin;
     }
 
     public void setCityOfOrigin(String cityOfOrigin) {
@@ -57,11 +57,11 @@ public class Badge {
     }
 
     public Gym getGym() {
-        return gym;
+        return this.gym;
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -77,7 +77,7 @@ public class Badge {
     }
 
     public void addOwner(Trainer owner) {
-        owners.add(owner);
+        this.owners.add(owner);
     }
 
     @Override

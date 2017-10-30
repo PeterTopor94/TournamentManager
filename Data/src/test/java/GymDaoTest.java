@@ -155,5 +155,4 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         gymDao.update(gym1);
         Assert.assertEquals(gym1.getCityName(), "Ohio");
     }
-
 }
