@@ -9,12 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 
@@ -34,11 +29,11 @@ public class Badge {
     private Long id;
 
     @NotNull
-    @Column(nullable = false)
+    @OneToOne
     private Gym gym;
 
     @ManyToMany
-    private ArrayList<Trainer> owners;
+    private List<Trainer> owners;
 
     public Badge() {
 

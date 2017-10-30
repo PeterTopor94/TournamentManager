@@ -42,7 +42,7 @@ public class PokemonDaoImpl implements PokemonDao {
     @Override
     public List<Pokemon> findByOwner(Trainer t) {
         return em
-                .createQuery("SELECT p from Pokemon p WHERE p.owner = :ownerid",
+                .createQuery("SELECT p from Pokemon p WHERE p.owner.id = :ownerid",
                         Pokemon.class).setParameter("ownerid", t.getId())
                 .getResultList();
     }

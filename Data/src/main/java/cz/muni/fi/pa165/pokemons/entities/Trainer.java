@@ -2,8 +2,6 @@ package cz.muni.fi.pa165.pokemons.entities;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,10 +34,10 @@ public class Trainer {
     @Column(nullable = false)
     private String surname;
 
-    @ManyToMany(mappedBy = "trainers")
-    private List<Badge> badges = new ArrayList<Badge>();
+    @ManyToMany(mappedBy = "owners")
+    private List<Badge> badges = new ArrayList<>();
     
-    @OneToMany
+    @OneToMany(mappedBy="owner")
     private List<Pokemon> pokemons = new ArrayList<>();
 
     @NotNull
@@ -47,7 +45,6 @@ public class Trainer {
     private Date dateOfBirth;
     
     @OneToOne
-    @Column(nullable = true)
     private Gym gym;
 
     public Trainer() {
