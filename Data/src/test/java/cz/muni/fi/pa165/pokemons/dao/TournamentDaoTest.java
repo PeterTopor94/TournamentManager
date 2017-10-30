@@ -1,10 +1,6 @@
 
 package cz.muni.fi.pa165.pokemons.dao;
 
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -15,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import cz.muni.fi.pa165.pokemons.DataApplicationContext;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
@@ -28,7 +25,7 @@ import java.util.Date;
  *
  * @author Peter Topor
  */
-@ContextConfiguration
+@ContextConfiguration(classes = DataApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class TournamentDaoTest extends AbstractTestNGSpringContextTests{
