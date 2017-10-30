@@ -137,12 +137,12 @@ public class TournamentDaoTest extends AbstractTestNGSpringContextTests{
         gl2.addPokemon(p4);
 
         t1.setName("Masters");
-        t1.setBadgeLimit(2);
-        t1.addMember(tr1);
+        t1.setNumRequiredBadges(2);
+        t1.addTrainer(tr1);
         
         t1.setName("Brawl");
-        t1.setBadgeLimit(2);
-        t1.addMember(tr1);
+        t1.setNumRequiredBadges(2);
+        t1.addTrainer(tr1);
         
         gymDao.create(g1);
         gymDao.create(g2);
