@@ -35,20 +35,24 @@ public class TournamentDaoTest extends AbstractTestNGSpringContextTests{
     private Tournament t1;
     private Tournament t2;
     
+    @Autowired
     private TrainerDao trainerDao;
     private Trainer tr1;
     private Trainer tr2;   
     private Trainer gl1;
     private Trainer gl2;
     
+    @Autowired
     private GymDao gymDao;
     private Gym g1;
     private Gym g2;
     
+    @Autowired
     private BadgeDao badgeDao;
     private Badge b1;
     private Badge b2;
     
+    @Autowired
     private PokemonDao pokemonDao;
     private Pokemon p1;
     private Pokemon p2;
