@@ -1,3 +1,4 @@
+package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.dao.BadgeDao;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
