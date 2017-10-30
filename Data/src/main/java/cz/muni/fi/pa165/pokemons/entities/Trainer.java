@@ -37,7 +37,7 @@ public class Trainer {
     private String surname;
 
     @ManyToMany(mappedBy = "trainers")
-    private Set<Badge> badges = new HashSet<Badge>();
+    private List<Badge> badges = new ArrayList<Badge>();
     
     @OneToMany
     private List<Pokemon> pokemons = new ArrayList<>();
@@ -48,9 +48,6 @@ public class Trainer {
     
     @OneToOne
     @Column(nullable = true)
-    private Gym gym;
-
-    @Column
     private Gym gym;
 
     public Trainer() {

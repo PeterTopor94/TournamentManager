@@ -93,12 +93,12 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
         b1 = new Badge();
         b1.setGym(g1);
-        b1.addTrainer(t3);
+        b1.addOwner(t3);
 
         b2 = new Badge();
         b2.setGym(g2);
-        b2.addTrainer(t1);
-        b2.addTrainer(t3);
+        b2.addOwner(t1);
+        b2.addOwner(t3);
 
         badgeDao.create(b1);
         badgeDao.create(b2);
@@ -115,7 +115,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         List<Badge> badges = badgeDao.findByOwner(t3);
         Assert.assertEquals(badges.size(), 2);
 
-        List<Badge> badges = badgeDao.findByOwner(t2);
+        badges = badgeDao.findByOwner(t2);
         Assert.assertEquals(badges.size(), 0);
     }
 
@@ -135,6 +135,6 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
     
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void addBadgeToOriginalGymLeader() {
-        b1.addTrainer(t1);
+        b1.addOwner(t1);
     }
 }
