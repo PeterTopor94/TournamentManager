@@ -11,11 +11,13 @@ import cz.muni.fi.pa165.pokemons.entities.Badge;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Peter Topor
  */
+@Repository
 public class GymDaoImpl implements GymDao {
 
     @PersistenceContext
