@@ -20,12 +20,29 @@ public class TrainerDaoImpl implements TrainerDao
     @Override
     public void create(Trainer t)
     {
+        if (t.getId() != null)
+        {
+            throw new IllegalArgumentException("Can't create Trainer that already exists.");
+        }
+        em.persist(t);
+    }
+
+    @Override
+    public void update(Trainer t) throws IllegalArgumentException
+    {
+        if (t.getId() == null)
+        {
+            throw new IllegalArgumentException("Can't update Trainer without ID.");
+        }
         em.persist(t);
     }
 
     @Override
     public void remove(Trainer t)
     {
+        if (t.getId() == null) {
+            throw new IllegalArgumentException("Can't remove Trainer without ID.");
+        }
         em.remove(t);
     }
 

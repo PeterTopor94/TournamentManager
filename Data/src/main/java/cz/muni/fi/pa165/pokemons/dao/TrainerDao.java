@@ -15,8 +15,14 @@ public interface TrainerDao
      * Creates new trainer
      * @param t trainer to create
      */
-    public void create(Trainer t);
+    public void create(Trainer t) throws IllegalArgumentException;
 
+
+    /**
+     * Updates existing trainer
+     * @param t
+     */
+    public void update(Trainer t) throws IllegalArgumentException;
 
     /**
      * Removes a trainer
