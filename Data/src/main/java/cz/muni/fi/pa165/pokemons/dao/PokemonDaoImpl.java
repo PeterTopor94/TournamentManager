@@ -5,7 +5,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-
+import cz.muni.fi.pa165.pokemons.entities.Pokemon;        
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 /**
  *
  * @author Roman Gluszny
@@ -41,7 +43,7 @@ public class PokemonDaoImpl implements PokemonDao {
     public List<Pokemon> findByOwner(Trainer t) {
         return em
                 .createQuery("SELECT p from Pokemon p WHERE p.owner = :ownerid",
-                        Pokemon.class).query.setParameter("ownerid", t)
+                        Pokemon.class).setParameter("ownerid", t.getId())
                 .getResultList();
     }
 
@@ -51,7 +53,7 @@ public class PokemonDaoImpl implements PokemonDao {
             return em
                     .createQuery("SELECT p FROM Pokemon p WHERE name = :name",
                             Pokemon.class).setParameter("name", name)
-                    .getSingleResult();
+                    .getResultList();
         } catch (NoResultException nrf) {
             return null;
         }
@@ -63,19 +65,19 @@ public class PokemonDaoImpl implements PokemonDao {
             return em
                     .createQuery("SELECT p FROM Pokemon p WHERE nickname = :nickname",
                             Pokemon.class).setParameter("nickname", nickname)
-                    .getSingleResult();
+                    .getResultList();
         } catch (NoResultException nrf) {
             return null;
         }
     }
 
     @Override
-    public List<Pokemon> getPokemonsWithtype(Type t) {
+    public List<Pokemon> getPokemonsWithtype(PokemonType t) {
         try {
             return em
                     .createQuery("SELECT p FROM Pokemon p WHERE type = :type",
                             Pokemon.class).setParameter("type", t)
-                    .getSingleResult();
+                    .getResultList();
         } catch (NoResultException nrf) {
             return null;
         }

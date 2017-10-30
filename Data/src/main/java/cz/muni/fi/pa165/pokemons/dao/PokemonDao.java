@@ -2,6 +2,9 @@ package cz.muni.fi.pa165.pokemons.dao;
 
 import java.util.List;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+import cz.muni.fi.pa165.pokemons.entities.Pokemon;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
+
 
 /**
  *
