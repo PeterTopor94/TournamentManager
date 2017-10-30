@@ -48,7 +48,8 @@ private List<Trainer> trainers = new ArrayList<Trainer>();
 
 @NotNull
 @Column
-private static int numRequiredBadges;
+private int numRequiredBadges;
+
   
 public Tournament(){
     
