@@ -1,8 +1,4 @@
-/*
 
-
-
- */
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Gym;
@@ -54,15 +50,4 @@ public interface TournamentDao {
      * @return Tournament
      */
     public Tournament getTournamentByName(String name);  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
