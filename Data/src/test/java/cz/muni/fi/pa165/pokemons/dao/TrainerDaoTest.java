@@ -28,6 +28,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.junit.JUnit3TestClass;
 import cz.muni.fi.pa165.pokemons.DataApplicationContext;
@@ -152,12 +153,21 @@ public class TrainerDaoTest {
     public void update() {
       
         trainer1.setName("bruklin");
+        trainer1.setSurname("ovce");
         trainerDao.update(trainer1);
         Assert.assertEquals(trainer1.getName(), "Ohio");
     }   
         
-   
+   @Test
+    public void getTrainerByNameSurename() {
+        Trainer tr = (Trainer) trainerDao.findByNameAndSurname("Arnold", "Balboa");
+        Assert.assertEquals(tr, trainer2);
+    }
 
-    
+    @Test
+    public void getTrainerByID() {
+        Trainer tr = trainerDao.findById(trainer1.getId());
+        Assert.assertEquals(tr, trainer1);
+    }
     
 }
