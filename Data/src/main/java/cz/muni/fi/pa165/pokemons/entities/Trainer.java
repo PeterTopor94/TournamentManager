@@ -60,7 +60,7 @@ public class Trainer {
     public void setGym(Gym gym) {
         this.gym = gym;
     }
-
+    
     public Trainer(Long id) {
         this.id = id;
     }
