@@ -19,8 +19,8 @@ import org.springframework.stereotype.Repository;
 public class BadgeDaoImpl implements BadgeDao {
 
     @PersistenceContext
-    private EntityManager em; 
-    
+    private EntityManager em;
+
     @Override
     public void create(Badge badge) {
         em.persist(badge);
@@ -38,18 +38,17 @@ public class BadgeDaoImpl implements BadgeDao {
 
     @Override
     public void update(Badge badge) {
-       
+        em.persist(badge);
     }
 
     @Override
     public List<Badge> findAll() {
-        return em.createQuery("SELECT badge FROM Badge badge", Badge.class).getResultList();
+        return em.createQuery("SELECT b FROM Badge b", Badge.class).getResultList();
     }
 
     @Override
     public List<Badge> findByOwner(Trainer trainer) {
-       return em.createQuery("SELECT badge FROM Badge badge WHERE badge.owner = :ownerid", Badge.class).query.setParameter("ownerid",t).getResultList();
+        return em.createQuery("SELECT b FROM Badge b WHERE b.owners = :ownerid", Badge.class).setParameter("ownerid", trainer).getResultList();
     }
-    
-    
+
 }

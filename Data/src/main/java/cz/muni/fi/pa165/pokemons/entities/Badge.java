@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.pokemons.entities;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,29 +22,30 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Badge {
+
     @NotNull
     @Column(nullable = false)
     private String cityOfOrigin;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
     @Column(nullable = false)
     private Gym gym;
 
     @ManyToMany
     private ArrayList<Trainer> owners;
-    
-    public Badge(){
-        
+
+    public Badge() {
+
     }
 
     public Badge(String cityOfOrigin, Gym gym, ArrayList<Trainer> owners) {
         this.cityOfOrigin = cityOfOrigin;
         this.gym = gym;
-        this.owners = owners;
+        this.owners = new ArrayList(owners);
     }
 
     public String getCityOfOrigin() {
@@ -58,12 +60,20 @@ public class Badge {
         return gym;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setGym(Gym gym) {
         this.gym = gym;
     }
 
     public ArrayList<Trainer> getOwners() {
-        return owners;
+        return Collections.unmodifiableList(owners);
     }
 
     public void addOwner(Trainer owner) {
@@ -94,6 +104,5 @@ public class Badge {
         final Badge other = (Badge) obj;
         return true;
     }
-    
-    
+
 }
