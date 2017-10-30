@@ -58,7 +58,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>4.3.11.RELEASE</version>
-            <scope>test</scope>
             <type>jar</type>
         </dependency>
         <dependency>

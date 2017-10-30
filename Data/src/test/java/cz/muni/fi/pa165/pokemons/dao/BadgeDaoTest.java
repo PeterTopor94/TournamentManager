@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import cz.muni.fi.pa165.pokemons.DataApplicationContext;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -71,8 +72,8 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         t3.setName("Ash");
         t3.setSurname("Red");
 
-        gymLeaderDao.create(t1);
-        gymLeaderDao.create(t2);
+        trainerDao.create(t1);
+        trainerDao.create(t2);
         trainerDao.create(t3);
 
         g1 = new Gym();
