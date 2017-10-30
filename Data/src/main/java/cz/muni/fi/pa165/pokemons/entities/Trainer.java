@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.pokemons.entities;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -36,6 +38,9 @@ public class Trainer {
 
     @ManyToMany(mappedBy = "trainers")
     private Set<Badge> badges = new HashSet<Badge>();
+    
+    @OneToMany
+    private List<Pokemon> pokemons = new ArrayList<>();
 
     @NotNull
     @Column(nullable = false)
@@ -97,6 +102,18 @@ public class Trainer {
 
     public void addBadge(Badge b) {
         badges.add(b);
+    }
+    
+    public List<Pokemon> getPokemons() {
+        return pokemons;
+    }
+    
+    public void addPokemon(Pokemon p) {
+        pokemons.add(p);
+    }
+    
+    public void removePokemon(Pokemon p) {
+        pokemons.remove(p);
     }
     
     public void leaveTournament(Tournament t)
