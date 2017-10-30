@@ -7,17 +7,14 @@ package cz.muni.fi.pa165.pokemons.entities;
 
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Peter Topor
  */
+@Entity
 public class Pokemon {
     
     @Id

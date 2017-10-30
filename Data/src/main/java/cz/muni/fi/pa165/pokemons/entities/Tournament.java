@@ -33,7 +33,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "Tournament")
 public class Tournament {
 
 @Id
@@ -41,16 +40,16 @@ public class Tournament {
 private Long id;
    
 @NotNull
-@Column(nullable = false)
-@OneToOne(mappedBy = "turnamentName")
+@Column
 private String name; 
 
-@OneToMany(mappedBy = "trainers")
+@OneToMany
 private List<Trainer> trainers = new ArrayList<Trainer>();
 
 @NotNull
-@ManyToMany(mappedBy = "requiredBadges")
+@Column
 private int numRequiredBadges;
+
   
 public Tournament(){
     

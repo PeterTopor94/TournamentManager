@@ -106,7 +106,7 @@ public class PokemonDaoTest extends AbstractTestNGSpringContextTests
     public void findByOwner()
     {
         List<Pokemon> found = pokemonDao.findByOwner(t1);
-        Assert.assertEquals(found.size(),1);
+        Assert.assertEquals(found.size(),2);
 
         List<Pokemon> found2 = pokemonDao.findByOwner(t2);
         Assert.assertEquals(found2.size(),1);
