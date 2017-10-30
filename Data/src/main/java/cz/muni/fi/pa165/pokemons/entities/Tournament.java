@@ -58,7 +58,7 @@ public Tournament(String name){
     this.name = name;
 }
     
-private static boolean verifyTrainer(Trainer trainer){
+private boolean verifyTrainer(Trainer trainer){
     
     return (trainer.getBadges().size() >= numRequiredBadges);
 }    

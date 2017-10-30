@@ -37,17 +37,23 @@ public interface TournamentDao {
      */
     public void update(Tournament turnament) throws IllegalArgumentException;
  
+    /**
+     * Returns All Tournaments
+     * @return list of Tournaments
+     */
+    public List<Tournament> findAll();
+    
      /**
      * Returns Tournament by Id
      * @param id of Tournament to be returned
      * @return Tournament
      */
-    public Tournament getTournamentById(Long id);
+    public Tournament findById(Long id);
     
   /**
      * Returns Tournament by name
      * @param name of Tournament to be returned
      * @return Tournament
      */
-    public Tournament getTournamentByName(String name);  
+    public Tournament findByName(String name);  
 }
