@@ -124,14 +124,14 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
     @Test
     public void findAll() {
         List<Gym> gyms = gymDao.getAllGyms();
-        Assert.assertEquals(gyms.size(), 2);
+        Assert.assertEquals(gyms.size(), 3);
     }
 
     @Test
     public void remove() {
         gymDao.remove(gym1);
         List<Gym> gyms = gymDao.getAllGyms();
-        Assert.assertEquals(gyms.size(), 1);
+        Assert.assertEquals(gyms.size(), 2);
     }
 
     @Test
@@ -155,7 +155,7 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void update() {
-        String city = gym1.getCityName();
+        
         gym1.setCityName("Ohio");
         gymDao.update(gym1);
         Assert.assertEquals(gym1.getCityName(), "Ohio");
