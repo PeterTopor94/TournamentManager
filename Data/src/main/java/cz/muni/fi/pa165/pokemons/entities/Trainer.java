@@ -53,9 +53,16 @@ public class Trainer {
         this.gym = gym;
     }
 
-    public Trainer() {
+    public Trainer(String name, String surename, Date dateOFbirth) {
+        this.name = name;
+        this.surname= surename;
+        this.dateOfBirth =dateOFbirth;
     }
 
+     public Trainer() { 
+         
+    }
+    
     public Trainer(Long id) {
         this.id = id;
     }
