@@ -1,11 +1,11 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
-import cz.muni.fi.pa165.pokemons.entities.Gym;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import cz.muni.fi.pa165.pokemons.DataApplicationContext;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -25,7 +25,7 @@ import javax.validation.ConstraintViolationException;
  *
  * @author Roman Gluszny
  */
-@ContextConfiguration
+@ContextConfiguration(classes = DataApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
@@ -41,9 +41,6 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
     private Gym g1;
     private Gym g2;
-
-    @Autowired
-    private GymLeaderDao gymLeaderDao;
 
     private Trainer t1;
     private Trainer t2;

@@ -45,15 +45,18 @@ public class Trainer {
     @Column(nullable = true)
     private Gym gym;
 
+    @Column
+    private Gym gym;
+
+    public Trainer() {
+    }
+
     public Gym getGym() {
         return gym;
     }
 
     public void setGym(Gym gym) {
         this.gym = gym;
-    }
-
-    public Trainer() {
     }
 
     public Trainer(Long id) {
