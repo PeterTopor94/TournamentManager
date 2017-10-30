@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.pokemons.entities;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -101,7 +102,7 @@ public class Badge {
      * Returns list of owners of the badge
      * @return List<Trainer> 
      */
-    public ArrayList<Trainer> getOwners() {
+    public List<Trainer> getOwners() {
         return Collections.unmodifiableList(owners);
     }
 

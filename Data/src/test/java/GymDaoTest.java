@@ -17,6 +17,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import cz.muni.fi.pa165.pokemons.DataApplicationContext;
+import cz.muni.fi.pa165.pokemons.dao.GymDao;
+import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -113,26 +116,26 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         gym3.setCityName("Trstena");
         gymDao.create(gym3);
 
-        List<Gym> gyms = gymDao.findAll();
+        List<Gym> gyms = gymDao.getAllGyms();
         Assert.assertEquals(gyms.size(), 3);
     }
 
     @Test
     public void findAll() {
-        List<Gym> gyms = gymDao.findAll();
+        List<Gym> gyms = gymDao.getAllGyms();
         Assert.assertEquals(gyms.size(), 2);
     }
 
     @Test
     public void remove() {
         gymDao.remove(gym1);
-        List<Gym> gyms = gymDao.findAll();
+        List<Gym> gyms = gymDao.getAllGyms();
         Assert.assertEquals(gyms.size(), 1);
     }
 
     @Test
     public void getGymByBadge() {
-        Gym gym = gymDao.findByBadge(badge1);
+        Gym gym = gymDao.getGymByBadge(badge1);
         Assert.assertEquals(gym, gym1);
     }
 
