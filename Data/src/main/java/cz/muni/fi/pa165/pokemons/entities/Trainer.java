@@ -64,6 +64,10 @@ public class Trainer {
         this.gym = gym;
     }
 
+     public Trainer() { 
+         
+    }
+    
     public Trainer(Long id) {
         this.id = id;
     }
