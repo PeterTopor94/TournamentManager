@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,31 +39,31 @@ public class GymDaoImpl implements GymDao {
 
     @Override
     public List<Gym> getAllGyms() {
-        return em.createQuery("SELECT * FROM Gym gym", Gym.class).getResultList();
+        return em.createQuery("SELECT g FROM Gym g", Gym.class).getResultList();
     }
 
     @Override
-    public Gym getGymById(Long id) {;
-        return em.createQuery("SELECT * FROM Gym gym WHERE gym.id = :gymid", 
+    public Gym getGymById(Long id) {
+        return em.createQuery("SELECT g FROM Gym g WHERE g.id = :gymid", 
                 Gym.class).setParameter("gymid", id).getSingleResult();
     }
 
     @Override
     public Gym getGymByCity(String city) {
-        return em.createQuery("SELECT * FROM Gym gym WHERE gym.city = :gymcity",
+        return em.createQuery("SELECT g FROM Gym g WHERE g.cityName = :gymcity",
                 Gym.class).setParameter("gymcity", city).getSingleResult();
     }
 
     @Override
     public Gym getGymByLeader(Trainer leader) {
-        return em.createQuery("SELECT * FROM Gym gym WHERE gym.leader_id = :gymleader",
-                Gym.class).setParameter("gymleader", leader.getId()).getSingleResult();
+        return em.createQuery("SELECT g FROM Gym g WHERE g.gymLeader = :gymleader",
+                Gym.class).setParameter("gymleader", leader).getSingleResult();
     }
 
     @Override
     public Gym getGymByBadge(Badge badge) {
-        return em.createQuery("SELECT * FROM Gym gym WHERE gym.badge_id = :gymbadge",
-                Gym.class).setParameter("gymbadge", badge.getId()).getSingleResult();
+        return em.createQuery("SELECT g FROM Gym g WHERE g.badge = :gymbadge",
+                Gym.class).setParameter("gymbadge", badge).getSingleResult();
     }
 
     @Override
