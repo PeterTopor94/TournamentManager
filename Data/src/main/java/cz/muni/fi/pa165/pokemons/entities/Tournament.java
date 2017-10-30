@@ -51,8 +51,7 @@ private List<Trainer> trainers = new ArrayList<Trainer>();
 @NotNull
 @ManyToMany(mappedBy = "requiredBadges")
 private static int numRequiredBadges;
-    
-
+  
 public Tournament(){
     
 }

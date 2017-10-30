@@ -14,15 +14,13 @@ import java.util.List;
  * @author Miroslav
  */
 public interface TournamentDao {
-    
 
      /**
      * Adds new Tournament
-     * @param tournament Gym to be added
+     * @param tournament Tournament to be added
      * @throws IllegalArgumentException
      */
     public void create(Tournament tournament);
-    
    
      /**
      * Removes Tournament
