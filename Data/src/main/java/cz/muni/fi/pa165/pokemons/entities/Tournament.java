@@ -50,7 +50,7 @@ private List<Trainer> trainers = new ArrayList<Trainer>();
 
 @NotNull
 @ManyToMany(mappedBy = "requiredBadges")
-private static int numRequiredBadges;
+private int numRequiredBadges;
   
 public Tournament(){
     
@@ -60,7 +60,7 @@ public Tournament(String name){
     this.name = name;
 }
     
-private static boolean verifyTrainer(Trainer trainer){
+private boolean verifyTrainer(Trainer trainer){
     
     return (trainer.getBadges().size() >= numRequiredBadges);
 }    
