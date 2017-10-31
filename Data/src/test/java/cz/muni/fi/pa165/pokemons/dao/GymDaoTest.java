@@ -21,6 +21,7 @@ import cz.muni.fi.pa165.pokemons.DataApplicationContext;
 import cz.muni.fi.pa165.pokemons.dao.GymDao;
 import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -63,16 +64,19 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         trainer1.setName("Anthony");
         trainer1.setSurname("Hamilton");
         trainer1.setGym(gym1);
+        trainer1.setDateOfBirth(new Date(1990,10,5));
 
         trainer2 = new Trainer();
         trainer2.setName("Arnold");
         trainer2.setSurname("Balboa");
         trainer2.setGym(gym2);
+        trainer2.setDateOfBirth(new Date(1992,11,5));
 
         trainer3 = new Trainer();
         trainer3.setName("Viktor");
         trainer3.setSurname("Holmes");
         trainer3.setGym(gym3);
+        trainer3.setDateOfBirth(new Date(1996,10,6));
 
         trainerDao.create(trainer1);
         trainerDao.create(trainer2);
@@ -124,14 +128,14 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
     @Test
     public void findAll() {
         List<Gym> gyms = gymDao.getAllGyms();
-        Assert.assertEquals(gyms.size(), 2);
+        Assert.assertEquals(gyms.size(), 3);
     }
 
     @Test
     public void remove() {
         gymDao.remove(gym1);
         List<Gym> gyms = gymDao.getAllGyms();
-        Assert.assertEquals(gyms.size(), 1);
+        Assert.assertEquals(gyms.size(), 2);
     }
 
     @Test
@@ -155,7 +159,7 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void update() {
-        String city = gym1.getCityName();
+        
         gym1.setCityName("Ohio");
         gymDao.update(gym1);
         Assert.assertEquals(gym1.getCityName(), "Ohio");

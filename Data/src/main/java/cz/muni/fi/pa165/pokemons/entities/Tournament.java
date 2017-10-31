@@ -30,7 +30,6 @@ import javax.persistence.Table;
  */
 @Entity
 public class Tournament {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
