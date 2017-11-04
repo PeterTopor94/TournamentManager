@@ -23,54 +23,50 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  *
  * @author Miroslav
  */
-@Getter
-@Setter
 @Entity
 public class Tournament {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
-   
-@NotNull
-@Column
-private String name; 
+    @NotNull
+    @Column
+    private String name;
 
-@OneToMany
-private List<Trainer> trainers = new ArrayList<Trainer>();
 
-@NotNull
-@Column
-private int numRequiredBadges;
 
-  
-public Tournament(){
-    
-}
+    @OneToMany
+    private List<Trainer> trainers = new ArrayList<Trainer>();
 
-public Tournament(String name){
-    this.name = name;
-}
-    
-private boolean verifyTrainer(Trainer trainer){
+    @NotNull
+    @Column
+    private static int numRequiredBadges;
+
+    public Tournament(){
+
+    }
+
+    public Tournament(String name){
+        this.name = name;
+    }
+
+    private boolean verifyTrainer(Trainer trainer){
     
     return (trainer.getBadges().size() >= numRequiredBadges);
 }    
     
-public void addTrainer(Trainer t){
+    public void addTrainer(Trainer t){
     if (verifyTrainer(t)){
         trainers.add(t);
     }
 }
     
- public void removeTrainer(Trainer t)
+    public void removeTrainer(Trainer t)
     {
         trainers.remove(t);
 }    
@@ -82,8 +78,26 @@ public void addTrainer(Trainer t){
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
-    
+
+
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public static int getNumRequiredBadges()
+    {
+        return numRequiredBadges;
+    }
+
+    public static void setNumRequiredBadges(int numRequiredBadges)
+    {
+        Tournament.numRequiredBadges = numRequiredBadges;
+    }
 }
