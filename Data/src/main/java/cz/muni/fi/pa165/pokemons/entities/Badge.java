@@ -28,8 +28,8 @@ public class Badge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne 
     @NotNull
-    @OneToOne
     private Gym gym;
 
     @ManyToMany
