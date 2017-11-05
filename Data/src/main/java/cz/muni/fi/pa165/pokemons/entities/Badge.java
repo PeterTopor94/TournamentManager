@@ -12,7 +12,6 @@ import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-
 /**
  *
  * @author lubos.beno
@@ -28,8 +27,8 @@ public class Badge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @OneToOne
+    @NotNull
     private Gym gym;
 
     @ManyToMany
@@ -47,6 +46,7 @@ public class Badge {
 
     /**
      * Returns city of origin
+     *
      * @return City of origin
      */
     public String getCityOfOrigin() {
@@ -55,7 +55,8 @@ public class Badge {
 
     /**
      * Set city of origin
-     * @param cityOfOrigin 
+     *
+     * @param cityOfOrigin
      */
     public void setCityOfOrigin(String cityOfOrigin) {
         this.cityOfOrigin = cityOfOrigin;
@@ -63,6 +64,7 @@ public class Badge {
 
     /**
      * Returns gym
+     *
      * @return Gym
      */
     public Gym getGym() {
@@ -71,7 +73,8 @@ public class Badge {
 
     /**
      * Returns Id of the Badge
-     * @return 
+     *
+     * @return
      */
     public Long getId() {
         return this.id;
@@ -79,7 +82,8 @@ public class Badge {
 
     /**
      * Set Id of the badge
-     * @param id 
+     *
+     * @param id
      */
     public void setId(Long id) {
         this.id = id;
@@ -87,7 +91,8 @@ public class Badge {
 
     /**
      * Set Gym of the badge
-     * @param gym 
+     *
+     * @param gym
      */
     public void setGym(Gym gym) {
         this.gym = gym;
@@ -95,7 +100,8 @@ public class Badge {
 
     /**
      * Returns list of owners of the badge
-     * @return List<Trainer> 
+     *
+     * @return List<Trainer>
      */
     public List<Trainer> getOwners() {
         return Collections.unmodifiableList(owners);
@@ -103,7 +109,8 @@ public class Badge {
 
     /**
      * Add trainer to owners list
-     * @param owner 
+     *
+     * @param owner
      */
     public void addOwner(Trainer owner) {
         this.owners.add(owner);
@@ -111,6 +118,7 @@ public class Badge {
 
     /**
      * Generates hashCode
+     *
      * @return hashCode
      */
     @Override
@@ -125,6 +133,7 @@ public class Badge {
 
     /**
      * Method equals
+     *
      * @param obj
      * @return boolean value
      */
