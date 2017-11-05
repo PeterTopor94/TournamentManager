@@ -33,7 +33,7 @@ import java.util.Date;
  *
  * @author lubos.beno
  */
-@ContextConfiguration (classes = DataApplicationContext.class)
+@ContextConfiguration(classes = DataApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class GymDaoTest extends AbstractTestNGSpringContextTests {
@@ -61,64 +61,58 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
     @BeforeMethod
     public void testSetup() {
-        
-        
+
         trainer1 = new Trainer();
         trainer1.setName("Anthony");
         trainer1.setSurname("Hamilton");
-        trainer1.setDateOfBirth(new Date(1990,10,5));
-       // trainer1.setGym(gym1);
-        
-        
+        trainer1.setDateOfBirth(new Date(1990, 10, 5));
+        // trainer1.setGym(gym1);
+
         trainer2 = new Trainer();
         trainer2.setName("Arnold");
         trainer2.setSurname("Balboa");
-        trainer2.setDateOfBirth(new Date(1992,11,5));
-       // trainer2.setGym(gym2);
-       
+        trainer2.setDateOfBirth(new Date(1992, 11, 5));
+        // trainer2.setGym(gym2);
 
         trainerDao.create(trainer1);
         trainerDao.create(trainer2);
         //trainerDao.create(trainer3);
-        
+
         gym1 = new Gym();
-       // gym1.setBadge(badge1);
+        // gym1.setBadge(badge1);
         gym1.setGymLeader(trainer1);
         gym1.setCityName("Tokyo");
         gym1.setTypology(PokemonType.FIRE);
 
         gym2 = new Gym();
-      //  gym2.setBadge(badge2);
+        //  gym2.setBadge(badge2);
         gym2.setGymLeader(trainer2);
         gym2.setCityName("Montreal");
         gym2.setTypology(PokemonType.POISON);
 
         gymDao.create(gym1);
         gymDao.create(gym2);
-        
+
         badge1 = new Badge();
         badge1.setGym(gym1);
         badge1.setCityOfOrigin("Dublin");
-       // badge1.addOwner(trainer1);
+        // badge1.addOwner(trainer1);
 
         badge2 = new Badge();
         badge2.setGym(gym2);
         badge2.setCityOfOrigin("Malawi");
-      
 
         badgeDao.create(badge1);
         badgeDao.create(badge2);
-        
+
         trainer3 = new Trainer();
         trainer3.setName("Viktor");
         trainer3.setSurname("Holmes");
-        trainer3.setDateOfBirth(new Date(1996,10,6));
-       
+        trainer3.setDateOfBirth(new Date(1996, 10, 6));
+
         trainerDao.create(trainer3);
-        
-       //gym1.setBadge(badge1);
-        
-       
+
+        //gym1.setBadge(badge1);
     }
 
     @Test
@@ -127,9 +121,9 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         gym3.setGymLeader(trainer3);
         gym3.setCityName("Trstena");
         gym3.setTypology(PokemonType.POISON);
-      
+
         gymDao.create(gym3);
-       
+
         List<Gym> gyms = gymDao.getAllGyms();
         Assert.assertEquals(gyms.size(), 3);
     }
@@ -142,20 +136,18 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void remove() {
-       /* 
+        /* 
         if(gym1.getGymLeader() != null){
             trainerDao.remove(gym1.getGymLeader());
         }
         if (gym1.getBadge()!= null){
             badgeDao.remove(gym1.getBadge());
         }*/
-       /* gymDao.remove(gym1);
+ /* gymDao.remove(gym1);
         List<Gym> gyms = gymDao.getAllGyms();
         Assert.assertEquals(gyms.size(), 1);
-*/
+         */
     }
-
-   
 
     @Test
     public void getGymByLeader() {
@@ -172,7 +164,7 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void update() {
-        
+
         gym1.setCityName("Ohio");
         gymDao.update(gym1);
         Assert.assertEquals(gym1.getCityName(), "Ohio");
