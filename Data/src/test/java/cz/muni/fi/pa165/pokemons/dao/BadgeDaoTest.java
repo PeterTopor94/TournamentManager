@@ -72,10 +72,6 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         t3.setName("Ash");
         t3.setSurname("Red");
 
-        trainerDao.create(t1);
-        trainerDao.create(t2);
-        trainerDao.create(t3);
-
         g1 = new Gym();
         g1.setBadge(b1);
         g1.setGymLeader(t1);
@@ -88,8 +84,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         g2.setCityName("Opal Town");
         g2.setTypology(PokemonType.WATER);
 
-        gymDao.create(g1);
-        gymDao.create(g2);
+       
 
         b1 = new Badge();
         b1.setGym(g1);
@@ -99,9 +94,16 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         b2.setGym(g2);
         b2.addOwner(t1);
         b2.addOwner(t3);
+        
+        gymDao.create(g1);
+        gymDao.create(g2);
 
         badgeDao.create(b1);
         badgeDao.create(b2);
+        
+        trainerDao.create(t1);
+        trainerDao.create(t2);
+        trainerDao.create(t3);
     }
 
     @Test
