@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import cz.muni.fi.pa165.pokemons.DataApplicationContext;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -71,8 +72,8 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         t3.setName("Ash");
         t3.setSurname("Red");
 
-        gymLeaderDao.create(t1);
-        gymLeaderDao.create(t2);
+        trainerDao.create(t1);
+        trainerDao.create(t2);
         trainerDao.create(t3);
 
         g1 = new Gym();
@@ -92,12 +93,12 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
 
         b1 = new Badge();
         b1.setGym(g1);
-        b1.addTrainer(t3);
+        b1.addOwner(t3);
 
         b2 = new Badge();
         b2.setGym(g2);
-        b2.addTrainer(t1);
-        b2.addTrainer(t3);
+        b2.addOwner(t1);
+        b2.addOwner(t3);
 
         badgeDao.create(b1);
         badgeDao.create(b2);
@@ -114,7 +115,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         List<Badge> badges = badgeDao.findByOwner(t3);
         Assert.assertEquals(badges.size(), 2);
 
-        List<Badge> badges = badgeDao.findByOwner(t2);
+        badges = badgeDao.findByOwner(t2);
         Assert.assertEquals(badges.size(), 0);
     }
 
@@ -134,6 +135,6 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
     
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void addBadgeToOriginalGymLeader() {
-        b1.addTrainer(t1);
+        b1.addOwner(t1);
     }
 }

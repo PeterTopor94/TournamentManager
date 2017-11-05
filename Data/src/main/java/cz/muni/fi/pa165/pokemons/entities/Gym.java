@@ -1,8 +1,6 @@
 package cz.muni.fi.pa165.pokemons.entities;
 
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,13 +10,13 @@ import javax.validation.constraints.NotNull;
  * @author Matus Krska
  */
 @Entity
-@Getter
-@Setter
 public class Gym
 {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
+
+
 
     @OneToOne
     @NotNull
@@ -66,5 +64,55 @@ public class Gym
         result = 31 * result + (this.gymLeader != null ? this.gymLeader.hashCode() : 0);
         result = 31 * result + (this.typology != null ? this.typology.hashCode() : 0);
         return result;
+    }
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public Badge getBadge()
+    {
+        return badge;
+    }
+
+    public void setBadge(Badge badge)
+    {
+        this.badge = badge;
+    }
+
+    public String getCityName()
+    {
+        return cityName;
+    }
+
+    public void setCityName(String cityName)
+    {
+        this.cityName = cityName;
+    }
+
+    public Trainer getGymLeader()
+    {
+        return gymLeader;
+    }
+
+    public void setGymLeader(Trainer gymLeader)
+    {
+        this.gymLeader = gymLeader;
+    }
+
+    public PokemonType getTypology()
+    {
+        return typology;
+    }
+
+    public void setTypology(PokemonType typology)
+    {
+        this.typology = typology;
     }
 }
