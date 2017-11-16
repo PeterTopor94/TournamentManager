@@ -45,7 +45,7 @@ public class Tournament {
 
     @NotNull
     @Column
-    private static int numRequiredBadges;
+    private int numRequiredBadges;
 
     public Tournament(){
 
@@ -91,13 +91,13 @@ public class Tournament {
         this.name = name;
     }
 
-    public static int getNumRequiredBadges()
+    public int getNumRequiredBadges()
     {
         return numRequiredBadges;
     }
 
-    public static void setNumRequiredBadges(int numRequiredBadges)
+    public void setNumRequiredBadges(int numRequiredBadges)
     {
-        Tournament.numRequiredBadges = numRequiredBadges;
+        this.numRequiredBadges = numRequiredBadges;
     }
 }
