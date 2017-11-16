@@ -53,12 +53,5 @@ public interface BadgeDao {
      */
     public List<Badge> findAll();
 
-    /**
-     * Returns Badges by Trainer
-     *
-     * @param trainer of Trainer whom badges to be returned
-     * @return
-     */
-    public List<Badge> findByOwner(Trainer trainer);
-
+  
 }

@@ -36,14 +36,14 @@ public class Trainer {
 
     @ManyToMany(mappedBy = "owners")
     private List<Badge> badges = new ArrayList<>();
-    
-    @OneToMany(mappedBy="owner")
+
+    @OneToMany(mappedBy = "owner")
     private List<Pokemon> pokemons = new ArrayList<>();
 
     @NotNull
     @Column(nullable = false)
     private Date dateOfBirth;
-    
+
     @OneToOne
     private Gym gym;
 
@@ -57,7 +57,7 @@ public class Trainer {
     public void setGym(Gym gym) {
         this.gym = gym;
     }
-    
+
     public Trainer(Long id) {
         this.id = id;
     }
@@ -97,21 +97,23 @@ public class Trainer {
     public void addBadge(Badge b) {
         badges.add(b);
     }
-    
+    public void removeBadge(Badge b) {
+        badges.remove(b);
+    }
+
     public List<Pokemon> getPokemons() {
         return pokemons;
     }
-    
+
     public void addPokemon(Pokemon p) {
         pokemons.add(p);
     }
-    
+
     public void removePokemon(Pokemon p) {
         pokemons.remove(p);
     }
-    
-    public void leaveTournament(Tournament t)
-    {
+
+    public void leaveTournament(Tournament t) {
         t.removeTrainer(this);
     }
 
@@ -139,7 +141,5 @@ public class Trainer {
         }
         return true;
     }
-    
-
 
 }
