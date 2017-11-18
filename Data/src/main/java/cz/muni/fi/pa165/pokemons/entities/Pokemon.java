@@ -16,34 +16,34 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Pokemon {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
-    @Column(nullable = false)    
+    @Column(nullable = false)
     private Integer level;
-    
+
     @NotNull
     @Column(nullable = false)
     private String name;
-    
+
     @NotNull
     @Column(nullable = false)
     private String nickname;
-    
+
     @ManyToOne
     private Trainer owner;
-    
+
     @NotNull
     @Column(nullable = false)
     private PokemonType type;
-    
-    public Pokemon(){
+
+    public Pokemon() {
     }
-    
-    public Pokemon(Long id){
+
+    public Pokemon(Long id) {
         this.id = id;
     }
 
@@ -118,19 +118,29 @@ public class Pokemon {
         if (this.getClass() != obj.getClass()) {
             return false;
         }
-        
+
         final Pokemon pokemon = (Pokemon) obj;
-        
-        if (this.id != null ? !this.id.equals(pokemon.id) : pokemon.id != null) return false;
-        if (this.level != null ? !this.level.equals(pokemon.level) : pokemon.level != null) return false;
-        if (this.name != null ? !this.name.equals(pokemon.name) : pokemon.name != null) return false;
-        if (this.nickname != null ? !this.nickname.equals(pokemon.id) : pokemon.nickname != null) return false;
-        if (this.owner != null ? !this.owner.equals(pokemon.owner) : pokemon.owner != null) return false;
-        if (this.type != null ? !this.type.equals(pokemon.type) : pokemon.type != null) return false;
-        
+
+        if (this.id != null ? !this.id.equals(pokemon.id) : pokemon.id != null) {
+            return false;
+        }
+        if (this.level != null ? !this.level.equals(pokemon.level) : pokemon.level != null) {
+            return false;
+        }
+        if (this.name != null ? !this.name.equals(pokemon.name) : pokemon.name != null) {
+            return false;
+        }
+        if (this.nickname != null ? !this.nickname.equals(pokemon.id) : pokemon.nickname != null) {
+            return false;
+        }
+        if (this.owner != null ? !this.owner.equals(pokemon.owner) : pokemon.owner != null) {
+            return false;
+        }
+        if (this.type != null ? !this.type.equals(pokemon.type) : pokemon.type != null) {
+            return false;
+        }
+
         return true;
     }
-    
-    
-    
+
 }

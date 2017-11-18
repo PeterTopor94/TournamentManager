@@ -24,15 +24,6 @@
             <artifactId>maven-clean-plugin</artifactId>
             <version>3.0.0</version>
         </dependency>
- 
-     <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-maven -->
-     <!--  dependency na automaticke generovanie getter a setter metody pri -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok-maven</artifactId>
-        <version>1.16.18.1</version>
-        <type>pom</type>
-     </dependency>
      
      <!--  dependency na hibernate  --> 
         <dependency>
