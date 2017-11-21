@@ -97,6 +97,10 @@ public class Trainer {
     public void addBadge(Badge b) {
         badges.add(b);
     }
+    
+    public void removeBadge(Badge b) {
+        badges.remove(b);
+    }
 
     public List<Pokemon> getPokemons() {
         return pokemons;

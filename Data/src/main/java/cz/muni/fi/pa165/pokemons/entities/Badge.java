@@ -32,7 +32,7 @@ public class Badge {
     private Gym gym;
 
     @ManyToMany
-    private List<Trainer> owners;
+    private List<Trainer> owners = new ArrayList<>();
 
     public Badge() {
 

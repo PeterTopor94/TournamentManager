@@ -72,16 +72,4 @@ public class BadgeDaoImpl implements BadgeDao {
     public List<Badge> findAll() {
         return em.createQuery("SELECT b FROM Badge b", Badge.class).getResultList();
     }
-    
-    /**
-     * Returns Badges by Trainer
-     *
-     * @param trainer of Trainer whom badges to be returned
-     * @return
-     */
-    @Override
-    public List<Badge> findByOwner(Trainer trainer) {
-        return em.createQuery("SELECT b FROM Badge b WHERE b.owners = :ownerid", Badge.class).setParameter("ownerid", trainer).getResultList();
-    }
-
 }
