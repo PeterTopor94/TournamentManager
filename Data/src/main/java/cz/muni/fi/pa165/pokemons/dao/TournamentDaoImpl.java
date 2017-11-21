@@ -2,20 +2,13 @@
 
  */
 package cz.muni.fi.pa165.pokemons.dao;
-import cz.muni.fi.pa165.pokemons.entities.Gym;
-import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import java.lang.UnsupportedOperationException;
-import javax.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
-import cz.muni.fi.pa165.pokemons.entities.Pokemon;        
+
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
-import cz.muni.fi.pa165.pokemons.entities.Trainer;
-import cz.muni.fi.pa165.pokemons.enums.PokemonType;
-import static org.hibernate.annotations.common.util.impl.LoggerFactory.logger;
-import org.hibernate.internal.log.ConnectionPoolingLogger;
-import org.hibernate.internal.log.DeprecationLogger;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.List;
 /**
  *
  * @author Miroslav

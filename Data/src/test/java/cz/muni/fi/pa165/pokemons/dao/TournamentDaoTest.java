@@ -1,6 +1,9 @@
 
 package cz.muni.fi.pa165.pokemons.dao;
 
+import cz.muni.fi.pa165.pokemons.DataApplicationContext;
+import cz.muni.fi.pa165.pokemons.entities.*;
+import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -11,15 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import cz.muni.fi.pa165.pokemons.DataApplicationContext;
-import cz.muni.fi.pa165.pokemons.entities.Tournament;
-import cz.muni.fi.pa165.pokemons.entities.Trainer;
-import cz.muni.fi.pa165.pokemons.entities.Badge;
-import cz.muni.fi.pa165.pokemons.entities.Gym;
-import cz.muni.fi.pa165.pokemons.entities.Pokemon;
-import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import java.util.Calendar;
-import java.util.Date;
 
 
 /**

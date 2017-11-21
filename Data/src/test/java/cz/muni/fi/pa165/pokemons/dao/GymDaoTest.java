@@ -1,28 +1,24 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
-import cz.muni.fi.pa165.pokemons.dao.BadgeDao;
+import cz.muni.fi.pa165.pokemons.DataApplicationContext;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
-import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import cz.muni.fi.pa165.pokemons.DataApplicationContext;
-import cz.muni.fi.pa165.pokemons.dao.GymDao;
-import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
-import cz.muni.fi.pa165.pokemons.entities.Trainer;
-import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Date;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

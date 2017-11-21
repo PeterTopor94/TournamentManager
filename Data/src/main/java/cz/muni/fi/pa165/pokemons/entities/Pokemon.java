@@ -6,9 +6,10 @@
 package cz.muni.fi.pa165.pokemons.entities;
 
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
-import java.util.Objects;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  *
@@ -136,11 +137,7 @@ public class Pokemon {
         if (this.owner != null ? !this.owner.equals(pokemon.owner) : pokemon.owner != null) {
             return false;
         }
-        if (this.type != null ? !this.type.equals(pokemon.type) : pokemon.type != null) {
-            return false;
-        }
-
-        return true;
+        return this.type != null ? this.type.equals(pokemon.type) : pokemon.type == null;
     }
 
 }
