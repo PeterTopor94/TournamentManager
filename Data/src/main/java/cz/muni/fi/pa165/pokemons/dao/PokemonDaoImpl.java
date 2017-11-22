@@ -1,13 +1,14 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
-import java.util.List;
+import cz.muni.fi.pa165.pokemons.entities.Pokemon;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
-import cz.muni.fi.pa165.pokemons.entities.Pokemon;        
-import cz.muni.fi.pa165.pokemons.entities.Trainer;
-import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+import java.util.List;
 /**
  *
  * @author Roman Gluszny

@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+
 import java.util.List;
 
 /**
@@ -15,32 +16,32 @@ public interface TrainerDao
      * Creates new trainer
      * @param t trainer to create
      */
-    public void create(Trainer t) throws IllegalArgumentException;
+    void create(Trainer t) throws IllegalArgumentException;
 
 
     /**
      * Updates existing trainer
      * @param t
      */
-    public void update(Trainer t) throws IllegalArgumentException;
+    void update(Trainer t) throws IllegalArgumentException;
 
     /**
      * Removes a trainer
      * @param t trainer to remove
      * @throws IllegalArgumentException
      */
-    public void remove(Trainer t) throws IllegalArgumentException;
+    void remove(Trainer t) throws IllegalArgumentException;
 
     /**
      * Finds a trainer by id
      * @param id id of trainer
      */
-    public Trainer findById(Long id);
+    Trainer findById(Long id);
 
     /**
      * Finds all trainers
      */
-    public List<Trainer> findAll();
+    List<Trainer> findAll();
 
     /**
      * Finds trainers by name and surname
@@ -48,5 +49,5 @@ public interface TrainerDao
      * @param surname surname of trainer
      * @return
      */
-    public List<Trainer> findByNameAndSurname(String name, String surname);
+    List<Trainer> findByNameAndSurname(String name, String surname);
 }

@@ -68,9 +68,7 @@ public class Gym {
     @Override
     public int hashCode() {
         int result = this.id != null ? this.id.hashCode() : 0;
-        result = 31 * result + (this.badge != null ? this.badge.hashCode() : 0);
         result = 31 * result + (this.cityName != null ? this.cityName.hashCode() : 0);
-        result = 31 * result + (this.gymLeader != null ? this.gymLeader.hashCode() : 0);
         result = 31 * result + (this.typology != null ? this.typology.hashCode() : 0);
         return result;
     }

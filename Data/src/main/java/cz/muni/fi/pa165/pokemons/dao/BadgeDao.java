@@ -6,8 +6,6 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Badge;
-import cz.muni.fi.pa165.pokemons.entities.Trainer;
-
 
 import java.util.List;
 
@@ -22,14 +20,14 @@ public interface BadgeDao {
      *
      * @param badge Badge to be created
      */
-    public void create(Badge badge);
+    void create(Badge badge);
 
     /**
      * Removes Badge
      *
      * @param badge Badge to be removed
      */
-    public void remove(Badge badge);
+    void remove(Badge badge);
 
     /**
      * Returns Badge by Id
@@ -37,21 +35,21 @@ public interface BadgeDao {
      * @param id of the Badge to be returned
      * @return Badge
      */
-    public Badge findById(Long id);
+    Badge findById(Long id);
 
     /**
      * Updates Badge
      *
      * @param badge Badge that will be updated
      */
-    public void update(Badge badge);
+    void update(Badge badge);
 
     /**
      * Returns all Badges
      *
      * @return list of all Badges
      */
-    public List<Badge> findAll();
+    List<Badge> findAll();
 
   
 }
