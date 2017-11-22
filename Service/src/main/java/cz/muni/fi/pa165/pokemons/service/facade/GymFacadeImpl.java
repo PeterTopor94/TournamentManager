@@ -13,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * Implemantation of {@link GymFacade}
+ * @author Matus Krska
+ */
 public class GymFacadeImpl implements GymFacade
 {
 

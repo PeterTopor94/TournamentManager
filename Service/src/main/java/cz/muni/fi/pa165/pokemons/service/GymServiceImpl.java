@@ -1,43 +1,51 @@
 package cz.muni.fi.pa165.pokemons.service;
 
+import cz.muni.fi.pa165.pokemons.dao.GymDao;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Implemantation of {@link GymService}
+ * @author Matus Krska
+ */
 @Service
 public class GymServiceImpl implements GymService
 {
+    @Autowired
+    private GymDao gymDao;
+
     @Override
     public void createGym(Gym gym)
     {
-        //TODO
+        gymDao.create(gym);
     }
 
     @Override
     public void deleteGym(Gym gym)
     {
-        //TODO
+        gymDao.remove(gym);
     }
 
     @Override
     public Gym findById(Long id)
     {
-        //TODO
-        return null;
+        return gymDao.getGymById(id);
     }
 
     @Override
     public List<Gym> findAllGyms()
     {
-        //TODO
-        return null;
+        return gymDao.getAllGyms();
     }
 
     @Override
     public void changeTypology(Gym gym, PokemonType newTypology)
     {
-        //TODO
+        gym.setTypology(newTypology);
+        gymDao.update(gym);
     }
 }
