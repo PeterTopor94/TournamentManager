@@ -14,11 +14,19 @@ import java.util.List;
  * @author Roman Gluszny
  */
 public interface TrainerFacade {
-    
+
+    public Long createTrainer(TrainerCreateDTO t);
+
+    public void deleteTrainer(Long trainerId);
+
     public List<TrainerDTO> getAllTrainers();
+
     public List<TrainerDTO> getTrainersByNameAndSurname(String name, String surname);
+
     public List<TrainerDTO> getTrainersByDateOfBirth(Date birthdate);
+
     public TrainerDTO getTrainerByGym(Long gymId);
+
     public List<TrainerDTO> getAllTrainersForTournament(Long tournamentId);
     //trainers having pokemon
     //trainers having badge
