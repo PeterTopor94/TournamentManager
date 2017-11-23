@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.pokemons.facade;
 
+import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface TrainerFacade {
 
-    public Long createTrainer(TrainerCreateDTO t);
+    public void createTrainer(TrainerCreateDTO t);
 
     public void deleteTrainer(Long trainerId);
 

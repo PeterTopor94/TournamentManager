@@ -18,6 +18,16 @@ public class TrainerServiceImpl implements TrainerService {
     private TrainerDao trainerDao;
 
     @Override
+    public void createTrainer(Trainer t) {
+        trainerDao.create(t);
+    }
+
+    @Override
+    public void deleteTrainer(Trainer t) {
+        trainerDao.remove(t);
+    }
+
+    @Override
     public List<Trainer> findAllTrainers() {
         return trainerDao.findAll();
     }
@@ -41,5 +51,4 @@ public class TrainerServiceImpl implements TrainerService {
     public List<Trainer> getAllTrainersForTournament(Tournament tournament) {
         return trainerDao.findByTournament(tournament);
     }
-
 }

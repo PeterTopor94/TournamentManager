@@ -5,7 +5,6 @@
  */
 package cz.muni.fi.pa165.pokemons.DTO;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -25,9 +24,9 @@ public class TrainerCreateDTO {
     @Size(min = 3, max = 50)
     private String surname;
 
-    private List<Long> badgeIDs = new ArrayList<>();
+    private List badgeId;
 
-    private List<Long> pokemonIDs = new ArrayList<>();
+    private List pokemonId;
 
     @NotNull
     private Date dateOfBirth;
@@ -48,20 +47,20 @@ public class TrainerCreateDTO {
         this.surname = surname;
     }
 
-    public List<Long> getBadgeIDs() {
-        return badgeIDs;
+    public List getBadgeId() {
+        return badgeId;
     }
 
-    public void setBadgeIDs(List<Long> badgeIDs) {
-        this.badgeIDs = badgeIDs;
+    public void setBadgeId(List badgeId) {
+        this.badgeId = badgeId;
     }
 
-    public List<Long> getPokemonIDs() {
-        return pokemonIDs;
+    public List getPokemonId() {
+        return pokemonId;
     }
 
-    public void setPokemonIDs(List<Long> pokemonIDs) {
-        this.pokemonIDs = pokemonIDs;
+    public void setPokemonId(List pokemonId) {
+        this.pokemonId = pokemonId;
     }
 
     public Date getDateOfBirth() {

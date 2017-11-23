@@ -12,6 +12,10 @@ import java.util.List;
  */
 public interface TrainerService {
 
+    public void createTrainer(Trainer t);
+    
+    public void deleteTrainer(Trainer t);
+
     public List<Trainer> findAllTrainers();
 
     public List<Trainer> findByNameAndSurname(String name, String surname);
