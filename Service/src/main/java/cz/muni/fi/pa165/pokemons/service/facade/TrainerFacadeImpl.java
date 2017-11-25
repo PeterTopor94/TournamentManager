@@ -39,14 +39,13 @@ public class TrainerFacadeImpl implements TrainerFacade {
     @Override
     public void createTrainer(TrainerCreateDTO t) {
         Trainer mappedTrainer = beanMappingService.mapTo(t, Trainer.class);
-        //map price DTO to entity
+
         mappedTrainer.setName(t.getName());
         mappedTrainer.setSurname(t.getSurname());
         mappedTrainer.setGym(gymService.getGymById(t.getGymId()));
         mappedTrainer.setDateOfBirth(t.getDateOfBirth());
         
-        Trainer newTrainer = trainerService.createTrainer(mappedTrainer);
-        return newTrainer.getId();
+       trainerService.createTrainer(mappedTrainer);
     }
 
     @Override
@@ -77,13 +76,5 @@ public class TrainerFacadeImpl implements TrainerFacade {
         Gym gym = gymService.findGymById(gymId);
         Trainer trainer = trainerService.getTrainerByGym(gym);
         return (trainer == null) ? null : beanMappingService.mapTo(trainer, TrainerDTO.class);
-    }
-
-    @Override
-    public List<TrainerDTO> getAllTrainersForTournament(Long tournamentId) {
-        Tournament tournament = tournamentService.findGymById(tournamentId);
-        List<Trainer> trainers = trainerService.getAllTrainersForTournament(tournament);
-
-        return beanMappingService.mapTo(trainers, TrainerDTO.class);
     }
 }

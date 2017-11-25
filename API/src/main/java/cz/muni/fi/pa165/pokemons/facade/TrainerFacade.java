@@ -27,8 +27,6 @@ public interface TrainerFacade {
     public List<TrainerDTO> getTrainersByDateOfBirth(Date birthdate);
 
     public TrainerDTO getTrainerByGym(Long gymId);
-
-    public List<TrainerDTO> getAllTrainersForTournament(Long tournamentId);
     //trainers having pokemon
     //trainers having badge
 }

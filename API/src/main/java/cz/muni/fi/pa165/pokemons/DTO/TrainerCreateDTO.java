@@ -24,9 +24,9 @@ public class TrainerCreateDTO {
     @Size(min = 3, max = 50)
     private String surname;
 
-    private List badgeId;
+    private Long badgeId;
 
-    private List pokemonId;
+    private Long pokemonId;
 
     @NotNull
     private Date dateOfBirth;
