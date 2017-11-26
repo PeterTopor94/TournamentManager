@@ -28,6 +28,9 @@ public class TrainerFacadeImpl implements TrainerFacade {
     private PokemonService pokemonService;
 
     @Autowired
+    private TournamentService tournamentService;
+
+    @Autowired
     private GymService gymService;
 
     @Autowired
@@ -44,13 +47,13 @@ public class TrainerFacadeImpl implements TrainerFacade {
         mappedTrainer.setSurname(t.getSurname());
         mappedTrainer.setGym(gymService.getGymById(t.getGymId()));
         mappedTrainer.setDateOfBirth(t.getDateOfBirth());
-        
-       trainerService.createTrainer(mappedTrainer);
+
+        trainerService.createTrainer(mappedTrainer);
     }
 
     @Override
     public void deleteTrainer(Long trainerId) {
-		trainerService.deleteTrainer(new Trainer(trainerId));
+        trainerService.deleteTrainer(new Trainer(trainerId));
     }
 
     @Override
@@ -77,4 +80,10 @@ public class TrainerFacadeImpl implements TrainerFacade {
         Trainer trainer = trainerService.getTrainerByGym(gym);
         return (trainer == null) ? null : beanMappingService.mapTo(trainer, TrainerDTO.class);
     }
+
+    @Override
+    public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to) {
+        return trainerService.isTrainerQualifiedForTournament(beanMappingService.mapTo(tr, Trainer.class), beanMappingService.mapTo(to, Tournament.class));
+    }
+
 }

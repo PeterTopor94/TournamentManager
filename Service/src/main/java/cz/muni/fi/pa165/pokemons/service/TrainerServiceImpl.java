@@ -28,6 +28,11 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
+    public Trainer findTrainerById(Long id) {
+        return trainerDao.findById(id);
+    }
+
+    @Override
     public List<Trainer> findAllTrainers() {
         return trainerDao.findAll();
     }
@@ -51,4 +56,10 @@ public class TrainerServiceImpl implements TrainerService {
     public List<Trainer> getAllTrainersForTournament(Tournament tournament) {
         return trainerDao.findByTournament(tournament);
     }
+
+    @Override
+    public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament) {
+        return trainer.getBadges().size()>=tournament.getNumRequiredBadges();
+    }
+
 }

@@ -13,8 +13,10 @@ import java.util.List;
 public interface TrainerService {
 
     public void createTrainer(Trainer t);
-    
+
     public void deleteTrainer(Trainer t);
+
+    public Trainer findTrainerById(Long id);
 
     public List<Trainer> findAllTrainers();
 
@@ -25,4 +27,6 @@ public interface TrainerService {
     public Trainer getTrainerByGym(Gym gym);
 
     public List<Trainer> getAllTrainersForTournament(Tournament tournament);
+
+    public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament);
 }

@@ -6,7 +6,6 @@
 package cz.muni.fi.pa165.pokemons.DTO;
 
 import java.util.Date;
-import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -47,19 +46,19 @@ public class TrainerCreateDTO {
         this.surname = surname;
     }
 
-    public List getBadgeId() {
+    public Long getBadgeId() {
         return badgeId;
     }
 
-    public void setBadgeId(List badgeId) {
+    public void setBadgeId(Long badgeId) {
         this.badgeId = badgeId;
     }
 
-    public List getPokemonId() {
+    public Long getPokemonId() {
         return pokemonId;
     }
 
-    public void setPokemonId(List pokemonId) {
+    public void setPokemonId(Long pokemonId) {
         this.pokemonId = pokemonId;
     }
 
