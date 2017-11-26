@@ -8,4 +8,12 @@
     </parent>
     <artifactId>Service</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>cz.muni.fi.pa165.pokemons</groupId>
+            <artifactId>Data</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
