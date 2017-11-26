@@ -13,23 +13,23 @@ import java.util.List;
  * @author Miroslav
  */
 public interface TournamentService {
-     void create(Tournament tournament);
+     void createTournament(Tournament tournament);
    
     
-     void remove(Tournament tournament);
+     void removeTournament(Tournament tournament);
     
    
     List<Tournament> getAllTournaments();
     
    
-    void update(Tournament turnament) throws IllegalArgumentException;
+    void updateTournaments(Tournament turnament) throws IllegalArgumentException;
  
    
-    List<Tournament> findAll();
+    List<Tournament> findAllTournaments();
     
    
-     Tournament findById(Long id);
+     Tournament findTournmanetById(Long id);
     
   
-  Tournament findByName(String name);
+  Tournament findTournamentByName(String name);
 }
