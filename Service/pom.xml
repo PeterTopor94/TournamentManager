@@ -6,13 +6,11 @@
 
     <artifactId>Service</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <parent>
         <groupId>cz.muni.fi.pa165.pokemons</groupId>
         <artifactId>TournamentManager</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
     <dependencies>
         <dependency>
             <groupId>cz.muni.fi.pa165.pokemons</groupId>
