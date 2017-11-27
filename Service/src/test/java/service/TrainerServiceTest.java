@@ -1,4 +1,4 @@
-package serviceBusinessFunctionTests;
+package service;
 
 import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
 import cz.muni.fi.pa165.pokemons.entities.Badge;

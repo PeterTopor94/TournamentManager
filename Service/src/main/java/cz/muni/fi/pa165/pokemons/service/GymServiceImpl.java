@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.dao.GymDao;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,17 @@ public class GymServiceImpl implements GymService
     {
         gym.setTypology(newTypology);
         gymDao.update(gym);
+    }
+
+    @Override
+    public Gym findGymByCity(String cityName)
+    {
+        return gymDao.getGymByCity(cityName);
+    }
+
+    @Override
+    public Gym findGymByGymLeader(Trainer gymLeader)
+    {
+        return findGymByGymLeader(gymLeader);
     }
 }
