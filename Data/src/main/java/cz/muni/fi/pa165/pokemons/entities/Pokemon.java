@@ -131,7 +131,7 @@ public class Pokemon {
         if (this.name != null ? !this.name.equals(pokemon.name) : pokemon.name != null) {
             return false;
         }
-        if (this.nickname != null ? !this.nickname.equals(pokemon.id) : pokemon.nickname != null) {
+        if (this.nickname != null ? !this.nickname.equals(pokemon.nickname) : pokemon.nickname != null) {
             return false;
         }
         if (this.owner != null ? !this.owner.equals(pokemon.owner) : pokemon.owner != null) {
