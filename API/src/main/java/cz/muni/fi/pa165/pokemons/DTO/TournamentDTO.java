@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.muni.fi.pa165.pokemons.entities;
+package cz.muni.fi.pa165.pokemons.DTO;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,58 +12,37 @@ import java.util.List;
  *
  * @author Miroslav
  */
-@Entity
-public class Tournament {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TournamentDTO {
+    
     private Long id;
-
-    @NotNull
-    @Column
     private String name;
-
-
-
-    @OneToMany
-    private List<Trainer> trainers = new ArrayList<Trainer>();
-   
-
-    @NotNull
-    @Column
     private int numRequiredBadges;
-
-    public Tournament(){
-
-    }
-
-    public Tournament(String name){
-        this.name = name;
-    }
-
-    private boolean verifyTrainer(Trainer trainer){
+    private List<TrainerDTO> trainers = new ArrayList<TrainerDTO>();
+    
+   public Long getId()
+   {
+       return id;
+   } 
+    
+   public void setId(Long id){
+       this.id = id;
+   }
+   
+    private boolean verifyTrainer(TrainerDTO trainer){
     
     return (trainer.getBadges().size() >= numRequiredBadges);
-    }    
+}    
     
-    public void addTrainer(Trainer t){
+    public void addTrainer(TrainerDTO t){
     if (verifyTrainer(t)){
         trainers.add(t);
     }
-    }
+}
     
-    public void removeTrainer(Trainer t)
+    public void removeTrainer(TrainerDTO t)
     {
         trainers.remove(t);
     }    
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
 
     public String getName()
@@ -87,4 +64,5 @@ public class Tournament {
     {
         this.numRequiredBadges = numRequiredBadges;
     }
+   
 }

@@ -20,16 +20,19 @@ public class TournamentDaoImpl implements TournamentDao{
     
     @Override
     public void create(Tournament tournament) {
-        if (tournament.getId() != null) {
-            throw new IllegalArgumentException("Can't create turnament that already exists.");
+        
+        if (tournament == null || getAllTournaments().contains(tournament)) {           
+            throw new IllegalArgumentException
+        ("Can't create turnament that already exists or the value of the tournament for creating is null.");
         }
       em.persist(tournament);
     }
 
     @Override
     public void remove(Tournament tournament) {
-        if (tournament.getId() == null) {
-            throw new IllegalArgumentException("Can't remove Tournament without ID as it does not exist");
+        
+        if (tournament == null || !getAllTournaments().contains(tournament)) {
+            throw new IllegalArgumentException("Can't remove Tournament which is null or the tournament is not registered");
         }
         em.remove(tournament);
     }
@@ -40,21 +43,27 @@ public class TournamentDaoImpl implements TournamentDao{
     }
 
     @Override
-    public void update(Tournament turnament) throws IllegalArgumentException {
-         if (turnament.getId() == null) {
-            throw new IllegalArgumentException("Can't update Tournament without ID.");
+    public void update(Tournament tournament) throws IllegalArgumentException {
+         if (tournament == null || tournament.getId() == null) {
+            throw new IllegalArgumentException("Can't update Tournament which is null or without ID.");
         }
-        em.persist(turnament);
+        em.persist(tournament);
     }
 
     @Override
     public Tournament findById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("Can't find Tournament without ID.");
+        }
        return em.createQuery("SELECT t FROM Tournament t WHERE t.id = :tid", 
                 Tournament.class).setParameter("tid", id).getSingleResult();
     }
 
     @Override
     public Tournament findByName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("Can't find Tournament without ID.");
+        }
         return em.createQuery("SELECT t FROM Tournament t WHERE t.name = :tname",
                 Tournament.class).setParameter("tname", name).getSingleResult();
     }
