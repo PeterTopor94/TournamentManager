@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.dao.GymDao;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
@@ -16,6 +17,12 @@ import java.util.List;
 @Service
 public class GymServiceImpl implements GymService
 {
+
+    public GymServiceImpl(GymDao gymDao)
+    {
+        this.gymDao = gymDao;
+    }
+
     @Autowired
     private GymDao gymDao;
 
@@ -59,6 +66,12 @@ public class GymServiceImpl implements GymService
     @Override
     public Gym findGymByGymLeader(Trainer gymLeader)
     {
-        return findGymByGymLeader(gymLeader);
+        return gymDao.getGymByLeader(gymLeader);
+    }
+
+    @Override
+    public Gym findGymByBadge(Badge badge)
+    {
+        return gymDao.getGymByBadge(badge);
     }
 }

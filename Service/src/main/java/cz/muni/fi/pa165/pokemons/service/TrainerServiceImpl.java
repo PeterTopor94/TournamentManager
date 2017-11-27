@@ -4,6 +4,8 @@ import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,17 +46,20 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public List<Trainer> getTrainersByDateOfBirth(Date birthdate) {
-        return trainerDao.findByBirthdate(birthdate);
+        //TODO return trainerDao.findByBirthdate(birthdate);
+        return null;
     }
 
     @Override
     public Trainer getTrainerByGym(Gym gym) {
-        return trainerDao.findByGym(gym);
+        //TODO return trainerDao.findByGym(gym);
+        return null;
     }
 
     @Override
     public List<Trainer> getAllTrainersForTournament(Tournament tournament) {
-        return trainerDao.findByTournament(tournament);
+        //TODO return trainerDao.findByTournament(tournament);
+        return new ArrayList<>();
     }
 
     @Override

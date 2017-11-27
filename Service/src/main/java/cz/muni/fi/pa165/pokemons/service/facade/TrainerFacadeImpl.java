@@ -2,9 +2,7 @@ package cz.muni.fi.pa165.pokemons.service.facade;
 
 import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
-import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
@@ -13,7 +11,6 @@ import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
-import cz.muni.fi.pa165.pokemons.service.TournamentService;
 
 
 import java.util.Date;
@@ -37,8 +34,9 @@ public class TrainerFacadeImpl implements TrainerFacade {
     @Autowired
     private GymService gymService;
 
-    @Autowired
-    private TournamentService tournamentService;
+    //TODO
+    /*@Autowired
+    private TournamentService tournamentService;*/
 
     @Autowired
     private BeanMappingService beanMappingService;
@@ -85,9 +83,10 @@ public class TrainerFacadeImpl implements TrainerFacade {
         return (trainer == null) ? null : beanMappingService.mapTo(trainer, TrainerDTO.class);
     }
 
-    @Override
+    //TODO
+    /*@Override
     public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to) {
         return trainerService.isTrainerQualifiedForTournament(beanMappingService.mapTo(tr, Trainer.class), beanMappingService.mapTo(to, Tournament.class));
-    }
+    }*/
 
 }

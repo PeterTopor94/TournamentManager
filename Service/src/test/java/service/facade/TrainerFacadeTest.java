@@ -1,4 +1,4 @@
-package facadeTests;
+package service.facade;
 
 import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
