@@ -1,13 +1,11 @@
 package cz.muni.fi.pa165.pokemons.service.facade;
 
-import cz.muni.fi.pa165.pokemons.DTO.GymCreateDTO;
-import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
-import cz.muni.fi.pa165.pokemons.DTO.NewGymTypologyDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.DTO.*;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.facade.GymFacade;
+import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
@@ -21,6 +19,14 @@ import java.util.List;
  */
 public class GymFacadeImpl implements GymFacade
 {
+
+    public GymFacadeImpl(GymService gymService, BeanMappingService beanMappingService, TrainerService trainerService, BadgeService badgeService)
+    {
+        this.gymService = gymService;
+        this.beanMappingService = beanMappingService;
+        this.trainerService = trainerService;
+        this.badgeService = badgeService;
+    }
 
     @Autowired
     private GymService gymService;
@@ -39,7 +45,7 @@ public class GymFacadeImpl implements GymFacade
     {
         Gym mappedGym = beanMappingService.mapTo(gym, Gym.class);
         mappedGym.setGymLeader(trainerService.findTrainerById(gym.getGymLeaderId()));
-        mappedGym.setBadge(badgeService.getBadgeById(gym.getBadgeId()));
+        mappedGym.setBadge(badgeService.findById(gym.getBadgeId()));
 
         gymService.createGym(mappedGym);
     }

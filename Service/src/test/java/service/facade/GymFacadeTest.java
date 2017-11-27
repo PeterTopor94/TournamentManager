@@ -1,18 +1,18 @@
 package service.facade;
 
-import cz.muni.fi.pa165.pokemons.DTO.GymCreateDTO;
-import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
-import cz.muni.fi.pa165.pokemons.DTO.NewGymTypologyDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.DTO.*;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.facade.GymFacade;
+import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
+import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.pokemons.service.facade.GymFacadeImpl;
 import org.hibernate.service.spi.ServiceException;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
@@ -43,13 +43,19 @@ public class GymFacadeTest
     @Mock
     private GymService gymService;
 
-    @InjectMocks
+    @Mock
+    private TrainerService trainerService;
+
+    @Mock
+    private BadgeService badgeService;
+
     private GymFacade gymFacade;
 
     @BeforeClass
     public void setup() throws ServiceException
     {
         MockitoAnnotations.initMocks(this);
+        gymFacade = new GymFacadeImpl(gymService, mappingService, trainerService, badgeService);
     }
 
     private GymDTO gymDTO;
@@ -58,6 +64,8 @@ public class GymFacadeTest
     private Trainer trainer;
     private TrainerDTO trainerDTO;
     private NewGymTypologyDTO newTypology;
+    private Badge badge;
+    private BadgeDTO badgeDTO;
 
     @BeforeMethod
     public void prepareGyms()
@@ -69,6 +77,7 @@ public class GymFacadeTest
         gymCreateDTO = new GymCreateDTO();
         gymCreateDTO.setTypology(PokemonType.DRAGON);
         gymCreateDTO.setCityName("Trenčín");
+        gymCreateDTO.setGymLeaderId(6L);
 
         gymDTO = new GymDTO();
         gymDTO.setTypology(PokemonType.DRAGON);
@@ -82,14 +91,22 @@ public class GymFacadeTest
         trainer.setName("Matus");
         trainer.setSurname("Krska");
 
+        newTypology = new NewGymTypologyDTO();
         newTypology.setGymId(6L);
         newTypology.setTypology(PokemonType.FAIRY);
+
+        badge = new Badge();
+        badge.setCityOfOrigin("Trenčín");
+
+        badgeDTO = new BadgeDTO();
+        badgeDTO.setCityOfOrigin("Trenčín");
     }
 
     @Test
     public void create()
     {
         when(mappingService.mapTo(gymCreateDTO, Gym.class)).thenReturn(gym);
+        when(trainerService.findTrainerById(6L)).thenReturn(trainer);
 
         gymFacade.createGym(gymCreateDTO);
         verify(gymService, times(1)).createGym(gym);
@@ -120,7 +137,7 @@ public class GymFacadeTest
     public void getById()
     {
         when(gymService.findById(6L)).thenReturn(gym);
-        when(mappingService.mapTo(gym,eq(GymDTO.class))).thenReturn(gymDTO);
+        when(mappingService.mapTo(gym, GymDTO.class)).thenReturn(gymDTO);
 
         GymDTO gym = gymFacade.getGymById(6L);
         Assert.assertEquals(gym.getCityName(),gymDTO.getCityName());
@@ -157,10 +174,12 @@ public class GymFacadeTest
         Assert.assertEquals(gym.getCityName(),gymDTO.getCityName());
     }
 
-    //TODO after Badge classes are created
-    /*@Test
+    @Test
     public void getByBadge()
     {
-
-    }*/
+        when(gymService.findGymByBadge(badge)).thenReturn(gym);
+        when(mappingService.mapTo(gym, GymDTO.class)).thenReturn(gymDTO);
+        when(mappingService.mapTo(badgeDTO, Badge.class)).thenReturn(badge);
+        GymDTO gym = gymFacade.getGymByBadge(badgeDTO);
+    }
 }

@@ -7,7 +7,6 @@ package cz.muni.fi.pa165.pokemons.facade;
 
 import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import java.util.Date;
 import java.util.List;
 
@@ -29,5 +28,5 @@ public interface TrainerFacade {
 
     public TrainerDTO getTrainerByGym(Long gymId);
     
-    public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to);
+    //TODO public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to);
 }

@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.pokemons.service;
 
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
@@ -25,4 +26,6 @@ public interface GymService
     Gym findGymByCity(String cityName);
 
     Gym findGymByGymLeader(Trainer gymLeader);
+
+    Gym findGymByBadge(Badge badge);
 }

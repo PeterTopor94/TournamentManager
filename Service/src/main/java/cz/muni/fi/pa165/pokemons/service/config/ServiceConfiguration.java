@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(DataApplicationContext.class)
-@ComponentScan(basePackages={"cz.muni.fi.pa165.pokemons"})
+@ComponentScan(basePackages={"cz.muni.fi.pa165.pokemons.service"})
 public class ServiceConfiguration
 {
     @Bean
