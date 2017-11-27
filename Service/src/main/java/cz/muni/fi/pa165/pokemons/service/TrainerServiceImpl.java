@@ -61,5 +61,4 @@ public class TrainerServiceImpl implements TrainerService {
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament) {
         return trainer.getBadges().size()>=tournament.getNumRequiredBadges();
     }
-
 }

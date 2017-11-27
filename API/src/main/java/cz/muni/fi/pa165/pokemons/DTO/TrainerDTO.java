@@ -107,10 +107,7 @@ public class TrainerDTO {
         if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
             return false;
         }
-        if (!Objects.equals(this.gym, other.gym)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.gym, other.gym);
     }
     
     

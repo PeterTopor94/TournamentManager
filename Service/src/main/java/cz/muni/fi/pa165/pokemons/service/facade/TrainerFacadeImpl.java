@@ -2,13 +2,20 @@ package cz.muni.fi.pa165.pokemons.service.facade;
 
 import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
+import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
+import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
+import cz.muni.fi.pa165.pokemons.service.BadgeService;
+import cz.muni.fi.pa165.pokemons.service.TournamentService;
+
+
 import java.util.Date;
 import java.util.List;
 
@@ -28,9 +35,6 @@ public class TrainerFacadeImpl implements TrainerFacade {
     private PokemonService pokemonService;
 
     @Autowired
-    private TournamentService tournamentService;
-
-    @Autowired
     private GymService gymService;
 
     @Autowired
@@ -45,7 +49,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
 
         mappedTrainer.setName(t.getName());
         mappedTrainer.setSurname(t.getSurname());
-        mappedTrainer.setGym(gymService.getGymById(t.getGymId()));
+        mappedTrainer.setGym(gymService.findById(t.getGymId()));
         mappedTrainer.setDateOfBirth(t.getDateOfBirth());
 
         trainerService.createTrainer(mappedTrainer);
@@ -76,7 +80,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
 
     @Override
     public TrainerDTO getTrainerByGym(Long gymId) {
-        Gym gym = gymService.findGymById(gymId);
+        Gym gym = gymService.findById(gymId);
         Trainer trainer = trainerService.getTrainerByGym(gym);
         return (trainer == null) ? null : beanMappingService.mapTo(trainer, TrainerDTO.class);
     }
