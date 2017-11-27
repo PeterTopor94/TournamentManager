@@ -42,6 +42,13 @@ public class PokemonFacadeImpl implements PokemonFacade{
     @Autowired
     BeanMappingService beanMappingService;
     
+    public PokemonFacadeImpl(PokemonService pokemonService, BeanMappingService beanMappingService, TrainerService trainerService)
+    {
+        this.pokemonService = pokemonService;
+        this.beanMappingService = beanMappingService;
+        this.trainerService = trainerService;
+    }
+    
     @Override
     public Long createPokemon(PokemonCreateDTO p){
         Pokemon mappedPokemon = beanMappingService.mapTo(p, Pokemon.class);
