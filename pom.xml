@@ -14,5 +14,6 @@
     <modules>
         <module>API</module>
         <module>Data</module>
+        <module>Service</module>
     </modules>
 </project>
