@@ -14,6 +14,12 @@ import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 

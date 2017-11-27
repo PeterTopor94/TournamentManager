@@ -18,6 +18,17 @@ import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
+import org.mockito.InjectMocks;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import org.mockito.Mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.mockito.MockitoAnnotations;
+import org.testng.Assert;
+import org.springframework.test.context.ContextConfiguration;
+
 
 /**
  *
