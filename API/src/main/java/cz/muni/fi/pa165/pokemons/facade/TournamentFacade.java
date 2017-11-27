@@ -14,25 +14,29 @@ import java.util.List;
  */
 public interface TournamentFacade {
    
-     void create(TournamentDTO tournament);
+     Long create(TournamentDTO tournament);
    
+     void removTrainer(Long idTournament, Long idTrainer);
+     
+     void removeTournament(Long id);
     
-     void remove(TournamentDTO tournament);
-    
-   
+     void setNameOfTournament(Long id, String name);
+     
     List<TournamentDTO> getAllTournaments();
     
-   
-    void update(TournamentDTO turnament) throws IllegalArgumentException;
- 
-   
     List<TournamentDTO> findAll();
     
+    TournamentDTO findById(Long id);
+    
+    TournamentDTO findByName(String name);
    
-     TournamentDTO findById(Long id);
+   
+ 
+   
+   
     
   
-  TournamentDTO findByName(String name);
+ 
 
   
 }

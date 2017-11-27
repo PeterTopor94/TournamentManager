@@ -28,6 +28,7 @@ public class Tournament {
 
     @OneToMany
     private List<Trainer> trainers = new ArrayList<Trainer>();
+   
 
     @NotNull
     @Column
@@ -44,18 +45,18 @@ public class Tournament {
     private boolean verifyTrainer(Trainer trainer){
     
     return (trainer.getBadges().size() >= numRequiredBadges);
-}    
+    }    
     
     public void addTrainer(Trainer t){
     if (verifyTrainer(t)){
         trainers.add(t);
     }
-}
+    }
     
     public void removeTrainer(Trainer t)
     {
         trainers.remove(t);
-}    
+    }    
 
     public Long getId() {
         return id;

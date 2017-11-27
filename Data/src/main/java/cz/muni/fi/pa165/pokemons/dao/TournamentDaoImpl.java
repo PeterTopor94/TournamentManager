@@ -62,7 +62,7 @@ public class TournamentDaoImpl implements TournamentDao{
     @Override
     public Tournament findByName(String name) {
         if (name == null) {
-            throw new IllegalArgumentException("Can't find Tournament without name.");
+            throw new IllegalArgumentException("Can't find Tournament without ID.");
         }
         return em.createQuery("SELECT t FROM Tournament t WHERE t.name = :tname",
                 Tournament.class).setParameter("tname", name).getSingleResult();

@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import java.util.List;
 
 /**
@@ -15,9 +16,11 @@ import java.util.List;
 public interface TournamentService {
      void createTournament(Tournament tournament);
    
-    
+     void removeTrainer(Tournament tournament, Trainer trainer); 
+             
      void removeTournament(Tournament tournament);
-    
+     
+     void setNameOfTournament(Tournament tournament, String name);
    
     List<Tournament> getAllTournaments();
     

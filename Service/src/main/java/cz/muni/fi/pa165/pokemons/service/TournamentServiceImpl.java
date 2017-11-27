@@ -7,6 +7,7 @@ package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.dao.TournamentDao;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,14 @@ public class TournamentServiceImpl implements TournamentService {
     @Override
     public void removeTournament(Tournament tournament) {
         tournamentDao.remove(tournament);
+    }
+    
+     @Override
+    public void removeTrainer(Tournament tournament, Trainer trainer) {
+     
+     tournament.removeTrainer(trainer);
+     tournamentDao.update(tournament);
+     
     }
 
     @Override
@@ -57,5 +66,12 @@ public class TournamentServiceImpl implements TournamentService {
          return tournamentDao.findByName(name);
     
     }
+
+    @Override
+    public void setNameOfTournament(Tournament tournament, String name) {
+       tournamentDao.findById(tournament.getId()).setName(name);
+    }
+
+   
     
 }
