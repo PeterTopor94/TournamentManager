@@ -96,7 +96,7 @@ public class TournamentServiceImplTest {
         TournamentServiceImpl instance = new TournamentServiceImpl();
         instance.createTournament(league1);
         // TODO review the generated test code and remove the default call to fail.
-        assertEquals();
+        //assertEquals();
     }
 
     /**
@@ -118,11 +118,9 @@ public class TournamentServiceImplTest {
     @Test
     public void testRemoveTrainer() {
         System.out.println("removeTrainer");
-        Tournament tournament = 
-        Trainer trainer =
        
-        TournamentServiceImpl instance = new TournamentServiceImpl();
-        instance.removeTrainer(tournament, trainer);
+//        TournamentServiceImpl instance = new TournamentServiceImpl();
+//        instance.removeTrainer(tournament, trainer);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
