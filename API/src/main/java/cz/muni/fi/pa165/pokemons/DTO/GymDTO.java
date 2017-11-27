@@ -14,7 +14,7 @@ public class GymDTO
 
     private String cityName;
 
-    private GymLeaderDTO gymLeader;
+    private TrainerDTO gymLeader;
 
     private PokemonType typology;
 
@@ -48,12 +48,12 @@ public class GymDTO
         this.cityName = cityName;
     }
 
-    public GymLeaderDTO getGymLeader()
+    public TrainerDTO getGymLeader()
     {
         return gymLeader;
     }
 
-    public void setGymLeader(GymLeaderDTO gymLeader)
+    public void setGymLeader(TrainerDTO gymLeader)
     {
         this.gymLeader = gymLeader;
     }

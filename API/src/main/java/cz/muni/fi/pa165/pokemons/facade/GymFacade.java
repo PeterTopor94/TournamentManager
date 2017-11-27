@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.pokemons.facade;
 import cz.muni.fi.pa165.pokemons.DTO.GymCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
 import cz.muni.fi.pa165.pokemons.DTO.NewGymTypologyDTO;
+import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
 
 import java.util.List;
 
