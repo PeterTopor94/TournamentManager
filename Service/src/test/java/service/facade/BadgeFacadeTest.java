@@ -28,6 +28,9 @@ import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.testng.Assert;
 import org.springframework.test.context.ContextConfiguration;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 
 /**
@@ -102,7 +105,7 @@ public class BadgeFacadeTest {
         when(badgeService.findById(8L)).thenReturn(badge);
         badgeDTO.setId(8L);
         badgeFacade.removeBadge(badgeDTO);
-        verify(badgeService, times(1)).removeBadge(badge);
+        verify(badgeService, times(1)).deleteBadge(badge);
     }
 
 }
