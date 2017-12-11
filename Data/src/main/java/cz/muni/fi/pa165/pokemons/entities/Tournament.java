@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -41,6 +42,50 @@ public class Tournament {
     public Tournament(String name){
         this.name = name;
     }
+    
+    
+    
+    @Override
+    public int hashCode() {
+        int hash = 53;
+        hash = 83 * hash + Objects.hashCode(this.id != null ? this.id.hashCode() : 0);      
+        hash = 83 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
+       
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Tournament tournament = (Tournament) obj;
+
+        if (this.id != null ? !this.id.equals(tournament.id) : tournament.id != null) {
+            return false;
+        }
+       
+        if (this.name != null ? !this.name.equals(tournament.name) : tournament.name != null) {
+            return false;
+        }
+       
+        
+        
+       return true;
+    }
+    
+    
+    
+    
+    
+    
 
     private boolean verifyTrainer(Trainer trainer){
     

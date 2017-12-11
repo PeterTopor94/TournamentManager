@@ -1,8 +1,10 @@
 package cz.muni.fi.pa165.pokemons.service.config;
 
 import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
+import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.DataApplicationContext;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
+import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
@@ -31,6 +33,8 @@ public class ServiceConfiguration
         @Override
         protected void configure() {
             mapping(Gym.class, GymDTO.class);
+            mapping(Tournament.class, TournamentDTO.class);
         }
+        
     }
 }

@@ -11,18 +11,20 @@ import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.facade.TournamentFacade;
 import cz.muni.fi.pa165.pokemons.service.TournamentService;
+import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- *
+ * implementation of {@link TournamentFacade}
  * @author Miroslav
  */
 public class TournamentFacadeImpl implements TournamentFacade {
 
    @Inject
    private TrainerService trainerService;
-
+   @Autowired
+    private BeanMappingService beanMappingService;
     
     @Autowired
    private TournamentService tournamentService; 
@@ -39,7 +41,7 @@ public class TournamentFacadeImpl implements TournamentFacade {
     @Override
     public void removTrainer(Long idTournament, Long idTrainer) {
        tournamentService.removeTrainer(tournamentService.findTournmanetById(idTournament),
-       trainerService.findById(idTrainer));
+       trainerService.findTrainerById(idTrainer));
     }
 
     @Override
