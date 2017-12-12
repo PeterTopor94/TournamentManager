@@ -113,10 +113,4 @@ public class TrainerDTO {
         }
         return Objects.equals(this.gym, other.gym);
     }
-
-    public void setId(long l) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 }

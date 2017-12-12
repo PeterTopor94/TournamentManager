@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.pokemons.service.facade;
 
+import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
@@ -15,7 +16,6 @@ import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.TournamentService;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +24,15 @@ import java.util.List;
  * @author Roman Gluszny
  */
 public class TrainerFacadeImpl implements TrainerFacade {
+
+    public TrainerFacadeImpl(TrainerService trainerService, BadgeService badgeService, PokemonService pokemonService, GymService gymService, TournamentService tournamentService, BeanMappingService beanMappingService) {
+        this.trainerService = trainerService;
+        this.badgeService = badgeService;
+        this.pokemonService = pokemonService;
+        this.gymService = gymService;
+        this.tournamentService = tournamentService;
+        this.beanMappingService = beanMappingService;
+    }
 
     @Autowired
     private TrainerService trainerService;
@@ -36,7 +45,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
 
     @Autowired
     private GymService gymService;
-    
+
     @Autowired
     private TournamentService tournamentService;
 
@@ -44,26 +53,32 @@ public class TrainerFacadeImpl implements TrainerFacade {
     private BeanMappingService beanMappingService;
 
     @Override
-    public void createTrainer(TrainerCreateDTO t) {
-        Trainer mappedTrainer = beanMappingService.mapTo(t, Trainer.class);
+    public void createTrainer(TrainerCreateDTO trainer) {
+        Trainer mappedTrainer = beanMappingService.mapTo(trainer, Trainer.class);
 
-        mappedTrainer.setName(t.getName());
-        mappedTrainer.setSurname(t.getSurname());
-        mappedTrainer.setGym(gymService.findById(t.getGymId()));
-        mappedTrainer.setDateOfBirth(t.getDateOfBirth());
+        mappedTrainer.setName(trainer.getName());
+        mappedTrainer.setSurname(trainer.getSurname());
+        mappedTrainer.setGym(gymService.findById(trainer.getGymId()));
+        mappedTrainer.setDateOfBirth(trainer.getDateOfBirth());
 
         trainerService.createTrainer(mappedTrainer);
     }
 
     @Override
-    public void deleteTrainer(Long trainerId) {
-        trainerService.deleteTrainer(new Trainer(trainerId));
+    public void deleteTrainer(TrainerDTO trainer) {
+        trainerService.deleteTrainer(trainerService.findTrainerById(trainer.getId()));
     }
 
     @Override
     public List<TrainerDTO> getAllTrainers() {
         return beanMappingService.mapTo(trainerService.findAllTrainers(),
                 TrainerDTO.class);
+    }
+
+    @Override
+    public TrainerDTO getById(Long id) {
+        Trainer trainer = trainerService.findTrainerById(id);
+        return (trainer == null) ? null : beanMappingService.mapTo(trainer, TrainerDTO.class);
     }
 
     @Override
@@ -79,9 +94,8 @@ public class TrainerFacadeImpl implements TrainerFacade {
     }
 
     @Override
-    public TrainerDTO getTrainerByGym(Long gymId) {
-        Gym gym = gymService.findById(gymId);
-        Trainer trainer = trainerService.getTrainerByGym(gym);
+    public TrainerDTO getTrainerByGym(GymDTO gym) {      
+        Trainer trainer = trainerService.getTrainerByGym(beanMappingService.mapTo(gym, Gym.class));
         return (trainer == null) ? null : beanMappingService.mapTo(trainer, TrainerDTO.class);
     }
 
@@ -89,5 +103,4 @@ public class TrainerFacadeImpl implements TrainerFacade {
     public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to) {
         return trainerService.isTrainerQualifiedForTournament(beanMappingService.mapTo(tr, Trainer.class), beanMappingService.mapTo(to, Tournament.class));
     }
-
 }
