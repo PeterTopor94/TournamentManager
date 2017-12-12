@@ -89,7 +89,7 @@ public class PokemonFacadeImpl implements PokemonFacade{
     
     @Override
     public void deletePokemon(Long pokemonId){
-        pokemonService.deletePokemon(new Pokemon(pokemonId));
+        pokemonService.deletePokemon(pokemonService.findById(pokemonId));
     }
     
     @Override
@@ -104,8 +104,8 @@ public class PokemonFacadeImpl implements PokemonFacade{
     }
     
     @Override
-    public PokemonDTO getPokemonById(Long pokemonIid){
-        Pokemon p = pokemonService.findById(pokemonIid);
+    public PokemonDTO getPokemonById(Long pokemonId){
+        Pokemon p = pokemonService.findById(pokemonId);
 	return (p == null) ? null : beanMappingService.mapTo(p, PokemonDTO.class);
     }
     

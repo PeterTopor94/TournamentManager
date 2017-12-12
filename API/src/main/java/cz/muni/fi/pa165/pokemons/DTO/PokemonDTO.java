@@ -77,7 +77,6 @@ public class PokemonDTO {
         hash = 37 * hash + this.level.hashCode();
         hash = 37 * hash + this.name.hashCode();
         hash = 37 * hash + this.nickname.hashCode();
-        hash = 37 * hash + this.ownerId.hashCode();
         hash = 37 * hash + this.pokemonType.hashCode();
         return hash;
     }
@@ -106,9 +105,6 @@ public class PokemonDTO {
             return false;
         }
         if (this.nickname != null ? !this.nickname.equals(pokemon.nickname) : pokemon.nickname != null) {
-            return false;
-        }
-        if (this.ownerId != null ? !this.ownerId.equals(pokemon.getOwnerId()) : pokemon.getOwnerId() != null) {
             return false;
         }
         return this.pokemonType != null ? this.pokemonType.equals(pokemon.pokemonType) : pokemon.pokemonType == null;
