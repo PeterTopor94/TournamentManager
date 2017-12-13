@@ -32,9 +32,13 @@ public class TrainerServiceTest {
     @Mock
     private TrainerDao trainerDao;
 
-    @Autowired
-    @InjectMocks
     private TrainerService trainerService;
+
+    @BeforeClass
+    public void setup() throws ServiceException {
+        MockitoAnnotations.initMocks(this);
+        trainerService = new TrainerServiceImpl(trainerDao);
+    }
 
     private Tournament tournament;
 
@@ -56,19 +60,13 @@ public class TrainerServiceTest {
         red.setName("Jon");
         red.setSurname("Red");
         red.setDateOfBirth(new Date());
+        red.addBadge(badge);
 
         blue = new Trainer();
         blue.setName("Misty");
         blue.setSurname("Blue");
         blue.setDateOfBirth(new Date());
 
-        blue.addBadge(badge);
-    }
-
-    @BeforeClass
-    public void setup() throws ServiceException {
-        MockitoAnnotations.initMocks(this);
-        trainerService = new TrainerServiceImpl();
     }
 
     @Test
@@ -90,34 +88,30 @@ public class TrainerServiceTest {
         Trainer t = trainerDao.findById(id);
         Assert.assertEquals(red.getName(), t.getName());
     }
-    
-     @Test
-    public void findAll()
-    {
-        when(trainerDao.findAll()).thenReturn(Arrays.asList(red,blue));
+
+    @Test
+    public void findAll() {
+        when(trainerDao.findAll()).thenReturn(Arrays.asList(red, blue));
 
         List<Trainer> trainers = trainerService.findAllTrainers();
-        Assert.assertEquals(trainers.size(),2);
+        Assert.assertEquals(trainers.size(), 2);
     }
-    
-     @Test
-    public void findByNameAndSurname()
-    {
-        when(trainerDao.findByNameAndSurname("Jon","Red")).thenReturn(Arrays.asList(red));
 
-        List<Trainer> trainers = trainerService.findByNameAndSurname("Jon","Red");
+    @Test
+    public void findByNameAndSurname() {
+        when(trainerDao.findByNameAndSurname("Jon", "Red")).thenReturn(Arrays.asList(red));
+
+        List<Trainer> trainers = trainerService.findByNameAndSurname("Jon", "Red");
         Assert.assertEquals(trainers.get(0).getDateOfBirth(), red.getDateOfBirth());
     }
-    
-    
 
     @Test
     public void trainerWithBadgeQualified() {
-        Assert.assertTrue(trainerService.isTrainerQualifiedForTournament(red, tournament), "order total price is wrong");
+        Assert.assertTrue(trainerService.isTrainerQualifiedForTournament(red, tournament));
     }
 
     @Test
     public void trainerWithoutBadgeQualified() {
-        Assert.assertFalse(trainerService.isTrainerQualifiedForTournament(blue, tournament), "order total price is wrong");
+        Assert.assertFalse(trainerService.isTrainerQualifiedForTournament(blue, tournament));
     }
 }

@@ -15,6 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author Roman Gluszny
  */
 public class TrainerServiceImpl implements TrainerService {
+    
+    public TrainerServiceImpl(TrainerDao trainerDao)
+    {
+        this.trainerDao = trainerDao;
+    }
 
     @Autowired
     private TrainerDao trainerDao;
