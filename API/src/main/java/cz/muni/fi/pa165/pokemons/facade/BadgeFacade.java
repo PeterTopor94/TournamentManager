@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.pokemons.facade;
 
+import cz.muni.fi.pa165.pokemons.DTO.BadgeCreateDTO;
 import java.util.List;
 import cz.muni.fi.pa165.pokemons.DTO.BadgeDTO;
 
@@ -14,7 +15,7 @@ import cz.muni.fi.pa165.pokemons.DTO.BadgeDTO;
  */
 public interface BadgeFacade {
 
-    public void createBadge(BadgeDTO b);
+    public void createBadge(BadgeCreateDTO b);
 
     public void removeBadge(BadgeDTO b);
 

@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.pokemons.service.facade;
 
+import cz.muni.fi.pa165.pokemons.DTO.BadgeCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.BadgeDTO;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
@@ -29,11 +30,17 @@ public class BadgeFacadeImpl implements BadgeFacade {
     @Autowired
     private BeanMappingService beanMappingService;
 
+    public BadgeFacadeImpl(GymService gymService, BeanMappingService beanMappingService, BadgeService badgeService) {
+        this.gymService = gymService;
+        this.beanMappingService = beanMappingService;
+        this.badgeService = badgeService;
+    }
+
     @Override
-    public void createBadge(BadgeDTO b) {
+    public void createBadge(BadgeCreateDTO b) {
         Badge mappedBadge = beanMappingService.mapTo(b, Badge.class);
-        mappedBadge.setCityOfOrigin(gymService.findById(b.getId()).getCityName());
-        mappedBadge.setGym(gymService.findById(b.getId()));
+        mappedBadge.setGym(gymService.findById(b.getGym().getId()));
+        mappedBadge.setCityOfOrigin(b.getCityOfOrigin());
         badgeService.createBadge(mappedBadge);
     }
 

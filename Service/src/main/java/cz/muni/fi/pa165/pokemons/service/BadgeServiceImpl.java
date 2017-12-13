@@ -23,6 +23,10 @@ public class BadgeServiceImpl implements BadgeService {
     @Inject
     private BadgeDao badgeDao;
 
+    public BadgeServiceImpl(BadgeDao badgeDao) {
+        this.badgeDao = badgeDao;
+    }
+
     @Override
     public Badge findById(Long id) {
         return badgeDao.findById(id);
