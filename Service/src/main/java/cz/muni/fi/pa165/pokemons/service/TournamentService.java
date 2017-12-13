@@ -16,6 +16,8 @@ import java.util.List;
 public interface TournamentService {
      void createTournament(Tournament tournament);
    
+     void addTrainer(Tournament tournament, Trainer trainer); 
+     
      void removeTrainer(Tournament tournament, Trainer trainer); 
              
      void removeTournament(Tournament tournament);
@@ -25,7 +27,7 @@ public interface TournamentService {
     List<Tournament> getAllTournaments();
     
    
-    void updateTournaments(Tournament turnament) throws IllegalArgumentException;
+    void updateTournaments(Tournament turnament);
  
    
     List<Tournament> findAllTournaments();

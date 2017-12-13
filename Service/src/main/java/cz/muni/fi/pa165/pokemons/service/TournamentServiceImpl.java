@@ -19,8 +19,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class TournamentServiceImpl implements TournamentService {
 
+    
+    public TournamentServiceImpl(TournamentDao tournamentDao)
+    {
+        this.tournamentDao = tournamentDao;
+    }
+    public TournamentServiceImpl()
+    {
+       
+    }
+    
     @Autowired
     private TournamentDao tournamentDao;
+
+    
 
     @Override
     public void createTournament(Tournament tournament) {
@@ -32,6 +44,13 @@ public class TournamentServiceImpl implements TournamentService {
     public void removeTournament(Tournament tournament) {
         tournamentDao.remove(tournament);
     }
+    
+    @Override
+    public void addTrainer(Tournament tournament, Trainer trainer) {
+        tournament.addTrainer(trainer);
+        tournamentDao.update(tournament);
+    }
+
     
      @Override
     public void removeTrainer(Tournament tournament, Trainer trainer) {
@@ -47,7 +66,7 @@ public class TournamentServiceImpl implements TournamentService {
     }
 
     @Override
-    public void updateTournaments(Tournament turnament) throws IllegalArgumentException {       
+    public void updateTournaments(Tournament turnament)  {       
      tournamentDao.update(turnament);
     }
 
@@ -72,6 +91,7 @@ public class TournamentServiceImpl implements TournamentService {
        tournamentDao.findById(tournament.getId()).setName(name);
     }
 
+    
    
     
 }
