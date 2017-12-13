@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.pokemons.entities.Pokemon;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.service.PokemonService;
+import cz.muni.fi.pa165.pokemons.service.PokemonServiceImpl;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 import java.util.Arrays;
 import java.util.Date;
@@ -39,6 +40,12 @@ public class PokemonServiceTest {
     private Pokemon pokemon;
     private Trainer trainer;
 
+    @BeforeClass
+    public void setup() throws ServiceException
+    {
+        MockitoAnnotations.initMocks(this);
+        pokemonService = new PokemonServiceImpl( pokemonDao );
+    }
     
     @BeforeMethod
     public void prepareTest(){
@@ -79,7 +86,7 @@ public class PokemonServiceTest {
     @Test
     public void setOwner(){
         pokemonService.setOwner(pokemon, trainer);
-        verify(pokemonDao, times(1)).create(pokemon);
+        verify(pokemonDao, times(2)).create(pokemon);
     }
     
     @Test

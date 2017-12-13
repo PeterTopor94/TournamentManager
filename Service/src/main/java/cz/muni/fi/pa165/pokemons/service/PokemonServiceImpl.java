@@ -19,6 +19,10 @@ public class PokemonServiceImpl implements PokemonService{
     @Inject
     private PokemonDao pokemonDao;
     
+    public PokemonServiceImpl(PokemonDao pokemonDao){
+        this.pokemonDao = pokemonDao;
+    }
+    
     @Override
     public Pokemon findById(Long id){
         return pokemonDao.findById(id);
@@ -30,9 +34,9 @@ public class PokemonServiceImpl implements PokemonService{
     }
 
     @Override
-    public Pokemon createPokemon(Pokemon p){
-        pokemonDao.create(p);
-        return p;
+    public Pokemon createPokemon(Pokemon pokemon){
+        pokemonDao.create(pokemon);
+        return pokemon;
     }
     
     @Override

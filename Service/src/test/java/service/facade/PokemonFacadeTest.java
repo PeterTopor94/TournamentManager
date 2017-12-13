@@ -95,11 +95,21 @@ public class PokemonFacadeTest {
         pokemonDTO.setName("pika");
         pokemonDTO.setNickname("polo");
         pokemonDTO.setType(PokemonType.FIRE);
+        pokemonDTO.setOwnerId(5L);
+        
+        pokemonCreateDTO = new PokemonCreateDTO();
+        pokemonCreateDTO.setLevel(10);
+        pokemonCreateDTO.setName("pika");
+        pokemonCreateDTO.setNickname("polo");
+        pokemonCreateDTO.setOwnerId(5L);
+        pokemonCreateDTO.setPokemonType(PokemonType.FIRE);
     }
     
     @Test
     public void createPokemon(){
         when(mappingService.mapTo(pokemonCreateDTO, Pokemon.class)).thenReturn(pokemon);
+        when(trainerService.findTrainerById(6L)).thenReturn(trainer);
+        when(pokemonService.createPokemon(pokemon)).thenReturn(pokemon);
         pokemonFacade.createPokemon(pokemonCreateDTO);
         verify(pokemonService, times(1)).createPokemon(pokemon);
     }
@@ -108,8 +118,6 @@ public class PokemonFacadeTest {
     public void setOwner(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
         when(trainerService.findTrainerById(5L)).thenReturn(trainer);
-        pokemonDTO.setId(6L);
-        trainerDTO.setId(5L);
         pokemonFacade.setOwner(6L, 5L);
         verify(pokemonService, times(1)).setOwner(pokemon, trainer);
         
@@ -118,7 +126,6 @@ public class PokemonFacadeTest {
     @Test
     public void setLevel(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonDTO.setId(6L);
         pokemonFacade.setLevel(6L, 15);
         verify(pokemonService, times(1)).setLevel(pokemon, 15);
         
@@ -127,7 +134,6 @@ public class PokemonFacadeTest {
     @Test
     public void setName(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonDTO.setId(6L);
         pokemonFacade.setName(6L, "name2");
         verify(pokemonService, times(1)).setName(pokemon, "name2");
         
@@ -136,7 +142,6 @@ public class PokemonFacadeTest {
     @Test
     public void setNickname(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonDTO.setId(6L);
         pokemonFacade.setNickname(6L, "nick2");
         verify(pokemonService, times(1)).setNickname(pokemon, "nick2");
         
@@ -145,7 +150,6 @@ public class PokemonFacadeTest {
     @Test
     public void setPokemonType(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonDTO.setId(6L);
         pokemonFacade.setPokemonType(6L, PokemonType.FAIRY);
         verify(pokemonService, times(1)).deletePokemon(pokemon);
     }
@@ -153,7 +157,6 @@ public class PokemonFacadeTest {
     @Test
     public void deletePokemon(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonDTO.setId(6L);
         pokemonFacade.deletePokemon(6L);
         verify(pokemonService, times(1)).deletePokemon(pokemon);
     }
@@ -178,8 +181,8 @@ public class PokemonFacadeTest {
     @Test
     public void getPokemonById(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
-        when(mappingService.mapTo(any(), eq(PokemonDTO.class))).thenReturn(Arrays.asList(pokemonDTO));
+        when(mappingService.mapTo(pokemon, PokemonDTO.class)).thenReturn(pokemonDTO);
         PokemonDTO p = pokemonFacade.getPokemonById(6L);
-        Assert.assertEquals(pokemon, p);
+        Assert.assertEquals(pokemonDTO, p);
     }
 }
