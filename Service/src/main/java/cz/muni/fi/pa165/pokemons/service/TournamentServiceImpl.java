@@ -45,10 +45,19 @@ public class TournamentServiceImpl implements TournamentService {
         tournamentDao.remove(tournament);
     }
     
+    
+    private boolean verifyTrainer(Trainer trainer, Tournament tournament){
+    
+    return (trainer.getBadges().size() >= tournament.getNumRequiredBadges());
+    }  
+    
+    
     @Override
     public void addTrainer(Tournament tournament, Trainer trainer) {
+        if (verifyTrainer(trainer,tournament)){
         tournament.addTrainer(trainer);
         tournamentDao.update(tournament);
+        }
     }
 
     
@@ -65,10 +74,6 @@ public class TournamentServiceImpl implements TournamentService {
       return tournamentDao.getAllTournaments();
     }
 
-    @Override
-    public void updateTournaments(Tournament turnament)  {       
-     tournamentDao.update(turnament);
-    }
 
     @Override
     public List<Tournament> findAllTournaments() {

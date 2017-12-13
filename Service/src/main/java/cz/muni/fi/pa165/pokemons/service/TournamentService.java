@@ -23,11 +23,12 @@ public interface TournamentService {
      void removeTournament(Tournament tournament);
      
      void setNameOfTournament(Tournament tournament, String name);
+
    
-    List<Tournament> getAllTournaments();
     
-   
-    void updateTournaments(Tournament turnament);
+    
+    
+    List<Tournament> getAllTournaments();
  
    
     List<Tournament> findAllTournaments();
