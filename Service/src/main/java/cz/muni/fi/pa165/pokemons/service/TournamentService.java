@@ -16,16 +16,19 @@ import java.util.List;
 public interface TournamentService {
      void createTournament(Tournament tournament);
    
+     void addTrainer(Tournament tournament, Trainer trainer); 
+     
      void removeTrainer(Tournament tournament, Trainer trainer); 
              
      void removeTournament(Tournament tournament);
      
      void setNameOfTournament(Tournament tournament, String name);
+
    
-    List<Tournament> getAllTournaments();
     
-   
-    void updateTournaments(Tournament turnament) throws IllegalArgumentException;
+    
+    
+    List<Tournament> getAllTournaments();
  
    
     List<Tournament> findAllTournaments();
