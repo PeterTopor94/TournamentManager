@@ -26,7 +26,5 @@ public interface TrainerService {
 
     public Trainer getTrainerByGym(Gym gym);
 
-    public List<Trainer> getAllTrainersForTournament(Tournament tournament);
-
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament);
 }
