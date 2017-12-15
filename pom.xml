@@ -15,5 +15,6 @@
         <module>API</module>
         <module>Data</module>
         <module>Service</module>
+        <module>Spring-mvc</module>
     </modules>
 </project>
