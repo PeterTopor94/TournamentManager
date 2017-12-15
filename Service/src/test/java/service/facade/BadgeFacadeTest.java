@@ -14,7 +14,9 @@ import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
+import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.pokemons.service.facade.BadgeFacadeImpl;
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
@@ -32,7 +34,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
 /**
  *
  * @author lubos.beno
@@ -46,12 +47,16 @@ public class BadgeFacadeTest {
     @Mock
     private BadgeService badgeService;
 
-    @InjectMocks
+    @Mock
+    private GymService gymService;
+
     private BadgeFacade badgeFacade;
 
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
+
+        badgeFacade = new BadgeFacadeImpl(gymService, mappingService, badgeService);
     }
 
     private GymDTO gymDTO;
@@ -88,7 +93,7 @@ public class BadgeFacadeTest {
     public void create() {
         when(mappingService.mapTo(badgeCreateDTO, Badge.class)).thenReturn(badge);
 
-        badgeFacade.createBadge(badgeDTO);
+        badgeFacade.createBadge(badgeCreateDTO);
         verify(badgeService, times(1)).createBadge(badge);
     }
 

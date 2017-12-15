@@ -10,6 +10,7 @@ import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
+import cz.muni.fi.pa165.pokemons.service.BadgeServiceImpl;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 import java.util.Arrays;
 import java.util.List;
@@ -37,8 +38,7 @@ public class BadgeServiceTest {
     @Mock
     private BadgeDao badgeDao;
 
-    @Autowired
-    @InjectMocks
+    
     private BadgeService badgeService;
     
     private Badge tBadge;
@@ -47,6 +47,7 @@ public class BadgeServiceTest {
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
+        badgeService = new BadgeServiceImpl(badgeDao);
     }
 
     @BeforeMethod
