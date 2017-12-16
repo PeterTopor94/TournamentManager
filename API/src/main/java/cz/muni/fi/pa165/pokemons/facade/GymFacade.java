@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface GymFacade
 {
-    void createGym(GymCreateDTO gym);
+    Long createGym(GymCreateDTO gym);
 
     void deleteGym(GymDTO gym);
 
