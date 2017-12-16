@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.pokemons.service.facade;
 import com.google.inject.Inject;
+import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
@@ -21,23 +22,36 @@ import java.util.List;
  */
 public class TournamentFacadeImpl implements TournamentFacade {
 
-   @Inject
+   @Autowired
    private TrainerService trainerService;
    @Autowired
-    private BeanMappingService beanMappingService;
+   private BeanMappingService beanMappingService;
     
-    @Autowired
+   @Autowired
    private TournamentService tournamentService; 
 
-    @Override
-    public Long create(TournamentDTO tournament) {
-  
-     Tournament mappedTournament = beanMappingService.mapTo(tournament, Tournament.class);
-     mappedTournament.setName(tournament.getName());
-     tournamentService.createTournament(mappedTournament);
-       return mappedTournament.getId();
+    public TournamentFacadeImpl( BeanMappingService mappingService, TournamentService tournamentService) {
+        this.tournamentService = tournamentService;
+        this.beanMappingService = mappingService;
+        
     }
 
+   
+
+    @Override
+    public void create(TournamentCreateDTO tournament) {
+  
+      Tournament mappedTournament = beanMappingService.mapTo(tournament, Tournament.class);
+
+        tournamentService.createTournament(mappedTournament);
+    }
+    
+     @Override
+     public void addTrainerToTournament(Long idTournament, Long idTrainer) {
+       tournamentService.addTrainer(tournamentService.findTournmanetById(idTournament),
+                trainerService.findTrainerById(idTrainer));
+    }
+    
     @Override
     public void removTrainer(Long idTournament, Long idTrainer) {
        tournamentService.removeTrainer(tournamentService.findTournmanetById(idTournament),
@@ -84,5 +98,7 @@ public class TournamentFacadeImpl implements TournamentFacade {
       
     
     }
+
+   
    
 }
