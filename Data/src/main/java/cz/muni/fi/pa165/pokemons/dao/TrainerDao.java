@@ -18,7 +18,7 @@ public interface TrainerDao
      * Creates new trainer
      * @param t trainer to create
      */
-    void create(Trainer t) throws IllegalArgumentException;
+    Long create(Trainer t) throws IllegalArgumentException;
 
 
     /**

@@ -20,11 +20,12 @@ public class TrainerDaoImpl implements TrainerDao {
     private EntityManager em;
 
     @Override
-    public void create(Trainer t) {
+    public Long create(Trainer t) {
         if (t.getId() != null) {
             throw new IllegalArgumentException("Can't create Trainer that already exists.");
         }
         em.persist(t);
+        return t.getId();
     }
 
     @Override

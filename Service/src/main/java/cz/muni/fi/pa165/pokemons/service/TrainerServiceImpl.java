@@ -25,8 +25,8 @@ public class TrainerServiceImpl implements TrainerService {
     private TrainerDao trainerDao;
 
     @Override
-    public void createTrainer(Trainer t) {
-        trainerDao.create(t);
+    public Long createTrainer(Trainer t) {
+        return trainerDao.create(t);
     }
 
     @Override

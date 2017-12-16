@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface TrainerService {
 
-    public void createTrainer(Trainer t);
+    public Long createTrainer(Trainer t);
 
     public void deleteTrainer(Trainer t);
 
