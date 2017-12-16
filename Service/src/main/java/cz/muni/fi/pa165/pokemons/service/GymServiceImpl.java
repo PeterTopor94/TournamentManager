@@ -27,9 +27,9 @@ public class GymServiceImpl implements GymService
     private GymDao gymDao;
 
     @Override
-    public void createGym(Gym gym)
+    public Long createGym(Gym gym)
     {
-        gymDao.create(gym);
+        return gymDao.create(gym);
     }
 
     @Override

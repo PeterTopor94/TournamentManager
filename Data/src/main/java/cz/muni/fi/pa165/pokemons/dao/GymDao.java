@@ -22,7 +22,7 @@ public interface GymDao {
      * @param gym Gym to be added
      * @throws IllegalArgumentException
      */
-    void create(Gym gym);
+    Long create(Gym gym);
 
     /**
      * Removes Gym

@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface GymService
 {
-    void createGym(Gym gym);
+    Long createGym(Gym gym);
 
     void deleteGym(Gym gym);
 

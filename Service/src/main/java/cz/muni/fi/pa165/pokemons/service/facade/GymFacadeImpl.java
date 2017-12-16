@@ -41,13 +41,13 @@ public class GymFacadeImpl implements GymFacade
     private BeanMappingService beanMappingService;
 
     @Override
-    public void createGym(GymCreateDTO gym)
+    public Long createGym(GymCreateDTO gym)
     {
         Gym mappedGym = beanMappingService.mapTo(gym, Gym.class);
         mappedGym.setGymLeader(trainerService.findTrainerById(gym.getGymLeaderId()));
         mappedGym.setBadge(badgeService.findById(gym.getBadgeId()));
 
-        gymService.createGym(mappedGym);
+        return gymService.createGym(mappedGym);
     }
 
     @Override

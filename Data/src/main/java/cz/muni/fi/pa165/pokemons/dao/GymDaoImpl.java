@@ -25,11 +25,12 @@ public class GymDaoImpl implements GymDao {
     private EntityManager em;
 
     @Override
-    public void create(Gym gym) {
+    public Long create(Gym gym) {
         if (gym.getId() != null) {
             throw new IllegalArgumentException("Can't create Gym that already exists.");
         }
         em.persist(gym);
+        return gym.getId();
     }
 
     @Override
