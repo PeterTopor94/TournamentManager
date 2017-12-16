@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.pokemons.facade;
 
+import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import java.util.List;
 
@@ -14,8 +15,9 @@ import java.util.List;
  */
 public interface TournamentFacade {
    
-     Long create(TournamentDTO tournament);
-   
+     void create(TournamentCreateDTO tournament);
+     
+     void addTrainerToTournament(Long idTournament, Long idTrainer);
      void removTrainer(Long idTournament, Long idTrainer);
      
      void removeTournament(Long id);
