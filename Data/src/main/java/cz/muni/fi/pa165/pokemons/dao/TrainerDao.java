@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+
+import javax.persistence.NoResultException;
 import java.util.Date;
 
 import java.util.List;
@@ -53,7 +55,7 @@ public interface TrainerDao
      */
     List<Trainer> findByNameAndSurname(String name, String surname);
 
-    Trainer findByLogin(String login);
+    Trainer findByLogin(String login) throws NoResultException;
 
     public List<Trainer> findByBirthdate(Date birthdate);
 

@@ -108,6 +108,11 @@ public class TrainerFacadeImpl implements TrainerFacade {
     @Override
     public TrainerDTO getTrainerByLogin(String login)
     {
+        Trainer trainer =  trainerService.findTrainerByLogin(login);
+        if(trainer == null)
+        {
+            return null;
+        }
         return beanMappingService.mapTo(trainerService.findTrainerByLogin(login), TrainerDTO.class);
     }
 

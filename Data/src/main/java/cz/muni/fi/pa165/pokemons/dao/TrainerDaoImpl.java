@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -76,7 +77,7 @@ public class TrainerDaoImpl implements TrainerDao {
     }
 
     @Override
-    public Trainer findByLogin(String login)
+    public Trainer findByLogin(String login) throws NoResultException
     {
         return em.createQuery("SELECT t FROM Trainer t WHERE t.login = :login",
                 Trainer.class).setParameter("login", login).getSingleResult();
