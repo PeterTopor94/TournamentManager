@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>cz.muni.fi.pa165.pokemons</groupId>
-            <artifactId>Service</artifactId>
+            <artifactId>Sample-data</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

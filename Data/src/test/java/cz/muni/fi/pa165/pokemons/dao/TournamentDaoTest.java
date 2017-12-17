@@ -76,7 +76,8 @@ public class TournamentDaoTest extends AbstractTestNGSpringContextTests{
         Calendar cal = Calendar.getInstance();
         tr1 = new Trainer();
         tr1.setName("John");
-        tr1.setSurname("Smith");     
+        tr1.setSurname("Smith");
+        tr1.setLogin("smith");
         cal.set(1999, 5, 12);
         tr1.setDateOfBirth(cal.getTime());
         tr1.addBadge(b1);
@@ -85,6 +86,7 @@ public class TournamentDaoTest extends AbstractTestNGSpringContextTests{
         tr2 = new Trainer();
         tr2.setName("Mike");
         tr2.setSurname("Lemon");
+        tr2.setLogin("lemon");
         cal.set(1994, 11, 10);
         tr2.setDateOfBirth(cal.getTime());
         tr2.addBadge(b1);
@@ -93,6 +95,7 @@ public class TournamentDaoTest extends AbstractTestNGSpringContextTests{
         gl1 = new Trainer();
         gl1.setName("Sarah");
         gl1.setSurname("Prescot");
+        gl1.setLogin("prescot");
         cal.set(1997, 1, 3);
         gl1.setDateOfBirth(cal.getTime());
         gl1.setGym(g1);
@@ -101,6 +104,7 @@ public class TournamentDaoTest extends AbstractTestNGSpringContextTests{
         gl2 = new Trainer();
         gl2.setName("Phill");
         gl2.setSurname("Rush");
+        gl2.setLogin("rush");
         cal.set(1997, 10, 3);
         gl2.setDateOfBirth(cal.getTime());
         gl2.setGym(g2);

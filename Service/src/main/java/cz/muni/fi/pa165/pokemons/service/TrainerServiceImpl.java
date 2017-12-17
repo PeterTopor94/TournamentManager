@@ -66,4 +66,17 @@ public class TrainerServiceImpl implements TrainerService {
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament) {
         return trainer.getBadges().size()>=tournament.getNumRequiredBadges();
     }
+
+    @Override
+    public Trainer findTrainerByLogin(String login)
+    {
+        return trainerDao.findByLogin(login);
+    }
+
+    @Override
+    public boolean login(Trainer trainer, String plain)
+    {
+        Password password = new Password();
+        return password.authenticate(plain, trainer.getPasswordHash());
+    }
 }

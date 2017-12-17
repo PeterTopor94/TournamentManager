@@ -49,8 +49,10 @@ public class GymFacadeImpl implements GymFacade
     {
         Gym mappedGym = beanMappingService.mapTo(gym, Gym.class);
         mappedGym.setGymLeader(trainerService.findTrainerById(gym.getGymLeaderId()));
-        mappedGym.setBadge(badgeService.findById(gym.getBadgeId()));
-
+        if(gym.getBadgeId() != null)
+        {
+            mappedGym.setBadge(badgeService.findById(gym.getBadgeId()));
+        }
         return gymService.createGym(mappedGym);
     }
 

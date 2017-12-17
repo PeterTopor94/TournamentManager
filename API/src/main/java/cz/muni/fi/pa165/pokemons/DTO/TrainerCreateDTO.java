@@ -22,8 +22,20 @@ public class TrainerCreateDTO {
 
     private Long pokemonId;
 
+    private String login;
+
     @NotNull
     private Date dateOfBirth;
+
+    public String getLogin()
+    {
+        return login;
+    }
+
+    public void setLogin(String login)
+    {
+        this.login = login;
+    }
 
     public String getName() {
         return name;

@@ -1,9 +1,6 @@
 package cz.muni.fi.pa165.pokemons.service.facade;
 
-import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.DTO.*;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
@@ -106,5 +103,17 @@ public class TrainerFacadeImpl implements TrainerFacade {
     @Override
     public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to) {
         return trainerService.isTrainerQualifiedForTournament(beanMappingService.mapTo(tr, Trainer.class), beanMappingService.mapTo(to, Tournament.class));
+    }
+
+    @Override
+    public TrainerDTO getTrainerByLogin(String login)
+    {
+        return beanMappingService.mapTo(trainerService.findTrainerByLogin(login), TrainerDTO.class);
+    }
+
+    @Override
+    public boolean login(AuthenticateTrainerDTO trainer)
+    {
+        return trainerService.login(trainerService.findTrainerByLogin(trainer.getLogin()), trainer.getPassword());
     }
 }

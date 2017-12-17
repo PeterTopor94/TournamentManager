@@ -77,16 +77,19 @@ public class TrainerFacadeTest {
         trainer = new Trainer();
         trainer.setName("Misty");
         trainer.setSurname("Blue");
+        trainer.setLogin("blue");
         trainer.setDateOfBirth(new Date(1994, 1, 9));
 
         trainerCreateDTO = new TrainerCreateDTO();
         trainerCreateDTO.setName("Misty");
         trainerCreateDTO.setSurname("Blue");
+        trainerCreateDTO.setLogin("blue");
         trainerCreateDTO.setDateOfBirth(new Date(1994, 1, 9));
 
         trainerDTO = new TrainerDTO();
         trainerDTO.setName("Misty");
         trainerDTO.setSurname("Blue");
+        trainerDTO.setLogin("blue");
         trainerDTO.setDateOfBirth(new Date(1994, 1, 9));
 
         gymDTO = new GymDTO();

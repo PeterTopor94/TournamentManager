@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.pokemons.config;
 
-import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
+import cz.muni.fi.pa165.pokemons.sampledata.SampleDataConfiguration;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +19,7 @@ import javax.validation.Validator;
  */
 @EnableWebMvc
 @Configuration
-@Import({ServiceConfiguration.class})
+@Import({SampleDataConfiguration.class})
 @ComponentScan(basePackages = "cz.muni.fi.pa165.pokemons.controllers")
 public class MySpringMvcConfig implements WebMvcConfigurer
 {

@@ -2,10 +2,13 @@ package cz.muni.fi.pa165.pokemons.controllers;
 
 import cz.muni.fi.pa165.pokemons.DTO.GymCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
+import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.facade.GymFacade;
+import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
 import cz.muni.fi.pa165.pokemons.forms.GymCreateDTOValidator;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -16,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * MVC Controller for object gym
@@ -27,6 +31,8 @@ public class GymController {
 
     @Inject
     private GymFacade gymFacade;
+    @Inject
+    private TrainerFacade trainerFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -60,6 +66,12 @@ public class GymController {
     @ModelAttribute("typologies")
     public PokemonType[] typologies() {
         return PokemonType.values();
+    }
+
+    @ModelAttribute("trainers")
+    public List<TrainerDTO> trainers()
+    {
+        return trainerFacade.getAllTrainers();
     }
 
 

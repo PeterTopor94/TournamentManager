@@ -53,6 +53,8 @@ public interface TrainerDao
      */
     List<Trainer> findByNameAndSurname(String name, String surname);
 
+    Trainer findByLogin(String login);
+
     public List<Trainer> findByBirthdate(Date birthdate);
 
     public Trainer findByGym(Gym gym);

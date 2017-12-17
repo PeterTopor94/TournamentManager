@@ -64,15 +64,18 @@ public class TrainerDaoTest  extends AbstractTestNGSpringContextTests
        trainer1.setName("Anthony");
        trainer1.setSurname("Hamilton");
        trainer1.setDateOfBirth(new Date(1990, 10, 5));
+       trainer1.setLogin("hamilton");
 
        trainer2 = new Trainer();
        trainer2.setName("Arnold");
        trainer2.setSurname("Balboa");
+       trainer2.setLogin("balboa");
        trainer2.setDateOfBirth(new Date(1990, 10, 5));
 
        trainer3 = new Trainer();
        trainer3.setName("Viktor");
        trainer3.setSurname("Holmes");
+       trainer3.setLogin("holmes");
        trainer3.setDateOfBirth(new Date(1990, 10, 5));
 
        trainerDao.create(trainer1);
@@ -141,6 +144,7 @@ public class TrainerDaoTest  extends AbstractTestNGSpringContextTests
         Trainer trainer3 = new Trainer();
         trainer3.setName("jon");
         trainer3.setSurname("bobrik");
+        trainer3.setLogin("bobrik");
         trainer3.setDateOfBirth(new Date(1990, 10, 5));
         trainer3.setGym(gym1);
         trainerDao.create(trainer3);

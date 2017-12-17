@@ -16,5 +16,6 @@
         <module>Data</module>
         <module>Service</module>
         <module>Spring-mvc</module>
+        <module>Sample-data</module>
     </modules>
 </project>
