@@ -38,8 +38,8 @@ public class BadgeServiceImpl implements BadgeService {
     }
 
     @Override
-    public void createBadge(Badge b) {
-        badgeDao.create(b);
+    public Long createBadge(Badge b) {
+        return badgeDao.create(b);
     }
 
     @Override
