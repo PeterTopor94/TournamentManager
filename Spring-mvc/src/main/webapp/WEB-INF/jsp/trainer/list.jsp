@@ -25,8 +25,8 @@
             <c:forEach items="${trainers}" var="trainer">
                 <tr>
                    <td>${trainer.id}</td>
-                    <td>${trainer.name}${trainer.surname}</td>
-                    <td><fmt:formatDate value="${trainer.dateOfBirth}" pattern="MM-dd-yyyy"/></td>
+                    <td>${trainer.name} ${trainer.surname}</td>
+                    <td><fmt:formatDate value="${trainer.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
                     <td>${trainer.gym.cityName}</td>
                     <td><my:a href="/trainer/view/${trainer.id}" class="btn btn-primary"><f:message key="view"/></my:a></td>
                     <c:if test="${not empty authenticatedUser && authenticatedUser.isAdmin()}">
