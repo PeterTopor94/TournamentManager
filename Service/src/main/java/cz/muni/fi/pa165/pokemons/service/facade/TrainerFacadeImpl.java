@@ -15,6 +15,8 @@ import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.TournamentService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,8 @@ import java.util.List;
  *
  * @author Roman Gluszny
  */
+@Service
+@Transactional
 public class TrainerFacadeImpl implements TrainerFacade {
 
     public TrainerFacadeImpl(TrainerService trainerService, BadgeService badgeService, PokemonService pokemonService, GymService gymService, TournamentService tournamentService, BeanMappingService beanMappingService) {
