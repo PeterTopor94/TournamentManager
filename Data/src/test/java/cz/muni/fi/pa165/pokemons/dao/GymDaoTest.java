@@ -61,12 +61,14 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         trainer1 = new Trainer();
         trainer1.setName("Anthony");
         trainer1.setSurname("Hamilton");
+        trainer1.setLogin("hamilton");
         trainer1.setDateOfBirth(new Date(1990, 10, 5));
         // trainer1.setGym(gym1);
 
         trainer2 = new Trainer();
         trainer2.setName("Arnold");
         trainer2.setSurname("Balboa");
+        trainer2.setLogin("balboa");
         trainer2.setDateOfBirth(new Date(1992, 11, 5));
         // trainer2.setGym(gym2);
 
@@ -104,6 +106,7 @@ public class GymDaoTest extends AbstractTestNGSpringContextTests {
         trainer3 = new Trainer();
         trainer3.setName("Viktor");
         trainer3.setSurname("Holmes");
+        trainer3.setLogin("holmes");
         trainer3.setDateOfBirth(new Date(1996, 10, 6));
 
         trainerDao.create(trainer3);

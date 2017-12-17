@@ -11,14 +11,25 @@
     <form:form method="post" action="${pageContext.request.contextPath}/gym/create"
                modelAttribute="gymCreate" cssClass="form-horizontal">
         <div class="form-group">
-            <form:label path="typologyId" cssClass="col-sm-2 control-label">Category</form:label>
+            <form:label path="typology" cssClass="col-sm-2 control-label">Typology</form:label>
             <div class="col-sm-10">
-                <form:select path="typologyId" cssClass="form-control">
+                <form:select path="typology" cssClass="form-control">
                     <c:forEach items="${typologies}" var="c">
-                        <form:option value="${c.id}">${c.name}</form:option>
+                        <form:option value="${c}">${c}</form:option>
                     </c:forEach>
                 </form:select>
-                <p class="help-block"><form:errors path="typologyId" cssClass="error"/></p>
+                <p class="help-block"><form:errors path="typology" cssClass="error"/></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <form:label path="gymLeaderId" cssClass="col-sm-2 control-label">Gym Leader</form:label>
+            <div class="col-sm-10">
+                <form:select path="gymLeaderId" cssClass="form-control">
+                    <c:forEach items="${trainers}" var="t">
+                        <form:option value="${t.id}">${t.name} ${t.surname}</form:option>
+                    </c:forEach>
+                </form:select>
+                <p class="help-block"><form:errors path="gymLeaderId" cssClass="error"/></p>
             </div>
         </div>
         <div class="form-group ${cityName_error?'has-error':''}">
@@ -30,7 +41,7 @@
         </div>
 
 
-        <button class="btn btn-primary" type="submit">Create product</button>
+        <button class="btn btn-primary" type="submit">Create gym</button>
     </form:form>
 
 </jsp:attribute>

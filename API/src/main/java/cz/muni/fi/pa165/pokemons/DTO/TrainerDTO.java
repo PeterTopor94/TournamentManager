@@ -24,6 +24,18 @@ public class TrainerDTO {
     
     private GymDTO gym;
 
+    private String login;
+
+    public String getLogin()
+    {
+        return login;
+    }
+
+    public void setLogin(String login)
+    {
+        this.login = login;
+    }
+
     public Long getId() {
         return id;
     }
@@ -78,6 +90,15 @@ public class TrainerDTO {
 
     public void setGym(GymDTO gym) {
         this.gym = gym;
+    }
+
+    /**
+     * placeholder for demo purposes
+     * @return
+     */
+    public boolean isAdmin()
+    {
+        return login.equals("kechum");
     }
 
     @Override

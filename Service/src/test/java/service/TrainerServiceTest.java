@@ -61,11 +61,13 @@ public class TrainerServiceTest {
         red.setSurname("Red");
         red.setDateOfBirth(new Date());
         red.addBadge(badge);
+        red.setLogin("red");
 
         blue = new Trainer();
         blue.setName("Misty");
         blue.setSurname("Blue");
         blue.setDateOfBirth(new Date());
+        blue.setLogin("blue");
 
     }
 

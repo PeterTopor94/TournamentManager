@@ -11,6 +11,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
+
 /**
  *
  * @author Roman Gluszny
@@ -65,5 +68,25 @@ public class TrainerServiceImpl implements TrainerService {
     @Override
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament) {
         return trainer.getBadges().size()>=tournament.getNumRequiredBadges();
+    }
+
+    @Override
+    public Trainer findTrainerByLogin(String login)
+    {
+        try
+        {
+            return trainerDao.findByLogin(login);
+        }
+        catch(NoResultException e)
+        {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean login(Trainer trainer, String plain)
+    {
+        Password password = new Password();
+        return password.authenticate(plain, trainer.getPasswordHash());
     }
 }
