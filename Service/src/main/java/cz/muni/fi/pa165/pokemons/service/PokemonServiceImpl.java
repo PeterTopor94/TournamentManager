@@ -8,12 +8,14 @@ import cz.muni.fi.pa165.pokemons.dao.PokemonDao;
 import cz.muni.fi.pa165.pokemons.entities.Pokemon;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+import org.springframework.stereotype.Service;
 
 
 /**
  *
  * @author Peter Topor
  */
+@Service
 public class PokemonServiceImpl implements PokemonService{
     
     @Inject

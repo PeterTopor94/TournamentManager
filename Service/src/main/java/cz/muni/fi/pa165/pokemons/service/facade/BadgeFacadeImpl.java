@@ -14,11 +14,15 @@ import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author lubos.beno
  */
+@Service
+@Transactional
 public class BadgeFacadeImpl implements BadgeFacade {
 
     @Autowired

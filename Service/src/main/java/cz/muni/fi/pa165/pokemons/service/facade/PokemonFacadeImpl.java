@@ -31,6 +31,8 @@ import cz.muni.fi.pa165.pokemons.entities.Trainer;
  *
  * @author Peter Topor
  */
+@Service
+@Transactional
 public class PokemonFacadeImpl implements PokemonFacade{
     
     @Inject

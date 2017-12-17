@@ -14,12 +14,17 @@ import cz.muni.fi.pa165.pokemons.facade.TournamentFacade;
 import cz.muni.fi.pa165.pokemons.service.TournamentService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 /**
  * implementation of {@link TournamentFacade}
  * @author Miroslav
  */
+@Service
+@Transactional
 public class TournamentFacadeImpl implements TournamentFacade {
 
    @Autowired

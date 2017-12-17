@@ -10,6 +10,8 @@ import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,8 @@ import java.util.List;
  * implementation of {@link GymFacade}
  * @author Matus Krska
  */
+@Service
+@Transactional
 public class GymFacadeImpl implements GymFacade
 {
 

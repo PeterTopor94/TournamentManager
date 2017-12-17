@@ -17,7 +17,6 @@ import javax.inject.Inject;
  * @author lubos.beno
  */
 @Service
-@Transactional
 public class BadgeServiceImpl implements BadgeService {
 
     @Inject
