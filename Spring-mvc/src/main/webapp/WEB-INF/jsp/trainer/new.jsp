@@ -24,12 +24,20 @@
                     <form:errors path="surname" cssClass="help-block"/>
                 </div>
             </div>
+                
+                 <div class="form-group ${login_error?'has-error':''}">
+                <form:label path="login" cssClass="col-sm-2 control-label">Login</form:label>
+                    <div class="col-sm-10">
+                    <form:input path="login" cssClass="form-control"/>
+                    <form:errors path="login" cssClass="help-block"/>
+                </div>
+            </div>
 
            <div class="form-group ${dateOfBirth_error?'has-error':''}">
                 <form:label path="dateOfBirth" cssClass="col-sm-2 control-label">Born</form:label>
                     <div class="col-sm-10">
-                    <form:input path="dateOfBirth" cssClass="form-control"/>
-                    <form:errors path="dateOfBirth" cssClass="help-block"/>
+                    <form:input path="dateOfBirth" cssClass="date"/>
+                    <form:errors path="dateOfBirth" cssClass="date"/>
                 </div>
             </div>
 
