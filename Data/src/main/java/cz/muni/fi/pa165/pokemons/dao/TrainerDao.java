@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.pokemons.dao;
 
+import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import java.util.Date;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public interface TrainerDao
      * Creates new trainer
      * @param t trainer to create
      */
-    void create(Trainer t) throws IllegalArgumentException;
+    Long create(Trainer t) throws IllegalArgumentException;
 
 
     /**
@@ -50,4 +52,8 @@ public interface TrainerDao
      * @return
      */
     List<Trainer> findByNameAndSurname(String name, String surname);
+
+    public List<Trainer> findByBirthdate(Date birthdate);
+
+    public Trainer findByGym(Gym gym);
 }

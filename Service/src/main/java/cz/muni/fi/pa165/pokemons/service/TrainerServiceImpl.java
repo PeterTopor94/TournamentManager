@@ -25,8 +25,8 @@ public class TrainerServiceImpl implements TrainerService {
     private TrainerDao trainerDao;
 
     @Override
-    public void createTrainer(Trainer t) {
-        trainerDao.create(t);
+    public Long createTrainer(Trainer t) {
+        return trainerDao.create(t);
     }
 
     @Override
@@ -51,21 +51,14 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     public List<Trainer> getTrainersByDateOfBirth(Date birthdate) {
-        //TODO return trainerDao.findByBirthdate(birthdate);
-        return null;
+        return trainerDao.findByBirthdate(birthdate);
     }
 
     @Override
     public Trainer getTrainerByGym(Gym gym) {
-        //TODO return trainerDao.findByGym(gym);
-        return null;
+        return trainerDao.findByGym(gym);
     }
 
-    @Override
-    public List<Trainer> getAllTrainersForTournament(Tournament tournament) {
-        //TODO return trainerDao.findByTournament(tournament);
-        return new ArrayList<>();
-    }
 
     @Override
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament) {

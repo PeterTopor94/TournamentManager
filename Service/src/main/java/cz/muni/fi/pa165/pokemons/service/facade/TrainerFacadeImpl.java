@@ -53,7 +53,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
     private BeanMappingService beanMappingService;
 
     @Override
-    public void createTrainer(TrainerCreateDTO trainer) {
+    public Long createTrainer(TrainerCreateDTO trainer) {
         Trainer mappedTrainer = beanMappingService.mapTo(trainer, Trainer.class);
 
         mappedTrainer.setName(trainer.getName());
@@ -61,7 +61,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
         mappedTrainer.setGym(gymService.findById(trainer.getGymId()));
         mappedTrainer.setDateOfBirth(trainer.getDateOfBirth());
 
-        trainerService.createTrainer(mappedTrainer);
+        return trainerService.createTrainer(mappedTrainer);      
     }
 
     @Override

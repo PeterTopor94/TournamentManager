@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface TrainerFacade {
 
-    public void createTrainer(TrainerCreateDTO trainer);
+    public Long createTrainer(TrainerCreateDTO trainer);
 
     public void deleteTrainer(TrainerDTO trainer);
 
