@@ -23,7 +23,7 @@
             <c:forEach items="${badges}" var="badge">
                 <tr>
                     <td>${badge.cityOfOrigin}</td>
-                    <td>${badge.gym} </td>
+                    <td>${badge.gym.cityName} ${badge.gym.typology} </td>
                     <td><my:a href="/badge/view/${badge.id}" class="btn btn-primary"><f:message key="view"/></my:a></td>
                     <c:if test="${not empty authenticatedUser && authenticatedUser.isAdmin()}">
                         <td>

@@ -5,8 +5,6 @@
  */
 package cz.muni.fi.pa165.pokemons.DTO;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
@@ -24,9 +22,9 @@ public class BadgeCreateDTO {
     private String cityOfOrigin;
 
     @NotNull
-    private GymDTO gym;
+    private Long gymId;
 
-    private List<TrainerDTO> owners = new ArrayList<>();
+    //private List<TrainerDTO> owners = new ArrayList<>();
 
     public String getCityOfOrigin() {
         return cityOfOrigin;
@@ -36,21 +34,21 @@ public class BadgeCreateDTO {
         this.cityOfOrigin = cityOfOrigin;
     }
 
-    public GymDTO getGym() {
-        return gym;
+    public Long getGymId() {
+        return gymId;
     }
 
-    public void setGym(GymDTO gym) {
-        this.gym = gym;
+    public void setGymId(Long gymId) {
+        this.gymId = gymId;
     }
 
-    public List<TrainerDTO> getOwners() {
-        return owners;
-    }
-
-    public void setOwners(List<TrainerDTO> owners) {
-        this.owners = owners;
-    }
+//    public List<TrainerDTO> getOwners() {
+//        return owners;
+//    }
+//
+//    public void setOwners(List<TrainerDTO> owners) {
+//        this.owners = owners;
+//    }
 
     @Override
     public int hashCode() {
@@ -73,18 +71,19 @@ public class BadgeCreateDTO {
         if (!Objects.equals(this.cityOfOrigin, other.getCityOfOrigin())) {
             return false;
         }
-        if (!Objects.equals(this.gym, other.getGym())) {
+        if (!Objects.equals(this.gymId, other.getGym())) {
             return false;
         }
-        if (!Objects.equals(this.owners, other.getOwners())) {
-            return false;
-        }
+//        if (!Objects.equals(this.owners, other.getOwners())) {
+//            return false;
+//        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "BadgeDTO{" + "cityOfOrigin=" + cityOfOrigin + ", gym=" + gym + ", owners=" + owners + '}';
+        //return "BadgeDTO{" + "cityOfOrigin=" + cityOfOrigin + ", gymId=" + gymId + ", owners=" + owners + '}';
+        return "BadgeDTO{" + "cityOfOrigin=" + cityOfOrigin + ", gym=" + gymId + "}";
     }
 
 }

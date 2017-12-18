@@ -85,7 +85,7 @@ public class BadgeFacadeTest {
 
         badgeCreateDTO = new BadgeCreateDTO();
         badgeCreateDTO.setCityOfOrigin("Opava");
-        badgeCreateDTO.setGym(gymDTO);
+        badgeCreateDTO.setGymId(gymDTO.getId());
 
     }
 

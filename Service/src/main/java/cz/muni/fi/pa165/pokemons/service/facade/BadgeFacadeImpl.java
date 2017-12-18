@@ -43,7 +43,7 @@ public class BadgeFacadeImpl implements BadgeFacade {
     @Override
     public Long createBadge(BadgeCreateDTO b) {
         Badge mappedBadge = beanMappingService.mapTo(b, Badge.class);
-        mappedBadge.setGym(gymService.findById(b.getGym().getId()));
+        mappedBadge.setGym(gymService.findById(b.getGymId()));
         mappedBadge.setCityOfOrigin(b.getCityOfOrigin());
         return badgeService.createBadge(mappedBadge);
     }
