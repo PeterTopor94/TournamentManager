@@ -1,10 +1,12 @@
 package cz.muni.fi.pa165.pokemons.sampledata;
 
 import cz.muni.fi.pa165.pokemons.entities.Gym;
+import cz.muni.fi.pa165.pokemons.entities.Pokemon;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.Password;
+import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
     private GymService gymService;
     @Inject
     private TrainerService trainerService;
+    @Inject
+    private PokemonService pokemonService;
+
 
     @Override
     public void loadData() throws IOException
@@ -34,6 +39,9 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
 
         Gym gym1 = gym("Brno", PokemonType.DRAGON, admin);
         Gym gym2 = gym("Prague", PokemonType.FIRE, trainer);
+        
+        Pokemon pok1 = pokemon("Pikachu", "Bolt", 15, PokemonType.ELECTRIC, admin);
+        Pokemon pok2 = pokemon("Charizard", "Torch", 73, PokemonType.FIRE, trainer);
 
     }
 
@@ -47,6 +55,20 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
         gymService.createGym(gym);
 
         return gym;
+    }
+    
+    private Pokemon pokemon(String name, String nickname, Integer level, PokemonType typology, Trainer owner)
+    {
+        Pokemon pokemon = new Pokemon();
+        pokemon.setName(name);
+        pokemon.setNickname(nickname);
+        pokemon.setLevel(level);
+        pokemon.setType(typology);
+        pokemon.setOwner(owner);
+
+        pokemonService.createPokemon(pokemon);
+
+        return pokemon;
     }
 
     private Trainer trainer(String name, String surname, String login, String password, Date dateOfBirth)
