@@ -35,7 +35,10 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><my:a href="/gym/list/"><f:message key="navigation.gyms"/></my:a></li>
+                        <li><my:a href="/badge/list/"><f:message key="navigation.badges"/></my:a></li>
                         <li><my:a href="/trainer/list/"><f:message key="navigation.trainers"/></my:a></li>
+                        <li><my:a href="/pokemon/list/"><f:message key="navigation.pokemons"/></my:a></li>
+
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.about"/><b class="caret"></b></a>
@@ -43,7 +46,10 @@
                                 <li><a href="https://github.com/PeterTopor94/TournamentManager">PA165 - Pokemons</a></li>
                             </ul>
                         </li>
-                    </ul>
+
+                    </ul>                 
+
+
                 </div><!--/.nav-collapse -->
             </div>
         </nav>

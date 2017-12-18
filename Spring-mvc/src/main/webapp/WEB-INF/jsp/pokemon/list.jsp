@@ -7,27 +7,35 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<my:pagetemplate title="Badges">
+<my:pagetemplate title="Pokemon">
     <jsp:attribute name="body">
         <c:if test="${not empty authenticatedUser && authenticatedUser.isAdmin()}">
-            <td><my:a href="/badge/new" class="btn btn-success"><f:message key="create"/></my:a></td>
+            <td><my:a href="/pokemon/new" class="btn btn-success"><f:message key="create"/></my:a></td>
         </c:if>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th><f:message key="cityOfOrigin"/></th>
-                <th><f:message key="gym"/></th>
+                <th><f:message key="name"/></th>
+                <th><f:message key="nickname"/></th>
+                <th><f:message key="level"/></th>
+                <th><f:message key="typology"/></th>
+                <th><f:message key="owner"/></th>
+            </tr>
+            </tr>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${badges}" var="badge">
+            <c:forEach items="${pokemons}" var="pokemon">
                 <tr>
-                    <td>${badge.cityOfOrigin}</td>
-                    <td>${badge.gym.cityName} ${badge.gym.typology} </td>
-                    <td><my:a href="/badge/view/${badge.id}" class="btn btn-primary"><f:message key="view"/></my:a></td>
+                    <td>${pokemon.name}</td>
+                    <td>${pokemon.nickname} </td>
+                    <td>${pokemon.level} </td>
+                    <td>${pokemon.type} </td>
+                    <td>${pokemon.owner.name} ${pokemon.owner.surname}</td>
+                    <td><my:a href="/pokemon/view/${pokemon.id}" class="btn btn-primary"><f:message key="view"/></my:a></td>
                     <c:if test="${not empty authenticatedUser && authenticatedUser.isAdmin()}">
                         <td>
-                            <form method="post" action="${pageContext.request.contextPath}/badge/delete/${badge.id}">
+                            <form method="post" action="${pageContext.request.contextPath}/pokemon/delete/${pokemon.id}">
                                 <button type="submit" class="btn btn-danger">
                                     <f:message key="delete"></f:message>
                                 </button>

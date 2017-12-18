@@ -24,10 +24,10 @@ public class BadgeCreateDTOValidator implements Validator {
     public void validate(Object target, Errors errors) {
         BadgeCreateDTO badgeCreateDTO = (BadgeCreateDTO) target;
 
-        if (badgeCreateDTO.getCityOfOrigin() == null) {
+        if (badgeCreateDTO.getCityOfOrigin().isEmpty()) {
             errors.rejectValue("cityOfOrigin", "BadgeCreateDTOValidator.empty.cityOfOrigin");
         }
-        if (badgeCreateDTO.getGym() == null) {
+        if (badgeCreateDTO.getGymId() == null) {
             errors.rejectValue("gym", "BadgeCreateDTOValidator.empty.gym");
         }
     }
