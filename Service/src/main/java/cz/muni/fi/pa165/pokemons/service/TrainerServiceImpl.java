@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
@@ -20,9 +21,8 @@ import javax.persistence.NoResultException;
  */
 @Service
 public class TrainerServiceImpl implements TrainerService {
-    
-    public TrainerServiceImpl(TrainerDao trainerDao)
-    {
+
+    public TrainerServiceImpl(TrainerDao trainerDao) {
         this.trainerDao = trainerDao;
     }
 
@@ -64,29 +64,29 @@ public class TrainerServiceImpl implements TrainerService {
         return trainerDao.findByGym(gym);
     }
 
-
     @Override
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament) {
-        return trainer.getBadges().size()>=tournament.getNumRequiredBadges();
+        return trainer.getBadges().size() >= tournament.getNumRequiredBadges();
     }
 
     @Override
-    public Trainer findTrainerByLogin(String login)
-    {
-        try
-        {
+    public Trainer findTrainerByLogin(String login) {
+        try {
             return trainerDao.findByLogin(login);
-        }
-        catch(NoResultException e)
-        {
+        } catch (NoResultException e) {
             return null;
         }
     }
 
     @Override
-    public boolean login(Trainer trainer, String plain)
-    {
+    public boolean login(Trainer trainer, String plain) {
         Password password = new Password();
         return password.authenticate(plain, trainer.getPasswordHash());
+    }
+
+    @Override
+    public void addBadge(Trainer trainer, Badge badge) {
+        trainer.addBadge(badge);
+        trainerDao.update(trainer);
     }
 }

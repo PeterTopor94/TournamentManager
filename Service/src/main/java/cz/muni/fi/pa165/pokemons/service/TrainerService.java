@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
@@ -32,4 +33,6 @@ public interface TrainerService {
     Trainer findTrainerByLogin(String login);
 
     boolean login(Trainer trainer, String password);
+
+    public void addBadge(Trainer trainer, Badge badge);
 }
