@@ -17,7 +17,7 @@ public class PokemonDTO {
 
     private String nickname;
 
-    private Long ownerId;
+    private TrainerDTO owner;
 
     private PokemonType pokemonType;
 
@@ -53,12 +53,12 @@ public class PokemonDTO {
         this.nickname = nickname;
     }
 
-    public Long getOwnerId() {
-        return ownerId;
+    public TrainerDTO getOwner() {
+        return owner;
     }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
+    public void setOwner(TrainerDTO owner) {
+        this.owner = owner;
     }
 
     public PokemonType getType() {

@@ -1,19 +1,26 @@
 package cz.muni.fi.pa165.pokemons.controllers;
 
 import cz.muni.fi.pa165.pokemons.DTO.BadgeDTO;
+import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
 import cz.muni.fi.pa165.pokemons.DTO.PokemonDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
 import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
+import cz.muni.fi.pa165.pokemons.facade.GymFacade;
 import cz.muni.fi.pa165.pokemons.facade.PokemonFacade;
 import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +38,9 @@ public class TrainerController {
     
     @Autowired
     private BadgeFacade badgeFacade;
+    
+    @Autowired
+    private GymFacade gymFacade;
     
     @Autowired
     private PokemonFacade pokemonFacade;
@@ -69,6 +79,18 @@ public class TrainerController {
     @ModelAttribute("pokemon")
     public List<PokemonDTO> pokemon() {
         return pokemonFacade.getAllPokemon();
+    }
+    
+     @ModelAttribute("gyms")
+    public List<GymDTO> gyms() {
+        return gymFacade.getAllGyms();
+    }
+    
+     @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
