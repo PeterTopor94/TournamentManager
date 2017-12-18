@@ -5,10 +5,29 @@
  */
 package cz.muni.fi.pa165.pokemons.forms;
 
+import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 /**
  *
  * @author Miroslav
  */
-public class TournamentCreateDTOValidator {
+public class TournamentCreateDTOValidator implements Validator {
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+       return TournamentCreateDTO.class.isAssignableFrom(clazz); 
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        TournamentCreateDTO pokemonCreateDTO = (TournamentCreateDTO) target;
+        if (pokemonCreateDTO.getName() == null || pokemonCreateDTO.getName().isEmpty())
+        {
+            errors.rejectValue("name", "TournamentCreateDTOValidator.empty.name");
+        }
+
+    }
     
 }
