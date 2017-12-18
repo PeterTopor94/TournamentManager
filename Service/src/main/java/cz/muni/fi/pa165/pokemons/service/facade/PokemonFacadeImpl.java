@@ -1,31 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.pokemons.service.facade;
-
-import javax.inject.Inject;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import cz.muni.fi.pa165.pokemons.facade.PokemonFacade;
-import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 
 import cz.muni.fi.pa165.pokemons.DTO.PokemonCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.PokemonDTO;
-
+import cz.muni.fi.pa165.pokemons.entities.Pokemon;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+import cz.muni.fi.pa165.pokemons.facade.PokemonFacade;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 
-import cz.muni.fi.pa165.pokemons.entities.Pokemon;
-import cz.muni.fi.pa165.pokemons.entities.Trainer;
-
-
+import javax.inject.Inject;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -62,7 +49,29 @@ public class PokemonFacadeImpl implements PokemonFacade{
         Pokemon newPokemon = pokemonService.createPokemon(mappedPokemon);
         return newPokemon.getId();
     }
-
+    
+    @Override
+    public void deletePokemon(Long pokemonId){
+        pokemonService.deletePokemon(pokemonService.findById(pokemonId));
+    }
+    
+    @Override
+    public List<PokemonDTO> getAllPokemon(){
+        return beanMappingService.mapTo(pokemonService.findAll(), PokemonDTO.class);
+    }
+    
+    @Override
+    public List<PokemonDTO> getPokemonByTrainer(Long trainerId){
+        Trainer t = trainerService.findTrainerById(trainerId);
+	return beanMappingService.mapTo(t.getPokemons(), PokemonDTO.class);
+    }
+    
+    @Override
+    public PokemonDTO getPokemonById(Long pokemonId){
+        Pokemon p = pokemonService.findById(pokemonId);
+	return (p == null) ? null : beanMappingService.mapTo(p, PokemonDTO.class);
+    }
+    
     @Override
     public void setOwner(Long pokemonId, Long trainerId){
         pokemonService.setOwner(pokemonService.findById(pokemonId),
@@ -88,27 +97,4 @@ public class PokemonFacadeImpl implements PokemonFacade{
     public void setPokemonType(Long pokemonId, PokemonType pokemonType){
         pokemonService.setPokemonType(pokemonService.findById(pokemonId), pokemonType);
     }
-    
-    @Override
-    public void deletePokemon(Long pokemonId){
-        pokemonService.deletePokemon(pokemonService.findById(pokemonId));
-    }
-    
-    @Override
-    public List<PokemonDTO> getAllPokemon(){
-        return beanMappingService.mapTo(pokemonService.findAll(), PokemonDTO.class);
-    }
-    
-    @Override
-    public List<PokemonDTO> getPokemonByTrainer(Long trainerId){
-        Trainer t = trainerService.findTrainerById(trainerId);
-	return beanMappingService.mapTo(t.getPokemons(), PokemonDTO.class);
-    }
-    
-    @Override
-    public PokemonDTO getPokemonById(Long pokemonId){
-        Pokemon p = pokemonService.findById(pokemonId);
-	return (p == null) ? null : beanMappingService.mapTo(p, PokemonDTO.class);
-    }
-    
 }

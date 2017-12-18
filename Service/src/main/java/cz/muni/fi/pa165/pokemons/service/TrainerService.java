@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.pokemons.service;
 
+import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
@@ -27,4 +28,8 @@ public interface TrainerService {
     public Trainer getTrainerByGym(Gym gym);
 
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament);
+
+    Trainer findTrainerByLogin(String login);
+
+    boolean login(Trainer trainer, String password);
 }

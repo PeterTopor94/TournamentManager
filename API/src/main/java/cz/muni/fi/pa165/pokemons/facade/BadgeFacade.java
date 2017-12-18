@@ -15,9 +15,11 @@ import cz.muni.fi.pa165.pokemons.DTO.BadgeDTO;
  */
 public interface BadgeFacade {
 
-    public void createBadge(BadgeCreateDTO b);
+    public Long createBadge(BadgeCreateDTO b);
 
     public void removeBadge(BadgeDTO b);
 
     public List<BadgeDTO> getAllBadges();
+    
+    public BadgeDTO getById(Long id);
 }

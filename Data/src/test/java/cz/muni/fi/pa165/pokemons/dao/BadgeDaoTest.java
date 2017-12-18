@@ -74,6 +74,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         t1.setDateOfBirth(new Date(1992, 2, 5));
         t1.setName("John");
         t1.setSurname("Neuman");
+        t1.setLogin("neuman");
         t1.setGym(g1);
         g1.setGymLeader(t1);
 
@@ -81,6 +82,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         t2.setDateOfBirth(new Date(1995, 11, 9));
         t2.setName("Amelia");
         t2.setSurname("Stone");
+        t2.setLogin("stone");
         t2.setGym(g2);
         g2.setGymLeader(t2);
 
@@ -88,6 +90,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         t3.setDateOfBirth(new Date(1996, 7, 9));
         t3.setName("Ash");
         t3.setSurname("Red");
+        t3.setLogin("red");
 
         g1.setBadge(b1);
         g2.setBadge(b2);

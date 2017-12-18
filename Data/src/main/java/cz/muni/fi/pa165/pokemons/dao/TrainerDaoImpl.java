@@ -6,6 +6,7 @@ import java.util.Date;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -66,12 +67,19 @@ public class TrainerDaoImpl implements TrainerDao {
     @Override
     public List<Trainer> findByBirthdate(Date birthdate) {
         return em.createQuery("SELECT t FROM Trainer t WHERE t.dateOfBirth = :date"
-                , Trainer.class).setParameter("dateOfBirth", birthdate).getResultList();
+                , Trainer.class).setParameter("date", birthdate).getResultList();
     }
 
     @Override
     public Trainer findByGym(Gym gym) {
         return em.createQuery("SELECT t FROM Trainer t WHERE t.gym = :gymid",
                 Trainer.class).setParameter("gymid", gym).getSingleResult();
+    }
+
+    @Override
+    public Trainer findByLogin(String login) throws NoResultException
+    {
+        return em.createQuery("SELECT t FROM Trainer t WHERE t.login = :login",
+                Trainer.class).setParameter("login", login).getSingleResult();
     }
 }

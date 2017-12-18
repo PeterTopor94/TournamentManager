@@ -33,10 +33,37 @@ public class Trainer {
     @Column(nullable = false)
     private Date dateOfBirth;
 
+    @NotNull
+    @Column(nullable = false)
+    private String login;
+
+    @Column
+    private String passwordHash;
+
     @OneToOne
     private Gym gym;
 
     public Trainer() {
+    }
+
+    public String getPasswordHash()
+    {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash)
+    {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getLogin()
+    {
+        return login;
+    }
+
+    public void setLogin(String login)
+    {
+        this.login = login;
     }
 
     public Gym getGym() {

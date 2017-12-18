@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service.facade;
 
 import cz.muni.fi.pa165.pokemons.DTO.PokemonCreateDTO;
@@ -17,11 +12,11 @@ import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.pokemons.service.facade.PokemonFacadeImpl;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
-import org.mockito.InjectMocks;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import org.mockito.Mock;
@@ -65,9 +60,7 @@ public class PokemonFacadeTest {
     {
         MockitoAnnotations.initMocks(this);
         pokemonFacade = new PokemonFacadeImpl( pokemonService, mappingService, trainerService);
-    }
-    
-    
+    }    
     
     @BeforeMethod
     public void prepareTest(){
@@ -115,39 +108,6 @@ public class PokemonFacadeTest {
     }
     
     @Test
-    public void setOwner(){
-        when(pokemonService.findById(6L)).thenReturn(pokemon);
-        when(trainerService.findTrainerById(5L)).thenReturn(trainer);
-        pokemonFacade.setOwner(6L, 5L);
-        verify(pokemonService, times(1)).setOwner(pokemon, trainer);
-        
-    }
-    
-    @Test
-    public void setLevel(){
-        when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonFacade.setLevel(6L, 15);
-        verify(pokemonService, times(1)).setLevel(pokemon, 15);
-        
-    }
-    
-    @Test
-    public void setName(){
-        when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonFacade.setName(6L, "name2");
-        verify(pokemonService, times(1)).setName(pokemon, "name2");
-        
-    }
-    
-    @Test
-    public void setNickname(){
-        when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonFacade.setNickname(6L, "nick2");
-        verify(pokemonService, times(1)).setNickname(pokemon, "nick2");
-        
-    }
-    
-    @Test
     public void setPokemonType(){
         when(pokemonService.findById(6L)).thenReturn(pokemon);
         pokemonFacade.setPokemonType(6L, PokemonType.FAIRY);
@@ -184,5 +144,38 @@ public class PokemonFacadeTest {
         when(mappingService.mapTo(pokemon, PokemonDTO.class)).thenReturn(pokemonDTO);
         PokemonDTO p = pokemonFacade.getPokemonById(6L);
         Assert.assertEquals(pokemonDTO, p);
+    }
+    
+    @Test
+    public void setOwner(){
+        when(pokemonService.findById(6L)).thenReturn(pokemon);
+        when(trainerService.findTrainerById(5L)).thenReturn(trainer);
+        pokemonFacade.setOwner(6L, 5L);
+        verify(pokemonService, times(1)).setOwner(pokemon, trainer);
+        
+    }
+    
+    @Test
+    public void setLevel(){
+        when(pokemonService.findById(6L)).thenReturn(pokemon);
+        pokemonFacade.setLevel(6L, 15);
+        verify(pokemonService, times(1)).setLevel(pokemon, 15);
+        
+    }
+    
+    @Test
+    public void setName(){
+        when(pokemonService.findById(6L)).thenReturn(pokemon);
+        pokemonFacade.setName(6L, "name2");
+        verify(pokemonService, times(1)).setName(pokemon, "name2");
+        
+    }
+    
+    @Test
+    public void setNickname(){
+        when(pokemonService.findById(6L)).thenReturn(pokemon);
+        pokemonFacade.setNickname(6L, "nick2");
+        verify(pokemonService, times(1)).setNickname(pokemon, "nick2");
+        
     }
 }

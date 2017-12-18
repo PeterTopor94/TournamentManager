@@ -5,10 +5,8 @@
  */
 package cz.muni.fi.pa165.pokemons.facade;
 
-import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.DTO.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -33,4 +31,8 @@ public interface TrainerFacade {
     public TrainerDTO getTrainerByGym(GymDTO gym);
     
     public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to);
+
+    public TrainerDTO getTrainerByLogin(String login);
+
+    public boolean login(AuthenticateTrainerDTO trainer);
 }

@@ -12,10 +12,10 @@
        <form:form method="post" action="${pageContext.request.contextPath}/login/"
                   modelAttribute="userLogin" cssClass="form-horizontal">
        <div class="form-group ${mail_error?'has-error':''}">
-           <form:label path="username" cssClass="col-sm-2 control-label"><f:message key="login.username"/>:</form:label>
+           <form:label path="login" cssClass="col-sm-2 control-label"><f:message key="login.login"/>:</form:label>
            <div class="col-sm-10">
-               <form:input path="mail" cssClass="form-control"/>
-               <form:errors path="mail" cssClass="help-block"/>
+               <form:input path="login" cssClass="form-control"/>
+               <form:errors path="login" cssClass="help-block"/>
            </div>
        </div>
         <div class="form-group ${password_error?'has-error':''}">

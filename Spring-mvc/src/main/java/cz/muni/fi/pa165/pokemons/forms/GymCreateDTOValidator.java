@@ -14,7 +14,7 @@ public class GymCreateDTOValidator implements Validator
     @Override
     public void validate(Object target, Errors errors) {
         GymCreateDTO gymCreateDTO = (GymCreateDTO) target;
-        if (gymCreateDTO.getCityName() == null)
+        if (gymCreateDTO.getCityName() == null || gymCreateDTO.getCityName().isEmpty())
         {
             errors.rejectValue("cityName", "GymCreateDTOValidator.empty.cityname");
         }
