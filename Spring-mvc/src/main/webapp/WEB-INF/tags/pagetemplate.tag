@@ -34,6 +34,7 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
+                        <li><my:a href="/pokemon/list/"><f:message key="navigation.tournaments"/></my:a></li>
                         <li><my:a href="/gym/list/"><f:message key="navigation.gyms"/></my:a></li>
                         <li><my:a href="/badge/list/"><f:message key="navigation.badges"/></my:a></li>
                         <li><my:a href="/trainer/list/"><f:message key="navigation.trainers"/></my:a></li>
