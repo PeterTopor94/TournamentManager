@@ -30,7 +30,7 @@
         <tr>
             <td>${badge.id}</td>
             <td><c:out value="${badge.cityOfOrigin}"/></td>
-            <td><c:out value="${badge.gym}"/></td>
+            <td><c:out value="${badge.gym.cityName} ${badge.gym.typology}"/></td>
           
         </tr>
         </tbody>

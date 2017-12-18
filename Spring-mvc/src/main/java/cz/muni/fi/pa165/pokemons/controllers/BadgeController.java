@@ -36,6 +36,9 @@ public class BadgeController {
 
     @Inject
     private BadgeFacade badgeFacade;
+    
+    @Inject 
+    private GymFacade gymFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
@@ -60,8 +63,9 @@ public class BadgeController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newPlayer(Model model) {
+    public String newBadge(Model model) {
         model.addAttribute("badgeCreate", new BadgeCreateDTO());
+        model.addAttribute("gyms", gymFacade.getAllGyms());
         return "badge/new";
     }
 
