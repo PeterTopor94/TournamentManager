@@ -12,7 +12,7 @@ import java.io.IOException;
  * Protects application from unauthorised access
  * @author Matus Krska
  */
-@WebFilter(urlPatterns = {"/gym/*", "/trainer/*"})
+@WebFilter(urlPatterns = {"/gym/*", "/trainer/*", "/badge/*"})
 public class ProtectFilter implements Filter
 {
     @Override

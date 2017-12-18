@@ -14,6 +14,7 @@ import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.facade.GymFacade;
 import cz.muni.fi.pa165.pokemons.forms.BadgeCreateDTOValidator;
 import cz.muni.fi.pa165.pokemons.forms.GymCreateDTOValidator;
+import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -65,7 +66,6 @@ public class BadgeController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newBadge(Model model) {
         model.addAttribute("badgeCreate", new BadgeCreateDTO());
-        model.addAttribute("gyms", gymFacade.getAllGyms());
         return "badge/new";
     }
 
@@ -76,6 +76,12 @@ public class BadgeController {
         }
     }
 
+    
+    @ModelAttribute("gyms")
+    public List<GymDTO> gyms() {
+    return gymFacade.getAllGyms();
+}
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("badgeCreate") BadgeCreateDTO form,
             BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
