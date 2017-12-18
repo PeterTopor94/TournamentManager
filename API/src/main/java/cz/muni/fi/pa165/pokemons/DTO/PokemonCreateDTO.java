@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.pokemons.DTO;
 
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
+import java.util.Objects;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -34,7 +35,7 @@ public class PokemonCreateDTO {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
@@ -73,11 +74,10 @@ public class PokemonCreateDTO {
     @Override
     public int hashCode() {
         int hash = 13;
-        hash = 51 * hash + this.level.hashCode();
-        hash = 51 * hash + this.name.hashCode();
-        hash = 51 * hash + this.nickname.hashCode();
-        hash = 51 * hash + this.ownerId.hashCode();
-        hash = 51 * hash + this.typology.hashCode();
+        hash = 43 * hash + Objects.hashCode(this.level != null ? this.level.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.nickname != null ? this.nickname.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.typology != null ? this.typology.hashCode() : 0);
         return hash;
     }
 
@@ -103,9 +103,6 @@ public class PokemonCreateDTO {
             return false;
         }
         if (!this.nickname.equals(pokemon.getNickname())) {
-            return false;
-        }
-        if (!this.ownerId.equals(pokemon.getOwnerId())) {
             return false;
         }
         return this.typology.equals(pokemon.typology);
