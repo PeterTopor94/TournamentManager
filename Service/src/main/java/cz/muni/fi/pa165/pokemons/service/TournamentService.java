@@ -14,19 +14,17 @@ import java.util.List;
  * @author Miroslav
  */
 public interface TournamentService {
-     void createTournament(Tournament tournament);
+     Tournament createTournament(Tournament tournament);
+     void removeTournament(Tournament tournament);
+     
    
+     
      void addTrainer(Tournament tournament, Trainer trainer); 
      
      void removeTrainer(Tournament tournament, Trainer trainer); 
-             
-     void removeTournament(Tournament tournament);
-     
-     void setNameOfTournament(Tournament tournament, String name);
 
-   
-    
-    
+     void setNameOfTournament(Tournament tournament, String name);
+ 
     
     List<Tournament> getAllTournaments();
  
