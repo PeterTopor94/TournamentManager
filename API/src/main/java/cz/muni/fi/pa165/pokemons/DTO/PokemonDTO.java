@@ -1,4 +1,3 @@
-
 package cz.muni.fi.pa165.pokemons.DTO;
 
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
@@ -73,7 +72,6 @@ public class PokemonDTO {
     @Override
     public int hashCode() {
         int hash = 17;
-        hash = 37 * hash + this.id.hashCode();
         hash = 37 * hash + this.level.hashCode();
         hash = 37 * hash + this.name.hashCode();
         hash = 37 * hash + this.nickname.hashCode();
@@ -95,9 +93,6 @@ public class PokemonDTO {
 
         final PokemonDTO pokemon = (PokemonDTO) obj;
 
-        if (this.id != null ? !this.id.equals(pokemon.id) : pokemon.id != null) {
-            return false;
-        }
         if (this.level != null ? !this.level.equals(pokemon.level) : pokemon.level != null) {
             return false;
         }

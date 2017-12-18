@@ -1,8 +1,4 @@
-
 package cz.muni.fi.pa165.pokemons.service;
-
-import javax.inject.Inject;
-import java.util.List;
 
 import cz.muni.fi.pa165.pokemons.dao.PokemonDao;
 import cz.muni.fi.pa165.pokemons.entities.Pokemon;
@@ -10,6 +6,8 @@ import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
+import java.util.List;
 
 /**
  *
@@ -26,6 +24,17 @@ public class PokemonServiceImpl implements PokemonService{
     }
     
     @Override
+    public Pokemon createPokemon(Pokemon pokemon){
+        pokemonDao.create(pokemon);
+        return pokemon;
+    }
+    
+    @Override
+    public void deletePokemon(Pokemon p){
+        pokemonDao.remove(p);
+    }
+    
+    @Override
     public Pokemon findById(Long id){
         return pokemonDao.findById(id);
     }
@@ -33,12 +42,6 @@ public class PokemonServiceImpl implements PokemonService{
     @Override
     public List<Pokemon> findAll(){
          return pokemonDao.findAll();
-    }
-
-    @Override
-    public Pokemon createPokemon(Pokemon pokemon){
-        pokemonDao.create(pokemon);
-        return pokemon;
     }
     
     @Override
@@ -73,10 +76,4 @@ public class PokemonServiceImpl implements PokemonService{
         pokemon.setType(pokemonType);
         pokemonDao.create(pokemon);
     }
-    
-    @Override
-    public void deletePokemon(Pokemon p){
-        pokemonDao.remove(p);
-    }
-    
 }

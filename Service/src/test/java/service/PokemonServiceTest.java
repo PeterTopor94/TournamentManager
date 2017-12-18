@@ -7,21 +7,19 @@ import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.PokemonServiceImpl;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
-
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.ContextConfiguration;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 
@@ -33,7 +31,6 @@ import org.testng.annotations.BeforeClass;
 public class PokemonServiceTest {
     @Mock
     private PokemonDao pokemonDao;
-
 
     private PokemonService pokemonService;
     
@@ -62,6 +59,18 @@ public class PokemonServiceTest {
         pokemon.setType(PokemonType.FIRE);
         pokemon.setOwner(trainer);
     }
+   
+    @Test
+    public void createPokemon(){
+        pokemonService.createPokemon(pokemon);
+        verify(pokemonDao, times(1)).create(pokemon);
+    }
+    
+    @Test
+    public void deletePokemon(){
+        pokemonService.deletePokemon(pokemon);
+        verify(pokemonDao, times(1)).remove(pokemon);
+    }
     
     @Test
     public void findById(){
@@ -75,12 +84,6 @@ public class PokemonServiceTest {
         when(pokemonDao.findAll()).thenReturn(Arrays.asList(pokemon));
         List<Pokemon> pokemons = pokemonService.findAll();
         Assert.assertEquals(pokemons.size(), 1);
-    }
-    
-    @Test
-    public void createPokemon(){
-        pokemonService.createPokemon(pokemon);
-        verify(pokemonDao, times(1)).create(pokemon);
     }
     
     @Test
@@ -112,11 +115,4 @@ public class PokemonServiceTest {
         pokemonService.setPokemonType(pokemon, PokemonType.BUG);
         verify(pokemonDao, times(1)).create(pokemon);
     }
-    
-    @Test
-    public void deletePokemon(){
-        pokemonService.deletePokemon(pokemon);
-        verify(pokemonDao, times(1)).remove(pokemon);
-    }
-    
 }
