@@ -17,7 +17,7 @@ public interface BadgeService {
 
     public List<Badge> findAll();
 
-    public void createBadge(Badge b);
+    public Long createBadge(Badge b);
 
     public void deleteBadge(Badge b);
 

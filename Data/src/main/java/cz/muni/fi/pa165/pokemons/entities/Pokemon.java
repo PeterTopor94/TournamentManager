@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.pokemons.entities;
 
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
@@ -99,11 +94,9 @@ public class Pokemon {
     @Override
     public int hashCode() {
         int hash = 13;
-        hash = 43 * hash + Objects.hashCode(this.id != null ? this.id.hashCode() : 0);
         hash = 43 * hash + Objects.hashCode(this.level != null ? this.level.hashCode() : 0);
         hash = 43 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
         hash = 43 * hash + Objects.hashCode(this.nickname != null ? this.nickname.hashCode() : 0);
-        hash = 43 * hash + Objects.hashCode(this.owner != null ? this.owner.hashCode() : 0);
         hash = 43 * hash + Objects.hashCode(this.type != null ? this.type.hashCode() : 0);
         return hash;
     }
@@ -122,9 +115,6 @@ public class Pokemon {
 
         final Pokemon pokemon = (Pokemon) obj;
 
-        if (this.id != null ? !this.id.equals(pokemon.id) : pokemon.id != null) {
-            return false;
-        }
         if (this.level != null ? !this.level.equals(pokemon.level) : pokemon.level != null) {
             return false;
         }
@@ -132,9 +122,6 @@ public class Pokemon {
             return false;
         }
         if (this.nickname != null ? !this.nickname.equals(pokemon.nickname) : pokemon.nickname != null) {
-            return false;
-        }
-        if (this.owner != null ? !this.owner.equals(pokemon.owner) : pokemon.owner != null) {
             return false;
         }
         return this.type != null ? this.type.equals(pokemon.type) : pokemon.type == null;

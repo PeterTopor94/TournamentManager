@@ -4,33 +4,34 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <my:pagetemplate title="Trainer detail">
     <jsp:attribute name="body">
         <table class="table">
             <caption>Trainer</caption>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th> trainer name</th>
-                    <th>date of birth</th>
-                    <th>gym</th>
+                    <th>ID</th>
+                    <th>Trainer Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gym</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>${trainer.id}</td>
-                    <td>${trainer.name}${trainer.surname}</td>
-                    <td><fmt:formatDate value="${trainer.dateOfBirth}" pattern="yyyy-MM-dd"/></td>
+                    <td>${trainer.name} ${trainer.surname}</td>
+                    <td><fmt:formatDate value="${trainer.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
                     <td>${trainer.gym.cityName}</td>
+                    <td>
+                        <c:if test="${not empty authenticatedUser && !authenticatedUser.isAdmin()}">
 
-                    <my:a href="/trainer/detail/${trainer.id}" class="btn btn-primary">View</my:a>
-                        <td>
                             <form method="post" action="${pageContext.request.contextPath}/trainer/delete/${trainer.id}">
-                            <button type="submit" class="btn btn-danger">
-                                <f:message key="delete"></f:message>
-                            </button>
-                        </form>
+                                <button type="submit" class="btn btn-danger">
+                                    <f:message key="delete"></f:message>
+                                    </button>
+                                </form>
+                        </c:if>
                     </td>
                 </tr>
             </tbody>
@@ -40,8 +41,8 @@
             <caption>Badges</caption>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>cityOfOrigin</th>
+                    <th>ID</th>
+                    <th>City of Origin</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,10 +59,10 @@
             <caption>Pokemon</caption>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>nickname</th>
-                    <th>type</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Nickname</th>
+                    <th>Type</th>
                 </tr>
             </thead>
             <tbody>

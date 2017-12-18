@@ -20,14 +20,14 @@ public interface BadgeDao {
      *
      * @param badge Badge to be created
      */
-    void create(Badge badge);
+    Long create(Badge badge) throws IllegalArgumentException;
 
     /**
      * Removes Badge
      *
      * @param badge Badge to be removed
      */
-    void remove(Badge badge);
+    void remove(Badge badge) throws IllegalArgumentException;
 
     /**
      * Returns Badge by Id
@@ -42,7 +42,7 @@ public interface BadgeDao {
      *
      * @param badge Badge that will be updated
      */
-    void update(Badge badge);
+    void update(Badge badge) throws IllegalArgumentException;
 
     /**
      * Returns all Badges
