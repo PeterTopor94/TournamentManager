@@ -18,13 +18,13 @@ public class PokemonCreateDTOValidator implements Validator
     @Override
     public void validate(Object target, Errors errors) {
         PokemonCreateDTO pokemonCreateDTO = (PokemonCreateDTO) target;
-        if (pokemonCreateDTO.getName() == null)
+        if (pokemonCreateDTO.getName() == null || pokemonCreateDTO.getName().isEmpty())
         {
             errors.rejectValue("name", "PokemonCreateDTOValidator.empty.name");
         }
-        if (pokemonCreateDTO.getNickname() == null)
+        if (pokemonCreateDTO.getNickname() == null || pokemonCreateDTO.getNickname().isEmpty())
         {
-            errors.rejectValue("nickame", "PokemonCreateDTOValidator.empty.nickname");
+            errors.rejectValue("nickname", "PokemonCreateDTOValidator.empty.nickname");
         }
         if (pokemonCreateDTO.getLevel() == null)
         {
