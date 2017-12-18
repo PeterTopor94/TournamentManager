@@ -28,9 +28,9 @@ public class PokemonCreateDTO {
     private Long ownerId;
 
     @NotNull
-    private PokemonType type;
+    private PokemonType typology;
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
@@ -63,11 +63,11 @@ public class PokemonCreateDTO {
     }
 
     public PokemonType getPokemonType() {
-        return type;
+        return typology;
     }
 
-    public void setPokemonType(PokemonType type) {
-        this.type = type;
+    public void setPokemonType(PokemonType typology) {
+        this.typology = typology;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class PokemonCreateDTO {
         hash = 51 * hash + this.name.hashCode();
         hash = 51 * hash + this.nickname.hashCode();
         hash = 51 * hash + this.ownerId.hashCode();
-        hash = 51 * hash + this.type.hashCode();
+        hash = 51 * hash + this.typology.hashCode();
         return hash;
     }
 
@@ -108,7 +108,7 @@ public class PokemonCreateDTO {
         if (!this.ownerId.equals(pokemon.getOwnerId())) {
             return false;
         }
-        return this.type.equals(pokemon.type);
+        return this.typology.equals(pokemon.typology);
     }
 
     

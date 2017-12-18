@@ -88,7 +88,7 @@ public class PokemonFacadeTest {
         pokemonDTO.setName("pika");
         pokemonDTO.setNickname("polo");
         pokemonDTO.setType(PokemonType.FIRE);
-        pokemonDTO.setOwnerId(5L);
+        pokemonDTO.setOwner(trainerDTO);
         
         pokemonCreateDTO = new PokemonCreateDTO();
         pokemonCreateDTO.setLevel(10);
