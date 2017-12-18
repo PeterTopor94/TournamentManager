@@ -28,8 +28,9 @@ public class BadgeDaoImpl implements BadgeDao {
      * @param badge Badge to be created
      */
     @Override
-    public void create(Badge badge) {
+    public Long create(Badge badge) {
         em.persist(badge);
+        return badge.getId();
     }
     
     /**
