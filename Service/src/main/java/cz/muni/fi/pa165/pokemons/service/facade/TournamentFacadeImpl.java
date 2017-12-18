@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package cz.muni.fi.pa165.pokemons.service.facade;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
@@ -26,15 +26,16 @@ import java.util.List;
 @Service
 @Transactional
 public class TournamentFacadeImpl implements TournamentFacade {
+   @Inject
+   private TournamentService tournamentService; 
 
-   @Autowired
+   @Inject
    private TrainerService trainerService;
    @Autowired
    private BeanMappingService beanMappingService;
     
-   @Autowired
-   private TournamentService tournamentService; 
-
+  
+  
     public TournamentFacadeImpl( TournamentService tournamentService,BeanMappingService beanMappingService, TrainerService trainerService)
     {
         
