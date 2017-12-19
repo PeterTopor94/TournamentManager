@@ -15,8 +15,8 @@ import java.util.List;
  */
 public interface TournamentFacade {
    
-     Long create(TournamentCreateDTO tournament);
-    
+     void create(TournamentCreateDTO tournament);
+     
      void addTrainerToTournament(Long idTournament, Long idTrainer);
      void removTrainer(Long idTournament, Long idTrainer);
      

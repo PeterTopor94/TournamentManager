@@ -5,7 +5,6 @@
  */
 package cz.muni.fi.pa165.pokemons.service;
 
-import com.google.inject.Inject;
 import cz.muni.fi.pa165.pokemons.dao.TournamentDao;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
@@ -19,11 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TournamentServiceImpl implements TournamentService {
-   
-    @Autowired
-    private TournamentDao tournamentDao;
-    
-    
+
     
     public TournamentServiceImpl(TournamentDao tournamentDao)
     {
@@ -34,12 +29,15 @@ public class TournamentServiceImpl implements TournamentService {
        
     }
     
+    @Autowired
+    private TournamentDao tournamentDao;
+
+    
 
     @Override
-    public Tournament createTournament(Tournament tournament) {
+    public void createTournament(Tournament tournament) {
         
         tournamentDao.create(tournament);
-        return tournament;
     }
 
     @Override
@@ -98,5 +96,7 @@ public class TournamentServiceImpl implements TournamentService {
        tournamentDao.findById(tournament.getId()).setName(name);
     }
 
+    
+   
     
 }

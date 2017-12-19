@@ -35,28 +35,20 @@ public class TournamentFacadeImpl implements TournamentFacade {
    @Autowired
    private TournamentService tournamentService; 
 
-    public TournamentFacadeImpl( TournamentService tournamentService,BeanMappingService beanMappingService, TrainerService trainerService)
-    {
-        
-        this.beanMappingService = beanMappingService;
-        this.trainerService = trainerService;
+    public TournamentFacadeImpl( BeanMappingService mappingService, TournamentService tournamentService) {
         this.tournamentService = tournamentService;
-    }
-
-    public TournamentFacadeImpl(BeanMappingService mappingService, TournamentService tournamentService) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.beanMappingService = mappingService;
+        
     }
 
    
 
     @Override
-    public Long create(TournamentCreateDTO tournament) {
-        Tournament mappedTournament = beanMappingService.mapTo(tournament, Tournament.class);
-        
-        mappedTournament.setName(tournament.getName());
+    public void create(TournamentCreateDTO tournament) {
+  
+      Tournament mappedTournament = beanMappingService.mapTo(tournament, Tournament.class);
 
-        Tournament newTournament = tournamentService.createTournament(mappedTournament);
-        return newTournament.getId();
+        tournamentService.createTournament(mappedTournament);
     }
     
      @Override
@@ -108,10 +100,9 @@ public class TournamentFacadeImpl implements TournamentFacade {
     public TournamentDTO findByName(String name) {
      Tournament tournament = tournamentService.findTournamentByName(name);
       return (tournament == null) ? null : beanMappingService.mapTo(tournament,TournamentDTO.class);  
-
+      
+    
     }
-
-   
 
    
    
