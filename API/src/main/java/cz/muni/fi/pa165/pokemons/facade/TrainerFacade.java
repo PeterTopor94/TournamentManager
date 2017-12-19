@@ -21,7 +21,7 @@ public interface TrainerFacade {
     public void deleteTrainer(TrainerDTO trainer);
 
     public List<TrainerDTO> getAllTrainers();
-
+    
     public TrainerDTO getById(Long id);
 
     public List<TrainerDTO> getTrainersByNameAndSurname(String name, String surname);
@@ -29,13 +29,10 @@ public interface TrainerFacade {
     public List<TrainerDTO> getTrainersByDateOfBirth(Date birthdate);
 
     public TrainerDTO getTrainerByGym(GymDTO gym);
-
+    
     public boolean isTrainerQualifiedForTournament(TrainerDTO tr, TournamentDTO to);
 
     public TrainerDTO getTrainerByLogin(String login);
 
     public boolean login(AuthenticateTrainerDTO trainer);
-
-    void addBadgeToTrainer(Long trainerId, Long badgeId);
-
 }

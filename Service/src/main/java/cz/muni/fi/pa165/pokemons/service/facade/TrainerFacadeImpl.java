@@ -62,7 +62,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
         mappedTrainer.setGym(gymService.findById(trainer.getGymId()));
         mappedTrainer.setDateOfBirth(trainer.getDateOfBirth());
 
-        return trainerService.createTrainer(mappedTrainer);
+        return trainerService.createTrainer(mappedTrainer);      
     }
 
     @Override
@@ -95,7 +95,7 @@ public class TrainerFacadeImpl implements TrainerFacade {
     }
 
     @Override
-    public TrainerDTO getTrainerByGym(GymDTO gym) {
+    public TrainerDTO getTrainerByGym(GymDTO gym) {      
         Trainer trainer = trainerService.getTrainerByGym(beanMappingService.mapTo(gym, Gym.class));
         return (trainer == null) ? null : beanMappingService.mapTo(trainer, TrainerDTO.class);
     }
@@ -106,22 +106,19 @@ public class TrainerFacadeImpl implements TrainerFacade {
     }
 
     @Override
-    public TrainerDTO getTrainerByLogin(String login) {
-        Trainer trainer = trainerService.findTrainerByLogin(login);
-        if (trainer == null) {
+    public TrainerDTO getTrainerByLogin(String login)
+    {
+        Trainer trainer =  trainerService.findTrainerByLogin(login);
+        if(trainer == null)
+        {
             return null;
         }
         return beanMappingService.mapTo(trainerService.findTrainerByLogin(login), TrainerDTO.class);
     }
 
     @Override
-    public boolean login(AuthenticateTrainerDTO trainer) {
+    public boolean login(AuthenticateTrainerDTO trainer)
+    {
         return trainerService.login(trainerService.findTrainerByLogin(trainer.getLogin()), trainer.getPassword());
-    }
-
-    @Override
-    public void addBadgeToTrainer(Long trainerId, Long badgeId) {
-        trainerService.addBadge(trainerService.findTrainerById(trainerId),
-                badgeService.findById(badgeId));
     }
 }
