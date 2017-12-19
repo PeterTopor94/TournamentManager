@@ -106,10 +106,11 @@ public class TournamentFacadeImplTest {
     @Test
     public void testCreate() {
        when(mappingService.mapTo(tournamentCreateDTO, Tournament.class)).thenReturn(tournament);
-        when(trainerService.findTrainerById(6L)).thenReturn(trainer);
-        when(tournamentService.createTournament(tournament)).thenReturn(tournament);
+        when(tournamentService.findTournmanetById(1L)).thenReturn(tournament);
+
         tournamentFacade.create(tournamentCreateDTO);
         verify(tournamentService, times(1)).createTournament(tournament);
+        
     }
 
     
