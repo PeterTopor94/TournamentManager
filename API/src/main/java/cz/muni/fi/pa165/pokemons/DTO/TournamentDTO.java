@@ -7,50 +7,12 @@ package cz.muni.fi.pa165.pokemons.DTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  *
  * @author Miroslav
  */
 public class TournamentDTO {
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.name);
-        hash = 89 * hash + this.numRequiredBadges;
-        hash = 89 * hash + Objects.hashCode(this.trainers);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final TournamentDTO other = (TournamentDTO) obj;
-        if (this.numRequiredBadges != other.numRequiredBadges) {
-            return false;
-        }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.trainers, other.trainers)) {
-            return false;
-        }
-        return true;
-    }
     
     private Long id;
     private String name;
