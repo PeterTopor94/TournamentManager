@@ -4,28 +4,20 @@
  * and open the template in the editor.
  */
 package service.facade;
-import cz.muni.fi.pa165.pokemons.DTO.PokemonCreateDTO;
-import cz.muni.fi.pa165.pokemons.DTO.PokemonDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
-import cz.muni.fi.pa165.pokemons.entities.Pokemon;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
-import cz.muni.fi.pa165.pokemons.facade.PokemonFacade;
 import cz.muni.fi.pa165.pokemons.facade.TournamentFacade;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
-import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TournamentService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
-import cz.muni.fi.pa165.pokemons.service.facade.PokemonFacadeImpl;
 import cz.muni.fi.pa165.pokemons.service.facade.TournamentFacadeImpl;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import org.hibernate.service.spi.ServiceException;
-import org.mockito.InjectMocks;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import org.mockito.Mock;
@@ -73,12 +65,13 @@ public class TournamentFacadeImplTest {
     @BeforeMethod
     public void prepareTest(){
         
-        tournament = new Tournament();
+        tournament = new Tournament(); 
         tournament.setId(1L);
         tournament.setName("heloween");
         tournament.setNumRequiredBadges(1);
         
-        tournamentDTO = new TournamentDTO();       
+        tournamentDTO = new TournamentDTO(); 
+        tournamentDTO.setId(1L);
         tournamentDTO.setName("heloween");
         tournamentDTO.setNumRequiredBadges(1);
         
@@ -105,12 +98,10 @@ public class TournamentFacadeImplTest {
      */
     @Test
     public void testCreate() {
-       when(mappingService.mapTo(tournamentCreateDTO, Tournament.class)).thenReturn(tournament);
-        when(tournamentService.findTournmanetById(1L)).thenReturn(tournament);
-
-        tournamentFacade.create(tournamentCreateDTO);
+        when(mappingService.mapTo(tournamentCreateDTO, Tournament.class)).thenReturn(tournament);      
+        when(tournamentService.createTournament(tournament)).thenReturn(tournament);
+        tournamentFacade.createTournament(tournamentCreateDTO);
         verify(tournamentService, times(1)).createTournament(tournament);
-        
     }
 
     

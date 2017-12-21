@@ -16,7 +16,7 @@ public class TournamentCreateDTO {
    
    
     private Long trainerID;
-    private String name;
+    private String tournamentName;
     private int numRequiredBadges;
     
     
@@ -31,12 +31,12 @@ public class TournamentCreateDTO {
 
     public String getName()
     {
-        return name;
+        return tournamentName;
     }
 
     public void setName(String name)
     {
-        this.name = name;
+        this.tournamentName = name;
     }
 
     public int getNumRequiredBadges()
