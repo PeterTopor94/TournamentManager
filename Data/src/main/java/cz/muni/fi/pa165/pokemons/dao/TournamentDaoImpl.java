@@ -1,11 +1,8 @@
-/*
-
- */
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
-import org.springframework.stereotype.Repository;
 
+import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -64,7 +61,7 @@ public class TournamentDaoImpl implements TournamentDao{
         if (tournamentName == null) {
             throw new IllegalArgumentException("Can't find Tournament without ID.");
         }
-        return em.createQuery("SELECT t FROM Tournament t WHERE t.tournamentName = :tname",
+        return em.createQuery("SELECT t FROM Tournament t WHERE t.name = :tname",
                 Tournament.class).setParameter("tname", tournamentName).getSingleResult();
     }
 

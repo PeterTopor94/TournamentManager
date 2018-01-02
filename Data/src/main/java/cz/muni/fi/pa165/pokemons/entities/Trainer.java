@@ -42,8 +42,13 @@ public class Trainer {
 
     @OneToOne
     private Gym gym;
-
-    public Trainer() {
+    
+    public Trainer(){
+        
+    }
+    
+    public Trainer(Long id) {
+        this.id = id;
     }
 
     public String getPasswordHash()
@@ -72,10 +77,6 @@ public class Trainer {
 
     public void setGym(Gym gym) {
         this.gym = gym;
-    }
-
-    public Trainer(Long id) {
-        this.id = id;
     }
 
     public Long getId() {
@@ -130,17 +131,6 @@ public class Trainer {
         pokemons.remove(p);
     }
 
-    public void leaveTournament(Tournament t) {
-        t.removeTrainer(this);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        return hash;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -152,8 +142,29 @@ public class Trainer {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Trainer other = (Trainer) obj;
-        return Objects.equals(this.id, other.id);
+        
+        final Trainer trainer = (Trainer) obj;
+        
+        if (this.name != null ? !this.name.equals(trainer.name) : trainer.name != null) {
+            return false;
+        }
+        if (this.surname != null ? !this.surname.equals(trainer.surname) : trainer.surname != null) {
+            return false;
+        }
+        if (this.dateOfBirth != null ? !this.dateOfBirth.equals(trainer.dateOfBirth) : trainer.dateOfBirth != null) {
+            return false;
+        }
+
+        return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 49 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
+        hash = 49 * hash + Objects.hashCode(this.surname != null ? this.surname.hashCode() : 0);
+        hash = 49 * hash + Objects.hashCode(this.dateOfBirth != null ? this.dateOfBirth.hashCode() : 0);
+        return hash;
     }
 
 }

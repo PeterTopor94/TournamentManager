@@ -55,9 +55,24 @@ public interface TrainerDao
      */
     List<Trainer> findByNameAndSurname(String name, String surname);
 
+    /**
+     * Finds trainer by login
+     * @param login login of trainer
+     * @return
+     */
     Trainer findByLogin(String login) throws NoResultException;
 
-    public List<Trainer> findByBirthdate(Date birthdate);
+     /**
+     * Finds trainers by birthdate
+     * @param birthdate birthdate of trainer
+     * @return
+     */
+    List<Trainer> findByBirthdate(Date birthdate);
 
-    public Trainer findByGym(Gym gym);
+    /**
+     * Finds trainer by gym
+     * @param gym gym of trainer
+     * @return
+     */
+    Trainer findByGym(Gym gym);
 }

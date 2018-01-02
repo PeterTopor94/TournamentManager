@@ -7,17 +7,16 @@ import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.TrainerServiceImpl;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -34,18 +33,18 @@ public class TrainerServiceTest {
 
     private TrainerService trainerService;
 
-    @BeforeClass
-    public void setup() throws ServiceException {
-        MockitoAnnotations.initMocks(this);
-        trainerService = new TrainerServiceImpl(trainerDao);
-    }
-
     private Tournament tournament;
 
     private Badge badge;
 
     private Trainer red;
     private Trainer blue;
+    
+    @BeforeClass
+    public void setup() throws ServiceException {
+        MockitoAnnotations.initMocks(this);
+        trainerService = new TrainerServiceImpl(trainerDao);
+    }
 
     @BeforeMethod
     public void createTrainers() {
@@ -94,7 +93,6 @@ public class TrainerServiceTest {
     @Test
     public void findAll() {
         when(trainerDao.findAll()).thenReturn(Arrays.asList(red, blue));
-
         List<Trainer> trainers = trainerService.findAllTrainers();
         Assert.assertEquals(trainers.size(), 2);
     }
@@ -102,7 +100,6 @@ public class TrainerServiceTest {
     @Test
     public void findByNameAndSurname() {
         when(trainerDao.findByNameAndSurname("Jon", "Red")).thenReturn(Arrays.asList(red));
-
         List<Trainer> trainers = trainerService.findByNameAndSurname("Jon", "Red");
         Assert.assertEquals(trainers.get(0).getDateOfBirth(), red.getDateOfBirth());
     }

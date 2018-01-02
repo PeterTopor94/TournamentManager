@@ -105,14 +105,7 @@ public class PokemonFacadeTest {
         when(pokemonService.createPokemon(pokemon)).thenReturn(pokemon);
         pokemonFacade.createPokemon(pokemonCreateDTO);
         verify(pokemonService, times(1)).createPokemon(pokemon);
-    }
-    
-    @Test
-    public void setPokemonType(){
-        when(pokemonService.findById(6L)).thenReturn(pokemon);
-        pokemonFacade.setPokemonType(6L, PokemonType.FAIRY);
-        verify(pokemonService, times(1)).deletePokemon(pokemon);
-    }
+    }  
     
     @Test
     public void deletePokemon(){
@@ -177,5 +170,12 @@ public class PokemonFacadeTest {
         pokemonFacade.setNickname(6L, "nick2");
         verify(pokemonService, times(1)).setNickname(pokemon, "nick2");
         
+    }
+    
+    @Test
+    public void setPokemonType(){
+        when(pokemonService.findById(6L)).thenReturn(pokemon);
+        pokemonFacade.setPokemonType(6L, PokemonType.FAIRY);
+        verify(pokemonService, times(1)).setPokemonType(pokemon, PokemonType.FAIRY);
     }
 }

@@ -5,13 +5,11 @@ import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.NoResultException;
 
 /**
@@ -71,21 +69,17 @@ public class TrainerServiceImpl implements TrainerService {
     }
 
     @Override
-    public Trainer findTrainerByLogin(String login)
-    {
-        try
-        {
+    public Trainer findTrainerByLogin(String login) {
+        try {
             return trainerDao.findByLogin(login);
         }
-        catch(NoResultException e)
-        {
+        catch(NoResultException e) {
             return null;
         }
     }
 
     @Override
-    public boolean login(Trainer trainer, String plain)
-    {
+    public boolean login(Trainer trainer, String plain) {
         Password password = new Password();
         return password.authenticate(plain, trainer.getPasswordHash());
     }

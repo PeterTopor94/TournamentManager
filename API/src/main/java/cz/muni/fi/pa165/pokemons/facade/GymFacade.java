@@ -26,5 +26,4 @@ public interface GymFacade
 
     void changeTypology(NewGymTypologyDTO gymTypologyDTO);
 
-
 }

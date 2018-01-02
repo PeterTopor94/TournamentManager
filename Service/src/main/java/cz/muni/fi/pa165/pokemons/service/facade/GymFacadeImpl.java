@@ -9,10 +9,10 @@ import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 /**
@@ -21,17 +21,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class GymFacadeImpl implements GymFacade
-{
-
-    public GymFacadeImpl(GymService gymService, BeanMappingService beanMappingService, TrainerService trainerService, BadgeService badgeService)
-    {
-        this.gymService = gymService;
-        this.beanMappingService = beanMappingService;
-        this.trainerService = trainerService;
-        this.badgeService = badgeService;
-    }
-
+public class GymFacadeImpl implements GymFacade {
     @Autowired
     private GymService gymService;
 
@@ -43,10 +33,16 @@ public class GymFacadeImpl implements GymFacade
 
     @Autowired
     private BeanMappingService beanMappingService;
+    
+    public GymFacadeImpl(GymService gymService, BeanMappingService beanMappingService, TrainerService trainerService, BadgeService badgeService) {
+        this.gymService = gymService;
+        this.beanMappingService = beanMappingService;
+        this.trainerService = trainerService;
+        this.badgeService = badgeService;
+    }
 
     @Override
-    public Long createGym(GymCreateDTO gym)
-    {
+    public Long createGym(GymCreateDTO gym) {
         Gym mappedGym = beanMappingService.mapTo(gym, Gym.class);
         mappedGym.setGymLeader(trainerService.findTrainerById(gym.getGymLeaderId()));
         if(gym.getBadgeId() != null)
@@ -57,49 +53,42 @@ public class GymFacadeImpl implements GymFacade
     }
 
     @Override
-    public void deleteGym(GymDTO gym)
-    {
+    public void deleteGym(GymDTO gym) {
         gymService.deleteGym(gymService.findById(gym.getId()));
     }
 
     @Override
-    public List<GymDTO> getAllGyms()
-    {
+    public List<GymDTO> getAllGyms() {
         return beanMappingService.mapTo(gymService.findAllGyms(),
                 GymDTO.class);
     }
 
     @Override
-    public GymDTO getGymById(Long id)
-    {
+    public GymDTO getGymById(Long id) {
         Gym gym = gymService.findById(id);
         return (gym == null) ? null : beanMappingService.mapTo(gym, GymDTO.class);
     }
 
     @Override
-    public GymDTO getGymByCity(String cityName)
-    {
+    public GymDTO getGymByCity(String cityName) {
         Gym gym = gymService.findGymByCity(cityName);
         return (gym == null) ? null : beanMappingService.mapTo(gym, GymDTO.class);
     }
 
     @Override
-    public GymDTO getGymByLeader(TrainerDTO gymLeader)
-    {
+    public GymDTO getGymByLeader(TrainerDTO gymLeader) {
         Gym gym = gymService.findGymByGymLeader(beanMappingService.mapTo(gymLeader, Trainer.class));
         return (gym == null) ? null : beanMappingService.mapTo(gym, GymDTO.class);
     }
 
     @Override
-    public GymDTO getGymByBadge(BadgeDTO badge)
-    {
+    public GymDTO getGymByBadge(BadgeDTO badge) {
         Gym gym = gymService.findGymByBadge(beanMappingService.mapTo(badge, Badge.class));
         return (gym == null) ? null : beanMappingService.mapTo(gym, GymDTO.class);
     }
 
     @Override
-    public void changeTypology(NewGymTypologyDTO newTypology)
-    {
+    public void changeTypology(NewGymTypologyDTO newTypology) {
         gymService.changeTypology(gymService.findById(newTypology.getGymId()), newTypology.getTypology());
     }
 }

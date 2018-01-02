@@ -13,15 +13,23 @@ import java.util.List;
 public interface PokemonFacade {
     
     Long createPokemon(PokemonCreateDTO p);
+    
     void deletePokemon(Long pokemonId);
+    
     List<PokemonDTO> getAllPokemon();
+    
     List<PokemonDTO> getPokemonByTrainer(Long trainerId);
+    
     PokemonDTO getPokemonById(Long pokemonId);
     
     void setOwner(Long pokemonId, Long trainerId);
+    
     void setLevel(Long pokemonId, int level);
+    
     void setName(Long pokemonId, String name);
+    
     void setNickname(Long pokemonId, String nickname);
+    
     void setPokemonType(Long pokemonId, PokemonType pokemonType);
     
 }

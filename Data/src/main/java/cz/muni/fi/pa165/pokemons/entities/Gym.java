@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * Entity class representing gym object
@@ -37,41 +38,7 @@ public class Gym {
     @Column(nullable = false)
     @Enumerated
     @NotNull
-    private PokemonType typology;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Gym gym = (Gym) o;
-
-        if (this.id != null ? !this.id.equals(gym.id) : gym.id != null) {
-            return false;
-        }
-        if (this.badge != null ? !this.badge.equals(gym.badge) : gym.badge != null) {
-            return false;
-        }
-        if (this.cityName != null ? !this.cityName.equals(gym.cityName) : gym.cityName != null) {
-            return false;
-        }
-        if (this.gymLeader != null ? !this.gymLeader.equals(gym.gymLeader) : gym.gymLeader != null) {
-            return false;
-        }
-        return this.typology == gym.typology;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = this.id != null ? this.id.hashCode() : 0;
-        result = 31 * result + (this.cityName != null ? this.cityName.hashCode() : 0);
-        result = 31 * result + (this.typology != null ? this.typology.hashCode() : 0);
-        return result;
-    }
+    private PokemonType typology;  
 
     public Long getId() {
         return id;
@@ -111,5 +78,36 @@ public class Gym {
 
     public void setTypology(PokemonType typology) {
         this.typology = typology;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final Gym gym = (Gym) obj;
+
+        if (this.cityName != null ? !this.cityName.equals(gym.cityName) : gym.cityName != null) {
+            return false;
+        }
+        if (this.typology != null ? !this.typology.equals(gym.typology) : gym.typology != null) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 19;
+        hash = 31 * hash + Objects.hashCode(this.cityName != null ? this.cityName.hashCode() : 0);
+        hash = 31 * hash + Objects.hashCode(this.typology != null ? this.typology.hashCode() : 0);
+        return hash;
     }
 }
