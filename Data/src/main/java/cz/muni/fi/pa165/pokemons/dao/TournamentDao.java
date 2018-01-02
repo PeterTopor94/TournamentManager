@@ -51,8 +51,8 @@ public interface TournamentDao {
     
   /**
      * Returns Tournament by name
-     * @param name of Tournament to be returned
+     * @param tournamentName of Tournament to be returned
      * @return Tournament
      */
-  Tournament findByName(String name);
+  Tournament findByName(String tournamentName);
 }

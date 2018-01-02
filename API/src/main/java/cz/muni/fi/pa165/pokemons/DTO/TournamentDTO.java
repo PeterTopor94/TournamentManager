@@ -15,7 +15,7 @@ import java.util.List;
 public class TournamentDTO {
     
     private Long id;
-    private String name;
+    private String tournamentName;
     private int numRequiredBadges;
     private List<TrainerDTO> trainers = new ArrayList<TrainerDTO>();
     
@@ -47,12 +47,12 @@ public class TournamentDTO {
 
     public String getName()
     {
-        return name;
+        return tournamentName;
     }
 
     public void setName(String name)
     {
-        this.name = name;
+        this.tournamentName = name;
     }
 
     public int getNumRequiredBadges()

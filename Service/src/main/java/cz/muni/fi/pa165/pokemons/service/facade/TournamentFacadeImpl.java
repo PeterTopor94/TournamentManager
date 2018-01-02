@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package cz.muni.fi.pa165.pokemons.service.facade;
-import com.google.inject.Inject;
+
 import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
-import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.facade.TournamentFacade;
@@ -18,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * implementation of {@link TournamentFacade}
@@ -27,12 +27,12 @@ import java.util.List;
 @Transactional
 public class TournamentFacadeImpl implements TournamentFacade {
 
-   @Autowired
+   @Inject
    private TrainerService trainerService;
    @Autowired
    private BeanMappingService beanMappingService;
     
-   @Autowired
+   @Inject
    private TournamentService tournamentService; 
 
     public TournamentFacadeImpl( BeanMappingService mappingService, TournamentService tournamentService) {
@@ -44,11 +44,11 @@ public class TournamentFacadeImpl implements TournamentFacade {
    
 
     @Override
-    public void create(TournamentCreateDTO tournament) {
-  
-      Tournament mappedTournament = beanMappingService.mapTo(tournament, Tournament.class);
-
-        tournamentService.createTournament(mappedTournament);
+    public Long createTournament(TournamentCreateDTO tournament) {
+        Tournament mappedTournament = beanMappingService.mapTo(tournament, Tournament.class);
+        mappedTournament.setName(tournament.getName());
+        Tournament newTournament = tournamentService.createTournament(mappedTournament);
+        return newTournament.getId();
     }
     
      @Override

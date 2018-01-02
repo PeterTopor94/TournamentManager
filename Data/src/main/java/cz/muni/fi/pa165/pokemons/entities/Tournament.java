@@ -23,7 +23,7 @@ public class Tournament {
 
     @NotNull
     @Column
-    private String name;
+    private String tournamentName;
 
 
 
@@ -40,7 +40,7 @@ public class Tournament {
     }
 
     public Tournament(String name){
-        this.name = name;
+        this.tournamentName = name;
     }
     
     
@@ -49,7 +49,7 @@ public class Tournament {
     public int hashCode() {
         int hash = 53;
         hash = 83 * hash + Objects.hashCode(this.id != null ? this.id.hashCode() : 0);      
-        hash = 83 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
+        hash = 83 * hash + Objects.hashCode(this.tournamentName != null ? this.tournamentName.hashCode() : 0);
        
         return hash;
     }
@@ -72,7 +72,7 @@ public class Tournament {
             return false;
         }
        
-        if (this.name != null ? !this.name.equals(tournament.name) : tournament.name != null) {
+        if (this.tournamentName != null ? !this.tournamentName.equals(tournament.tournamentName) : tournament.tournamentName != null) {
             return false;
         }
        
@@ -115,12 +115,12 @@ public class Tournament {
 
     public String getName()
     {
-        return name;
+        return tournamentName;
     }
 
     public void setName(String name)
     {
-        this.name = name;
+        this.tournamentName = name;
     }
 
     public int getNumRequiredBadges()

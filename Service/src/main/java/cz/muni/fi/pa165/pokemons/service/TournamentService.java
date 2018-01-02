@@ -14,7 +14,7 @@ import java.util.List;
  * @author Miroslav
  */
 public interface TournamentService {
-     void createTournament(Tournament tournament);
+     Tournament createTournament(Tournament tournament);
    
      void addTrainer(Tournament tournament, Trainer trainer); 
      
