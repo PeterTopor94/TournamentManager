@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service.facade;
 
 import cz.muni.fi.pa165.pokemons.DTO.BadgeCreateDTO;
@@ -17,10 +12,10 @@ import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.pokemons.service.facade.BadgeFacadeImpl;
+
 import java.util.Arrays;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
-import org.mockito.InjectMocks;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import org.mockito.Mock;
@@ -52,18 +47,18 @@ public class BadgeFacadeTest {
 
     private BadgeFacade badgeFacade;
 
+    private GymDTO gymDTO;
+    private Gym gym;
+    private BadgeDTO badgeDTO;
+    private Badge badge;
+    private BadgeCreateDTO badgeCreateDTO;
+    
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
 
         badgeFacade = new BadgeFacadeImpl(gymService, mappingService, badgeService);
     }
-
-    private GymDTO gymDTO;
-    private Gym gym;
-    private BadgeDTO badgeDTO;
-    private Badge badge;
-    private BadgeCreateDTO badgeCreateDTO;
 
     @BeforeMethod
     public void prepareBadges() {

@@ -23,14 +23,11 @@ public class Tournament {
 
     @NotNull
     @Column
-    private String tournamentName;
-
-
+    private String name;
 
     @OneToMany
     private List<Trainer> trainers = new ArrayList<Trainer>();
-   
-
+  
     @NotNull
     @Column
     private int numRequiredBadges;
@@ -40,20 +37,45 @@ public class Tournament {
     }
 
     public Tournament(String name){
-        this.tournamentName = name;
-    }
-    
-    
-    
-    @Override
-    public int hashCode() {
-        int hash = 53;
-        hash = 83 * hash + Objects.hashCode(this.id != null ? this.id.hashCode() : 0);      
-        hash = 83 * hash + Objects.hashCode(this.tournamentName != null ? this.tournamentName.hashCode() : 0);
-       
-        return hash;
+        this.name = name;
+    }  
+
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Trainer> getTrainers() {
+        return trainers;
+    }
+
+    public void addTrainer(Trainer trainer) {
+        this.trainers.add(trainer);
+    }
+    
+    public void removeTrainer(Trainer trainer) {
+        this.trainers.remove(trainer);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+     public String getName() {
+        return name;
+    }
+
+    public int getNumRequiredBadges() {
+        return numRequiredBadges;
+    }
+
+    public void setNumRequiredBadges(int numRequiredBadges) {
+        this.numRequiredBadges = numRequiredBadges;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -67,69 +89,18 @@ public class Tournament {
         }
 
         final Tournament tournament = (Tournament) obj;
-
-        if (this.id != null ? !this.id.equals(tournament.id) : tournament.id != null) {
+       
+        if (this.name != null ? !this.name.equals(tournament.name) : tournament.name != null) {
             return false;
         }
-       
-        if (this.tournamentName != null ? !this.tournamentName.equals(tournament.tournamentName) : tournament.tournamentName != null) {
-            return false;
-        }
-       
-        
-        
-       return true;
-    }
+     
+        return true;
+    } 
     
-    
-    
-    
-    
-    
-
-    private boolean verifyTrainer(Trainer trainer){
-    
-    return (trainer.getBadges().size() >= numRequiredBadges);
-    }    
-    
-    public void addTrainer(Trainer t){
-    if (verifyTrainer(t)){
-        trainers.add(t);
-    }
-    }
-    
-    public void removeTrainer(Trainer t)
-    {
-        trainers.remove(t);
-    }    
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-
-    public String getName()
-    {
-        return tournamentName;
-    }
-
-    public void setName(String name)
-    {
-        this.tournamentName = name;
-    }
-
-    public int getNumRequiredBadges()
-    {
-        return numRequiredBadges;
-    }
-
-    public void setNumRequiredBadges(int numRequiredBadges)
-    {
-        this.numRequiredBadges = numRequiredBadges;
+    @Override
+    public int hashCode() {
+        int hash = 53;    
+        hash = 83 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);     
+        return hash;
     }
 }

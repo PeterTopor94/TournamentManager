@@ -89,7 +89,7 @@ public class PokemonServiceTest {
     @Test
     public void setOwner(){
         pokemonService.setOwner(pokemon, trainer);
-        verify(pokemonDao, times(2)).create(pokemon);
+        verify(pokemonDao, times(1)).create(pokemon);
     }
     
     @Test
@@ -113,6 +113,6 @@ public class PokemonServiceTest {
     @Test
     public void setPokemonType(){
         pokemonService.setPokemonType(pokemon, PokemonType.BUG);
-        verify(pokemonDao, times(1)).create(pokemon);
+        verify(pokemonDao, times(3)).create(pokemon);
     }
 }

@@ -35,11 +35,12 @@ public class Pokemon {
     @NotNull
     @Column(nullable = false)
     private PokemonType type;
-
-    public Pokemon() {
+    
+    public Pokemon(){
+        
     }
-
-    public Pokemon(Long id) {
+    
+    public Pokemon(Long id){
         this.id = id;
     }
 
@@ -92,16 +93,6 @@ public class Pokemon {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 13;
-        hash = 43 * hash + Objects.hashCode(this.level != null ? this.level.hashCode() : 0);
-        hash = 43 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
-        hash = 43 * hash + Objects.hashCode(this.nickname != null ? this.nickname.hashCode() : 0);
-        hash = 43 * hash + Objects.hashCode(this.type != null ? this.type.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -124,7 +115,20 @@ public class Pokemon {
         if (this.nickname != null ? !this.nickname.equals(pokemon.nickname) : pokemon.nickname != null) {
             return false;
         }
-        return this.type != null ? this.type.equals(pokemon.type) : pokemon.type == null;
+        if (this.type != null ? this.type.equals(pokemon.type) : pokemon.type == null) {
+            return false;
+        }
+        return true;
+    }
+    
+     @Override
+    public int hashCode() {
+        int hash = 13;
+        hash = 43 * hash + Objects.hashCode(this.level != null ? this.level.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.nickname != null ? this.nickname.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.type != null ? this.type.hashCode() : 0);
+        return hash;
     }
 
 }

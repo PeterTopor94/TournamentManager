@@ -102,16 +102,6 @@ public class TrainerDTO {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + Objects.hashCode(this.surname);
-        hash = 29 * hash + Objects.hashCode(this.dateOfBirth);
-        hash = 29 * hash + Objects.hashCode(this.gym);
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -122,16 +112,28 @@ public class TrainerDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TrainerDTO other = (TrainerDTO) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        
+        final TrainerDTO trainer = (TrainerDTO) obj;
+        
+        if (this.name != null ? !this.name.equals(trainer.name) : trainer.name != null) {
             return false;
         }
-        if (!Objects.equals(this.surname, other.surname)) {
+        if (this.surname != null ? !this.surname.equals(trainer.surname) : trainer.surname != null) {
             return false;
         }
-        if (!Objects.equals(this.dateOfBirth, other.dateOfBirth)) {
+        if (this.dateOfBirth != null ? !this.dateOfBirth.equals(trainer.dateOfBirth) : trainer.dateOfBirth != null) {
             return false;
         }
-        return Objects.equals(this.gym, other.gym);
+
+        return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 23;
+        hash = 49 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
+        hash = 49 * hash + Objects.hashCode(this.surname != null ? this.surname.hashCode() : 0);
+        hash = 49 * hash + Objects.hashCode(this.dateOfBirth != null ? this.dateOfBirth.hashCode() : 0);
+        return hash;
     }
 }

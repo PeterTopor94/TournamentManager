@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.pokemons.DTO.*;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
-import org.springframework.beans.factory.annotation.Autowired;
 import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
@@ -12,9 +11,10 @@ import cz.muni.fi.pa165.pokemons.service.PokemonService;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.TournamentService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Date;
 import java.util.List;
 
@@ -25,15 +25,6 @@ import java.util.List;
 @Service
 @Transactional
 public class TrainerFacadeImpl implements TrainerFacade {
-
-    public TrainerFacadeImpl(TrainerService trainerService, BadgeService badgeService, PokemonService pokemonService, GymService gymService, TournamentService tournamentService, BeanMappingService beanMappingService) {
-        this.trainerService = trainerService;
-        this.badgeService = badgeService;
-        this.pokemonService = pokemonService;
-        this.gymService = gymService;
-        this.tournamentService = tournamentService;
-        this.beanMappingService = beanMappingService;
-    }
 
     @Autowired
     private TrainerService trainerService;
@@ -52,6 +43,15 @@ public class TrainerFacadeImpl implements TrainerFacade {
 
     @Autowired
     private BeanMappingService beanMappingService;
+    
+    public TrainerFacadeImpl(TrainerService trainerService, BadgeService badgeService, PokemonService pokemonService, GymService gymService, TournamentService tournamentService, BeanMappingService beanMappingService) {
+        this.trainerService = trainerService;
+        this.badgeService = badgeService;
+        this.pokemonService = pokemonService;
+        this.gymService = gymService;
+        this.tournamentService = tournamentService;
+        this.beanMappingService = beanMappingService;
+    }
 
     @Override
     public Long createTrainer(TrainerCreateDTO trainer) {

@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.pokemons.DTO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -49,5 +43,32 @@ public class TournamentCreateDTO {
         this.numRequiredBadges = numRequiredBadges;
     }
    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final TournamentCreateDTO tournament = (TournamentCreateDTO) obj;
+       
+        if (this.tournamentName != null ? !this.tournamentName.equals(tournament.tournamentName) : tournament.tournamentName != null) {
+            return false;
+        }
+     
+        return true;
+    } 
+    
+    @Override
+    public int hashCode() {
+        int hash = 53;    
+        hash = 83 * hash + Objects.hashCode(this.tournamentName != null ? this.tournamentName.hashCode() : 0);     
+        return hash;
+    }
     
 }

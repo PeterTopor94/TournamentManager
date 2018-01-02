@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.pokemons.DTO;
 
 import java.util.ArrayList;
@@ -56,12 +51,6 @@ public class BadgeDTO {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -72,20 +61,24 @@ public class BadgeDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final BadgeDTO other = (BadgeDTO) obj;
-        if (!Objects.equals(this.cityOfOrigin, other.cityOfOrigin)) {
+        
+        final BadgeDTO badge = (BadgeDTO) obj;
+        
+        if (this.cityOfOrigin != null ? !this.cityOfOrigin.equals(badge.cityOfOrigin) : badge.cityOfOrigin != null) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.gym, other.gym)) {
-            return false;
-        }
-        if (!Objects.equals(this.owners, other.owners)) {
+        if (this.gym.getId() != null ? !this.gym.getId().equals(badge.gym.getId()) : badge.gym.getId() != null) {
             return false;
         }
         return true;
+    }
+    
+      @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.cityOfOrigin != null ? this.cityOfOrigin.hashCode() : 0);
+        hash = 37 * hash + Objects.hashCode(this.gym != null ? this.gym.getId().hashCode() : 0);
+        return hash;
     }
 
     @Override
