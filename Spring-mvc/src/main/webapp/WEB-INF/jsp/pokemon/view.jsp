@@ -7,8 +7,8 @@
 <my:pagetemplate title="Pokemon view">
 <jsp:attribute name="body">
 
-    <c:if test="${not empty authenticatedUser && !authenticatedUser.isAdmin()}">
-             <form method="post" action="${pageContext.request.contextPath}/delete/${pokemon.id}">
+    <c:if test="${not empty authenticatedUser && authenticatedUser.isAdmin()}">
+             <form method="post" action="${pageContext.request.contextPath}/pokemon/delete/${pokemon.id}">
                  <button type="submit" class="btn btn-danger">
                      <f:message key="delete"></f:message>
                  </button>
