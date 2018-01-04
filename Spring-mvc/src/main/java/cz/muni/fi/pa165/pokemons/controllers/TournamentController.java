@@ -17,6 +17,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,7 +42,7 @@ public class TournamentController {
     @Inject
     private TournamentFacade tournamentFacade;
     
-    @Inject
+    @Autowired
     private TrainerFacade trainerFacade;
     
     @ModelAttribute("tournaments")
@@ -69,17 +70,22 @@ public class TournamentController {
         return "tournament/list";
     }
     
-    @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newPlayer(Model model) {
-        model.addAttribute("tournamentCreate", new TournamentCreateDTO());
-        return "tournament/new";
-    }
-    
     @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String view(@PathVariable long id, Model model) {
         model.addAttribute("tournament", tournamentFacade.findById(id));
         return "tournament/view";
     }
+    
+    @ModelAttribute("trainer")
+    public List<TrainerDTO> trainer() {
+        return trainerFacade.getAllTrainers();
+    }
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
+    public String newTournament(Model model) {
+        model.addAttribute("tournamentCreate", new TournamentCreateDTO());
+        return "tournament/new";
+    }
+    
     
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("tournamentCreate") TournamentCreateDTO form,
