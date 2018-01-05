@@ -47,6 +47,17 @@
                             <ul class="dropdown-menu">
                                 <li><a href="https://github.com/PeterTopor94/TournamentManager">PA165 - Pokemons</a></li>
                             </ul>
+
+                                <c:if test="${empty authenticatedUser}">
+                                    <li>
+                                        <my:a href="/login"><f:message key="login"/></my:a>
+                                    </li>
+                                </c:if>
+                                <c:if test="${not empty authenticatedUser}">
+                                    <li>
+                                        <my:a href="/logout"><f:message key="logout"/></my:a>
+                                    </li>
+                                </c:if>
                         </li>
 
                     </ul>                 

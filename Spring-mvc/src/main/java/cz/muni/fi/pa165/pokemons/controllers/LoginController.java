@@ -38,6 +38,17 @@ public class LoginController
         return "/login";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Model model, HttpServletRequest request) {
+
+        if(request.getSession().getAttribute("authenticatedUser") != null)
+        {
+            request.getSession().removeAttribute("authenticatedUser");
+        }
+
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String postLogin(@Valid @ModelAttribute("userLogin") AuthenticateTrainerDTO form,
                             BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
