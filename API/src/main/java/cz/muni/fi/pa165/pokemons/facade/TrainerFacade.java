@@ -30,4 +30,6 @@ public interface TrainerFacade {
     TrainerDTO getTrainerByLogin(String login);
 
     boolean login(AuthenticateTrainerDTO trainer);
+    
+    public void addBadge(Long trainerId, Long badgeId);
 }

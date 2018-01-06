@@ -38,7 +38,7 @@
         </table>
 
         <table class="table">
-            <caption>Badges</caption>
+            <caption>Badges</caption>           
             <thead>
                 <tr>
                     <th>ID</th>
@@ -54,18 +54,20 @@
                 </c:forEach>
             </tbody>
         </table>
+        <my:a href="/trainer/add/${trainer.id}" class="btn btn-primary"><f:message key="add"/></my:a>
 
-        <table class="table">
-            <caption>Pokemon</caption>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Nickname</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody>
+
+            <table class="table">
+                <caption>Pokemon</caption>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Nickname</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
                 <c:forEach items="${trainer.pokemons}" var="pokemon">
                     <tr>
                         <td>${pokemon.id}</td>

@@ -121,4 +121,10 @@ public class TrainerFacadeImpl implements TrainerFacade {
     {
         return trainerService.login(trainerService.findTrainerByLogin(trainer.getLogin()), trainer.getPassword());
     }
+    
+    @Override
+	public void addBadge(Long trainerId, Long badgeId) {
+		trainerService.addBadge(trainerService.findTrainerById(trainerId),
+				badgeService.findById(badgeId));
+	}
 }

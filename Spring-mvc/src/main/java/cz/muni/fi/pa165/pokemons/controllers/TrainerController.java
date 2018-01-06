@@ -65,6 +65,12 @@ public class TrainerController {
         return "trainer/view";
     }
     
+    @RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
+    public String add(@PathVariable long id, Model model) {
+        model.addAttribute("trainerCreate", new TrainerCreateDTO());
+        return "trainer/add";
+    }
+    
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newProduct(Model model) {
         model.addAttribute("trainerCreate", new TrainerCreateDTO());
@@ -106,6 +112,21 @@ public class TrainerController {
         Long id = trainerFacade.createTrainer(formBean);
 
         redirectAttributes.addFlashAttribute("alert_success", "Trainer " + id + " was created");
+        return "redirect:" + uriBuilder.path("/trainer/view/{id}").buildAndExpand(id).encode().toUriString();
+    }
+    
+     @RequestMapping(value = "/foo", method = RequestMethod.POST)
+    public String foo(@Valid @ModelAttribute("trainer") TrainerCreateDTO formBean, BindingResult bindingResult,
+                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        if (bindingResult.hasErrors()) {
+          
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+            }
+            return "trainer/add";
+        }
+        Long id = trainerFacade.createTrainer(formBean);
+
         return "redirect:" + uriBuilder.path("/trainer/view/{id}").buildAndExpand(id).encode().toUriString();
     }
 }
