@@ -2,6 +2,8 @@ package cz.muni.fi.pa165.pokemons.DTO;
 
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 
+import java.util.Objects;
+
 /**
  *
  * @author Peter Topor
@@ -19,7 +21,7 @@ public class PokemonDTO {
 
     private TrainerDTO owner;
 
-    private PokemonType pokemonType;
+    private PokemonType typology;
 
     public Long getId() {
         return id;
@@ -62,21 +64,11 @@ public class PokemonDTO {
     }
 
     public PokemonType getType() {
-        return pokemonType;
+        return typology;
     }
 
     public void setType(PokemonType type) {
-        this.pokemonType = type;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 17;
-        hash = 37 * hash + this.level.hashCode();
-        hash = 37 * hash + this.name.hashCode();
-        hash = 37 * hash + this.nickname.hashCode();
-        hash = 37 * hash + this.pokemonType.hashCode();
-        return hash;
+        this.typology = type;
     }
 
     @Override
@@ -102,8 +94,20 @@ public class PokemonDTO {
         if (this.nickname != null ? !this.nickname.equals(pokemon.nickname) : pokemon.nickname != null) {
             return false;
         }
-        return this.pokemonType != null ? this.pokemonType.equals(pokemon.pokemonType) : pokemon.pokemonType == null;
+        if (this.typology != null ? this.typology.equals(pokemon.typology) : pokemon.typology == null) {
+            return false;
+        }
+        return true;
     }
-
+    
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        hash = 43 * hash + Objects.hashCode(this.level != null ? this.level.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.name != null ? this.name.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.nickname != null ? this.nickname.hashCode() : 0);
+        hash = 43 * hash + Objects.hashCode(this.typology != null ? this.typology.hashCode() : 0);
+        return hash;
+    }
     
 }

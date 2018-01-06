@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.muni.fi.pa165.pokemons.service.facade;
 
 import cz.muni.fi.pa165.pokemons.DTO.BadgeCreateDTO;
@@ -12,6 +7,7 @@ import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,6 +60,4 @@ public class BadgeFacadeImpl implements BadgeFacade {
         return (badge == null) ? null : beanMappingService.mapTo(badge, BadgeDTO.class);
     }
     
-    
-
 }

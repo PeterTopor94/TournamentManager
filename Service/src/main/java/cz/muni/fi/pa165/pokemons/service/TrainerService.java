@@ -1,9 +1,9 @@
 package cz.muni.fi.pa165.pokemons.service;
 
-import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+
 import java.util.Date;
 import java.util.List;
 

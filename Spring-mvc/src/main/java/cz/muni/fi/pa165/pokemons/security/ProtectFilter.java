@@ -13,7 +13,7 @@ import java.io.IOException;
  * @author Matus Krska
  */
 
-@WebFilter(urlPatterns = {"/gym/*", "/trainer/*", "/pokemon/*", "/badge/*"})
+@WebFilter(urlPatterns = {"/tournament/*","/gym/*", "/trainer/*", "/pokemon/*", "/badge/*"})
 
 public class ProtectFilter implements Filter
 {

@@ -1,4 +1,3 @@
-
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
@@ -51,8 +50,8 @@ public interface TournamentDao {
     
   /**
      * Returns Tournament by name
-     * @param name of Tournament to be returned
+     * @param tournamentName of Tournament to be returned
      * @return Tournament
      */
-  Tournament findByName(String name);
+  Tournament findByName(String tournamentName);
 }

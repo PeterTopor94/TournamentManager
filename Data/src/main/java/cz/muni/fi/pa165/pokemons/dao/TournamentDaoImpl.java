@@ -1,11 +1,8 @@
-/*
-
- */
 package cz.muni.fi.pa165.pokemons.dao;
 
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
-import org.springframework.stereotype.Repository;
 
+import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -44,7 +41,7 @@ public class TournamentDaoImpl implements TournamentDao{
 
     @Override
     public void update(Tournament tournament) throws IllegalArgumentException {
-         if (tournament == null || tournament.getId() == null) {
+         if (tournament == null) {
             throw new IllegalArgumentException("Can't update Tournament which is null or without ID.");
         }
         em.persist(tournament);
@@ -60,12 +57,12 @@ public class TournamentDaoImpl implements TournamentDao{
     }
 
     @Override
-    public Tournament findByName(String name) {
-        if (name == null) {
+    public Tournament findByName(String tournamentName) {
+        if (tournamentName == null) {
             throw new IllegalArgumentException("Can't find Tournament without ID.");
         }
         return em.createQuery("SELECT t FROM Tournament t WHERE t.name = :tname",
-                Tournament.class).setParameter("tname", name).getSingleResult();
+                Tournament.class).setParameter("tname", tournamentName).getSingleResult();
     }
 
     @Override
