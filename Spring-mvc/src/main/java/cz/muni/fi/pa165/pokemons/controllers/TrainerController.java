@@ -134,10 +134,10 @@ public class TrainerController {
         }
         Long id = formBean.getTrainerId();
         trainerFacade.addBadge(formBean.getTrainerId(), formBean.getBadgeId());
+        badgeFacade.addOwner(formBean.getTrainerId(), formBean.getBadgeId());
 
         redirectAttributes.addFlashAttribute("alert_success", "Badge " + formBean.getBadgeId() + " was added");
         return "redirect:" + uriBuilder.path("/trainer/view/{id}").buildAndExpand(id).encode().toUriString();
     }
-    
-    
+
 }

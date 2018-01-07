@@ -7,6 +7,7 @@ import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
+import cz.muni.fi.pa165.pokemons.service.TrainerService;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class BadgeFacadeImpl implements BadgeFacade {
 
     @Autowired
     private BadgeService badgeService;
+    
+    @Autowired
+    private TrainerService trainerService;
 
     @Autowired
     private BeanMappingService beanMappingService;
@@ -59,5 +63,10 @@ public class BadgeFacadeImpl implements BadgeFacade {
        Badge badge = badgeService.findById(id);
         return (badge == null) ? null : beanMappingService.mapTo(badge, BadgeDTO.class);
     }
+
+    @Override
+    public void addOwner(Long trainerId, Long badgeId) {
+	badgeService.addOwner(trainerService.findTrainerById(trainerId),
+				badgeService.findById(badgeId));    }
     
 }

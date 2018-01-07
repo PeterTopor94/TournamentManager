@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.dao.BadgeDao;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,5 +42,11 @@ public class BadgeServiceImpl implements BadgeService {
     public void deleteBadge(Badge b) {
         badgeDao.remove(b);
     }
+
+    @Override
+    public void addOwner(Trainer trainer, Badge badge) {
+	if (!badge.getOwners().contains(trainer)) {
+			badge.addOwner(trainer);
+		}    }
 
 }
