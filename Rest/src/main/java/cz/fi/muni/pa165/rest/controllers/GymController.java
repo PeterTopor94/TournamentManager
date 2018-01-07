@@ -2,7 +2,6 @@ package cz.fi.muni.pa165.rest.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import cz.fi.muni.pa165.rest.ApiUris;
-import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.DTO.GymCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
 import cz.fi.muni.pa165.rest.exceptions.ResourceAlreadyExistingException;
@@ -12,7 +11,6 @@ import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.facade.TournamentFacade;
 import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
 import java.util.Collection;
-import java.util.List;
 import javax.inject.Inject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;

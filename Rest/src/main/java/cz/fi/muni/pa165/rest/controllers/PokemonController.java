@@ -2,13 +2,10 @@ package cz.fi.muni.pa165.rest.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import cz.fi.muni.pa165.rest.ApiUris;
-import cz.muni.fi.pa165.pokemons.DTO.BadgeCreateDTO;
-import cz.muni.fi.pa165.pokemons.DTO.BadgeDTO;
 import cz.fi.muni.pa165.rest.exceptions.ResourceAlreadyExistingException;
 import cz.fi.muni.pa165.rest.exceptions.ResourceNotFoundException;
 import cz.muni.fi.pa165.pokemons.DTO.PokemonCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.PokemonDTO;
-import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.facade.PokemonFacade;
 import java.util.Collection;
 import javax.inject.Inject;
