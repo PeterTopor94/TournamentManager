@@ -54,7 +54,7 @@ public class TournamentFacadeImplTest {
     @BeforeClass
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        tournamentFacade = new TournamentFacadeImpl(mappingService, tournamentService);
+        tournamentFacade = new TournamentFacadeImpl(mappingService, tournamentService,trainerService);
     }
    
     @BeforeMethod

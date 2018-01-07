@@ -13,7 +13,7 @@ public class TournamentDTO {
     private Long id;
     private String tournamentName;
     private int numRequiredBadges;
-    private List<TrainerDTO> trainers = new ArrayList<TrainerDTO>();
+    private List<TrainerDTO> trainers = new ArrayList<>();
     
    public Long getId()
    {
@@ -55,7 +55,11 @@ public class TournamentDTO {
     {
         return numRequiredBadges;
     }
-
+    
+    public List<TrainerDTO> getTrainers() {
+        return trainers;
+    }
+    
     public void setNumRequiredBadges(int numRequiredBadges)
     {
         this.numRequiredBadges = numRequiredBadges;

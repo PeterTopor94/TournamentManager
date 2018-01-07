@@ -31,9 +31,10 @@ public class TournamentFacadeImpl implements TournamentFacade {
     @Inject
     private TournamentService tournamentService; 
 
-    public TournamentFacadeImpl( BeanMappingService mappingService, TournamentService tournamentService) {
+    public TournamentFacadeImpl( BeanMappingService mappingService, TournamentService tournamentService, TrainerService trainerService) {
         this.tournamentService = tournamentService;
-        this.beanMappingService = mappingService;      
+        this.beanMappingService = mappingService;
+        this.trainerService = trainerService;
     }
 
     @Override
