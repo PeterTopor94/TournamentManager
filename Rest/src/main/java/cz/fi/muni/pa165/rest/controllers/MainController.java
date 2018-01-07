@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
-        
+
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final Map<String, String> getResources() {
 
-        Map<String,String> resourcesMap = new HashMap<>();
-        
+        Map<String, String> resourcesMap = new HashMap<>();
+
         resourcesMap.put("trainers_uri", ApiUris.ROOT_URI_TRAINERS);
-        
+        resourcesMap.put("badges_uri", ApiUris.ROOT_URI_BADGES);
+        resourcesMap.put("tournaments_uri", ApiUris.ROOT_URI_TOURNAMENTS);
+        resourcesMap.put("gyms_uri", ApiUris.ROOT_URI_GYMS);
+        resourcesMap.put("pokemons_uri", ApiUris.ROOT_URI_POKEMONS);
+
         return Collections.unmodifiableMap(resourcesMap);
-        
+
     }
 }

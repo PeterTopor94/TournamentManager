@@ -3,11 +3,12 @@ package cz.fi.muni.pa165.rest.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import cz.fi.muni.pa165.rest.ApiUris;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerCreateDTO;
-import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.DTO.GymCreateDTO;
+import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
 import cz.fi.muni.pa165.rest.exceptions.ResourceAlreadyExistingException;
 import cz.fi.muni.pa165.rest.exceptions.ResourceNotFoundException;
 import cz.muni.fi.pa165.pokemons.facade.GymFacade;
+import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.facade.TournamentFacade;
 import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
 import java.util.Collection;
@@ -23,12 +24,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author Roman Gluszny
+ * @author lubos.beno
  */
 @RestController
-@RequestMapping(ApiUris.ROOT_URI_TRAINERS)
-public class TrainerController {
+@RequestMapping(ApiUris.ROOT_URI_GYMS)
+public class GymController {
 
+    @Inject
+    private BadgeFacade badgeFacade;
+    
     @Inject
     private TrainerFacade trainerFacade;
 
@@ -40,74 +44,69 @@ public class TrainerController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public final TrainerDTO createTrainer(@RequestBody TrainerCreateDTO trainer) throws Exception {
+    public final GymDTO createGym(@RequestBody GymCreateDTO gym) throws Exception {
 
         try {
-            Long id = trainerFacade.createTrainer(trainer);
-            return trainerFacade.getById(id);
+            Long id = gymFacade.createGym(gym);
+            return gymFacade.getGymById(id);
         } catch (Exception ex) {
             throw new ResourceAlreadyExistingException();
         }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final void deleteTrainer(@PathVariable("id") long id) throws Exception {
+    public final void deleteGym(@PathVariable("id") long id) throws Exception {
         try {
-            trainerFacade.deleteTrainer(trainerFacade.getById(id));
+            gymFacade.deleteGym(gymFacade.getGymById(id));
         } catch (Exception ex) {
             throw new ResourceNotFoundException();
         }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final TrainerDTO getTrainer(@PathVariable("id") long id) throws Exception {
+    public final GymDTO getGym(@PathVariable("id") long id) throws Exception {
 
-        TrainerDTO trainerDTO = trainerFacade.getById(id);
-        if (trainerDTO == null) {
+        GymDTO gymDTO = gymFacade.getGymById(id);
+        if (gymDTO == null) {
             throw new ResourceNotFoundException();
         }
-        return trainerDTO;
+        return gymDTO;
     }
+    
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final GymDTO getGymByCity(@RequestParam("cityName") String cityName) {
+
+        GymDTO gymDTO = gymFacade.getGymByCity(cityName);
+        if (gymDTO == null) {
+            throw new ResourceNotFoundException();
+        }
+        return gymDTO;
+    }
+    
+     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final GymDTO getGymByBadge(@RequestParam("badge_id") long badge_id) {
+
+        GymDTO gymDTO = gymFacade.getGymByBadge(badgeFacade.getById(badge_id));
+        if (gymDTO == null) {
+            throw new ResourceNotFoundException();
+        }
+        return gymDTO;
+    }
+    
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public final GymDTO getGymByLeader(@RequestParam("trainer_id") long trainer_id) {
+
+        GymDTO gymDTO = gymFacade.getGymByLeader(trainerFacade.getById(trainer_id));
+        if (gymDTO == null) {
+            throw new ResourceNotFoundException();
+        }
+        return gymDTO;
+    }
+    
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final Collection<TrainerDTO> getTrainers() throws JsonProcessingException {
-        return trainerFacade.getAllTrainers();
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final List<TrainerDTO> getTrainerByNameAndSurname(@RequestParam("name") String name,
-            @RequestParam(value = "surname") String surname) {
-
-        List<TrainerDTO> trainerDTOs = trainerFacade.getTrainersByNameAndSurname(name, surname);
-        if (trainerDTOs == null) {
-            throw new ResourceNotFoundException();
-        }
-        return trainerDTOs;
-    }
-
-    @RequestMapping(value = "/{gym_id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final TrainerDTO getTrainerByGym(@PathVariable("gym_id") long gymid) {
-
-        TrainerDTO trainer = trainerFacade.getTrainerByGym(gymFacade.getGymById(gymid));
-        if (trainer == null) {
-            throw new ResourceNotFoundException();
-        }
-        return trainer;
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public boolean checkTrainerQualificationForTournament(@RequestParam("trainer_id") Long trainer_id,
-            @RequestParam(value = "tournament_id") Long tournament_id) {
-
-        TrainerDTO trainer = trainerFacade.getById(trainer_id);
-        if (trainer == null) {
-            throw new ResourceNotFoundException();
-        }
-        TournamentDTO tournament = tournamentFacade.findById(tournament_id);
-        if (trainer == null) {
-            throw new ResourceNotFoundException();
-        }
-        return trainerFacade.isTrainerQualifiedForTournament(trainer, tournament);
+    public final Collection<GymDTO> getGyms() throws JsonProcessingException {
+        return gymFacade.getAllGyms();
     }
 
 }
