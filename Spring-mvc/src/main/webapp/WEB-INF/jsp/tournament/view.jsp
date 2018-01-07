@@ -50,6 +50,19 @@
                 </tr>
             </thead>
            
+            <tbody>
+                <c:forEach items="${tournament.trainers}" var="registeredTrainer">
+                    <tr>
+                        <td>${item.id}</td>
+                        <td><c:out value="${registeredTrainer.id}"/></td>
+                        <td><c:out value="${registeredTrainer.name} ${registeredTrainer.surname}"/></td>
+                        <td><fmt:formatDate value="${registeredTrainer.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
+                        <td><c:out value="${registeredTrainer.gym.cityName}"/></td>
+                    </tr>
+                </c:forEach>
+
+            </tbody>
+
         </table>
 
 </jsp:attribute>

@@ -76,10 +76,7 @@ public class TournamentController {
         return "tournament/view";
     }
     
-    @ModelAttribute("trainer")
-    public List<TrainerDTO> trainer() {
-        return trainerFacade.getAllTrainers();
-    }
+    
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newTournament(Model model) {
         model.addAttribute("tournamentCreate", new TournamentCreateDTO());

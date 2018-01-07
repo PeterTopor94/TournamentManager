@@ -25,7 +25,7 @@ public class TournamentCreateDTOValidator implements Validator {
        
 
         if (tournamentCreateDTO.getName().isEmpty()) {
-            errors.rejectValue("tournamentName", "TournamentCreateDTOValidator.empty.turnamentName");
+            errors.rejectValue("tournamentName", "TournamentCreateDTOValidator.empty.tournamentName");
         }
         
     }
