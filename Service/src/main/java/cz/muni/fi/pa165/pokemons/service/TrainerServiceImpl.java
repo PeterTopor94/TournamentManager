@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
@@ -83,4 +84,11 @@ public class TrainerServiceImpl implements TrainerService {
         Password password = new Password();
         return password.authenticate(plain, trainer.getPasswordHash());
     }
+    
+    @Override
+	public void addBadge(Trainer trainer, Badge badge) {
+		if (!trainer.getBadges().contains(badge)) {
+			trainer.addBadge(badge);
+		}
+	}
 }

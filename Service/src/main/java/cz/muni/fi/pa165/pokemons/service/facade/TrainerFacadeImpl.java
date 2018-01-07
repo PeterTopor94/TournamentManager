@@ -59,7 +59,12 @@ public class TrainerFacadeImpl implements TrainerFacade {
 
         mappedTrainer.setName(trainer.getName());
         mappedTrainer.setSurname(trainer.getSurname());
-        mappedTrainer.setGym(gymService.findById(trainer.getGymId()));
+        try{
+                    mappedTrainer.setGym(gymService.findById(trainer.getGymId()));
+        }
+        catch(Exception e){
+            mappedTrainer.setGym(null);
+        }
         mappedTrainer.setDateOfBirth(trainer.getDateOfBirth());
 
         return trainerService.createTrainer(mappedTrainer);      
@@ -121,4 +126,10 @@ public class TrainerFacadeImpl implements TrainerFacade {
     {
         return trainerService.login(trainerService.findTrainerByLogin(trainer.getLogin()), trainer.getPassword());
     }
+    
+    @Override
+	public void addBadge(Long trainerId, Long badgeId) {
+		trainerService.addBadge(trainerService.findTrainerById(trainerId),
+				badgeService.findById(badgeId));
+	}
 }
