@@ -45,6 +45,7 @@
                 <form:label path="gymId" cssClass="col-sm-2 control-label">Gym</form:label>
                     <div class="col-sm-10">
                     <form:select path="gymId" cssClass="form-control">
+                        <form:option  value="" />
                         <c:forEach items="${gyms}" var="gym">
                             <form:option value="${gym.id}">${gym.cityName}</form:option>
                         </c:forEach>

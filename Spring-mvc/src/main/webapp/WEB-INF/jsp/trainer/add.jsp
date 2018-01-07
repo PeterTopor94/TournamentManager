@@ -10,7 +10,19 @@
 
 
            <form:form method="post" action="${pageContext.request.contextPath}/trainer/foo"
-                   modelAttribute="trainerCreate" cssClass="form-horizontal">
+                   modelAttribute="trainerAdd" cssClass="form-horizontal">
+               
+                <div class="form-group">
+                <form:label path="trainerId" cssClass="col-sm-2 control-label">Trainer</form:label>
+                    <div class="col-sm-10">
+                    <form:select path="trainerId" cssClass="form-control">
+                        <c:forEach items="${trainers}" var="trainer">
+                            <form:option value="${trainer.id}">${trainer.name} ${trainer.surname}</form:option>
+                        </c:forEach>
+                    </form:select>
+                    <p class="help-block"><form:errors path="trainerId" cssClass="error"/></p>
+                </div>
+            </div>
            
                <div class="form-group">
                 <form:label path="badgeId" cssClass="col-sm-2 control-label">Badge</form:label>
