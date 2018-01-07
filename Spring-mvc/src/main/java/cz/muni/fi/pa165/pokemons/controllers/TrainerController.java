@@ -122,8 +122,8 @@ public class TrainerController {
         return "redirect:" + uriBuilder.path("/trainer/view/{id}").buildAndExpand(id).encode().toUriString();
     }
 
-    @RequestMapping(value = "/foo", method = RequestMethod.POST)
-    public String foo(@Valid @ModelAttribute("trainerAdd") AddBadgeToTrainerDTO formBean, BindingResult bindingResult,
+    @RequestMapping(value = "/badgeAdd", method = RequestMethod.POST)
+    public String badgeAdd(@Valid @ModelAttribute("trainerAdd") AddBadgeToTrainerDTO formBean, BindingResult bindingResult,
             Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         if (bindingResult.hasErrors()) {
 

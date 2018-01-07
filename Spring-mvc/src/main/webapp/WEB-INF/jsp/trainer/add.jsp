@@ -9,7 +9,7 @@
     <jsp:attribute name="body">
 
 
-           <form:form method="post" action="${pageContext.request.contextPath}/trainer/foo"
+           <form:form method="post" action="${pageContext.request.contextPath}/trainer/badgeAdd"
                    modelAttribute="trainerAdd" cssClass="form-horizontal">
                
                 <div class="form-group">
