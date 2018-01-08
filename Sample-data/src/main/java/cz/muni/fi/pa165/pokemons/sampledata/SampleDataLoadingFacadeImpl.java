@@ -1,13 +1,11 @@
 package cz.muni.fi.pa165.pokemons.sampledata;
 
+import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Pokemon;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
-import cz.muni.fi.pa165.pokemons.service.GymService;
-import cz.muni.fi.pa165.pokemons.service.Password;
-import cz.muni.fi.pa165.pokemons.service.PokemonService;
-import cz.muni.fi.pa165.pokemons.service.TrainerService;
+import cz.muni.fi.pa165.pokemons.service.*;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +26,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
     private TrainerService trainerService;
     @Inject
     private PokemonService pokemonService;
+    @Inject
+    private BadgeService badgeService;
 
 
     @Override
@@ -42,6 +42,20 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
         
         Pokemon pok1 = pokemon("Pikachu", "Bolt", 15, PokemonType.ELECTRIC, admin);
         Pokemon pok2 = pokemon("Charizard", "Torch", 73, PokemonType.FIRE, trainer);
+
+        Badge badge1 = badge(gym1);
+        Badge badge2 = badge(gym2);
+
+    }
+
+    private Badge badge(Gym gym)
+    {
+        Badge badge = new Badge();
+        badge.setCityOfOrigin(gym.getCityName());
+        badge.setGym(gym);
+        badgeService.createBadge(badge);
+
+        return badge;
 
     }
 
