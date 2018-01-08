@@ -18,4 +18,6 @@ public interface BadgeFacade {
     List<BadgeDTO> getAllBadges();
     
     BadgeDTO getById(Long id);
+
+    public void addOwner(Long trainerId, Long badgeId);
 }

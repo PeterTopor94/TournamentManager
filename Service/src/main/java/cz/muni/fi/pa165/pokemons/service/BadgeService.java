@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.pokemons.service;
 
 import cz.muni.fi.pa165.pokemons.entities.Badge;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 
 import java.util.List;
 /**
@@ -16,5 +17,7 @@ public interface BadgeService {
     public Long createBadge(Badge b);
 
     public void deleteBadge(Badge b);
+
+    public void addOwner(Trainer findTrainerById, Badge findById);
 
 }
