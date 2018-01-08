@@ -34,7 +34,7 @@ public class TrainerController {
 
     @Inject
     private GymFacade gymFacade;
-    
+
     @Inject
     private TournamentFacade tournamentFacade;
 
@@ -94,8 +94,8 @@ public class TrainerController {
         }
         return trainer;
     }
-    
-     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public boolean checkTrainerQualificationForTournament(@RequestParam("trainer_id") Long trainer_id,
             @RequestParam(value = "tournament_id") Long tournament_id) {
 
