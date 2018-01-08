@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.pokemons.DTO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +18,7 @@ public class BadgeDTO {
 
     private GymDTO gym;
 
+    @JsonBackReference
     private List<TrainerDTO> owners = new ArrayList<>();
 
     public String getCityOfOrigin() {

@@ -1,5 +1,7 @@
 package cz.muni.fi.pa165.pokemons.DTO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,9 +17,11 @@ public class TrainerDTO {
     private String name;
     
     private String surname;
-    
+
+    @JsonBackReference
     private List<BadgeDTO> badges = new ArrayList<>();
-    
+
+    @JsonBackReference
     private List<PokemonDTO> pokemons = new ArrayList<>();
     
     private Date dateOfBirth;
