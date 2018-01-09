@@ -83,4 +83,12 @@ public class TrainerServiceImpl implements TrainerService {
         Password password = new Password();
         return password.authenticate(plain, trainer.getPasswordHash());
     }
+
+    @Override
+    public void setPlacement(Trainer trainer, Tournament tournament) {
+       
+     trainer.setPlacement(tournament);
+     trainerDao.create(trainer);
+    
+    }
 }

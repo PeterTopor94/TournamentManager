@@ -121,4 +121,11 @@ public class TrainerFacadeImpl implements TrainerFacade {
     {
         return trainerService.login(trainerService.findTrainerByLogin(trainer.getLogin()), trainer.getPassword());
     }
+
+    @Override
+    public void setPlacement(Long trainerId, Long tournamentId) {
+    trainerService.setPlacement(trainerService.findTrainerById(trainerId), 
+            tournamentService.findTournmanetById(trainerId));
+    
+    }
 }

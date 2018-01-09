@@ -17,7 +17,14 @@
             <artifactId>maven-clean-plugin</artifactId>
             <version>3.0.0</version>
         </dependency>
-     
+
+
+         <dependency>
+             <groupId>com.fasterxml.jackson.core</groupId>
+             <artifactId>jackson-annotations</artifactId>
+             <version>2.9.2</version>
+         </dependency>
+
      <!--  dependency na hibernate  --> 
         <dependency>
           <groupId>org.hibernate</groupId>

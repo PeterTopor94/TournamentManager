@@ -30,6 +30,8 @@ public interface TrainerService {
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament);
 
     Trainer findTrainerByLogin(String login);
-
+    
+    void setPlacement(Trainer trainer, Tournament tournament);
+    
     boolean login(Trainer trainer, String password);
 }

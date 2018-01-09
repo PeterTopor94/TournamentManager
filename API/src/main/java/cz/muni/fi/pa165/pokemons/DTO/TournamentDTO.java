@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.pokemons.DTO;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,6 +14,8 @@ public class TournamentDTO {
     private Long id;
     private String tournamentName;
     private int numRequiredBadges;
+    
+    @JsonBackReference
     private List<TrainerDTO> trainers = new ArrayList<>();
     
    public Long getId()

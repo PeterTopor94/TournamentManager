@@ -23,6 +23,8 @@ public class TrainerDTO {
     private Date dateOfBirth;
     
     private GymDTO gym;
+    
+    private TournamentDTO placement;
 
     private String login;
 
@@ -91,7 +93,15 @@ public class TrainerDTO {
     public void setGym(GymDTO gym) {
         this.gym = gym;
     }
+    
+    public TournamentDTO getPlacement() {
+        return placement;
+    }
 
+    public void setPlacement(TournamentDTO placement) {
+        this.placement = placement;
+   }
+    
     /**
      * placeholder for demo purposes
      * @return

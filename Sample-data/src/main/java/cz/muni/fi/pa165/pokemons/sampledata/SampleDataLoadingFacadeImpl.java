@@ -67,7 +67,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
         tournament.setName(name);
         tournament.setNumRequiredBadges(0);
         tournament.addTrainer(trainer);
-        trainer.getPlacement();
+        //trainer.getPlacement();
         
         tournamentService.createTournament(tournament);
 

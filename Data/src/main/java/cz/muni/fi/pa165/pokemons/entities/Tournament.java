@@ -25,8 +25,8 @@ public class Tournament {
     @Column
     private String name;
 
-    @OneToMany
-    private List<Trainer> trainers = new ArrayList<Trainer>();
+    @OneToMany(mappedBy = "placement")
+    private List<Trainer> trainers = new ArrayList<>();
   
     @NotNull
     @Column

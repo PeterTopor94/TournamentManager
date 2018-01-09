@@ -14,7 +14,9 @@ public interface TrainerFacade {
     Long createTrainer(TrainerCreateDTO trainer);
 
     void deleteTrainer(TrainerDTO trainer);
-
+    
+    void setPlacement(Long trainerId, Long tournamentId);
+    
     List<TrainerDTO> getAllTrainers();
     
     TrainerDTO getById(Long id);

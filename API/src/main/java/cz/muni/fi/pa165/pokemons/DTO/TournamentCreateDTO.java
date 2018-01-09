@@ -13,6 +13,7 @@ public class TournamentCreateDTO {
     private String tournamentName;
     private int numRequiredBadges;
     
+    private Long trainerId;
     
    public void setTrainerID(Long id){
        this.trainerID = id;
@@ -43,6 +44,14 @@ public class TournamentCreateDTO {
         this.numRequiredBadges = numRequiredBadges;
     }
    
+    public Long getTrainerId() {
+        return trainerId;
+    }
+
+    public void setTrainerId(Long trainerId) {
+        this.trainerId = trainerId;
+}
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cz.muni.fi.pa165.pokemons.controllers;
+import cz.muni.fi.pa165.pokemons.DTO.AddTrainerToTournamentDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
@@ -76,6 +77,13 @@ public class TournamentController {
         return "tournament/view";
     }
     
+    @RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
+    public String add(@PathVariable long id, Model model) {
+        AddTrainerToTournamentDTO trainerAdd = new AddTrainerToTournamentDTO();
+        trainerAdd.setTournamentId(id);
+        model.addAttribute("tournamentAdd", trainerAdd);
+        return "tournament/add";
+    }
     
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String newTournament(Model model) {
@@ -109,5 +117,23 @@ public class TournamentController {
         redirectAttributes.addFlashAttribute("alert_success", "Tournament " + id + " was deleted");
         return "redirect:" + uriBuilder.path("/tournament/list").toUriString();
     }
+    
+    @RequestMapping(value = "/trainerAdd", method = RequestMethod.POST)
+    public String trainerAdd(@Valid @ModelAttribute("tournamentAdd") AddTrainerToTournamentDTO formBean, BindingResult bindingResult,
+            Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        if (bindingResult.hasErrors()) {
+
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+            }
+            return "tournament/add";
+        }
+        Long id = formBean.getTournamentId();
+        tournamentFacade.addTrainerToTournament(formBean.getTrainerId(), formBean.getTrainerId());
+        trainerFacade.setPlacement(formBean.getTournamentId(), formBean.getTrainerId());
+
+        redirectAttributes.addFlashAttribute("alert_success", "Trainer " + formBean.getTrainerId() + " was added");
+        return "redirect:" + uriBuilder.path("/tournament/view/{id}").buildAndExpand(id).encode().toUriString();
+}
    
 }

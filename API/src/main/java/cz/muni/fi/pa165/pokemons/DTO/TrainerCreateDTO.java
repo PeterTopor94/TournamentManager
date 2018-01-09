@@ -25,6 +25,8 @@ public class TrainerCreateDTO {
 
     private Long pokemonId;
 
+    private Long placementId;
+    
     private String login;
 
     @NotNull
@@ -88,6 +90,14 @@ public class TrainerCreateDTO {
         this.gymId = gymId;
     }
 
+      public Long getPlacementId() {
+        return placementId;
+    }
+
+    public void setPlacementId(Long placementId) {
+        this.placementId = placementId;
+   }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
