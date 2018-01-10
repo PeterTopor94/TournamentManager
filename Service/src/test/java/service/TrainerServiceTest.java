@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
+import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.TrainerServiceImpl;
 
@@ -39,7 +40,8 @@ public class TrainerServiceTest {
 
     private Trainer red;
     private Trainer blue;
-    
+    private Gym gym;
+
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
@@ -51,6 +53,10 @@ public class TrainerServiceTest {
         tournament = new Tournament();
         tournament.setNumRequiredBadges(1);
 
+        gym = new Gym();
+        gym.setTypology(PokemonType.FIRE);
+        gym.setCityName("Opal Town");
+
         badge = new Badge();
         badge.setCityOfOrigin("Opal Town");
         badge.setGym(new Gym());
@@ -60,6 +66,7 @@ public class TrainerServiceTest {
         red.setSurname("Red");
         red.setDateOfBirth(new Date());
         red.addBadge(badge);
+        red.setGym(gym);
         red.setLogin("red");
 
         blue = new Trainer();
@@ -102,6 +109,13 @@ public class TrainerServiceTest {
         when(trainerDao.findByNameAndSurname("Jon", "Red")).thenReturn(Arrays.asList(red));
         List<Trainer> trainers = trainerService.findByNameAndSurname("Jon", "Red");
         Assert.assertEquals(trainers.get(0).getDateOfBirth(), red.getDateOfBirth());
+    }
+
+    @Test
+    public void findByGym() {
+        when(trainerDao.findByGym(gym)).thenReturn(red);
+        Trainer trainer = trainerService.getTrainerByGym(gym);
+        Assert.assertEquals(trainer.getName(), red.getName());
     }
 
     @Test

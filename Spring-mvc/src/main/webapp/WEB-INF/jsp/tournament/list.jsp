@@ -22,9 +22,9 @@
             <tbody>
             <c:forEach items="${tournaments}" var="tournament">
                 <tr>
-                    <td>${tournament.tournamentName}</td>
+                    <td>${tournament.name}</td>
                     
-                    <td><my:a href="/tournament/view/${badge.id}" class="btn btn-primary"><f:message key="view"/></my:a></td>
+                    <td><my:a href="/tournament/view/${tournament.id}" class="btn btn-primary"><f:message key="view"/></my:a></td>
                     <c:if test="${not empty authenticatedUser && authenticatedUser.isAdmin()}">
                         <td>
                             <form method="post" action="${pageContext.request.contextPath}/tournament/delete/${tournament.id}">

@@ -8,6 +8,7 @@ package cz.muni.fi.pa165.pokemons.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +26,7 @@ public class Tournament {
     @Column
     private String name;
 
-    @OneToMany
+    @ManyToMany(mappedBy = "placements")
     private List<Trainer> trainers = new ArrayList<Trainer>();
   
     @NotNull
@@ -47,9 +48,9 @@ public class Tournament {
     public void setId(Long id) {
         this.id = id;
     }
-
+   
     public List<Trainer> getTrainers() {
-        return trainers;
+        return Collections.unmodifiableList(trainers);
     }
 
     public void addTrainer(Trainer trainer) {

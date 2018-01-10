@@ -29,12 +29,37 @@
         <tbody>
         <tr>
             <td>${tournament.id}</td>
-            <td><c:out value="${tournament.tournamentName}"/></td>
+            <td><c:out value="${tournament.name}"/></td>
         
           
         </tr>
         </tbody>
     </table>
 
+     <table class="table">
+            <caption>Trainers</caption>           
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Trainer Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gym</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${tournament.trainers}" var="trainer">
+                    <tr>
+                        <td>${trainer.id}</td>
+                        <td>${trainer.name} ${trainer.surname}</td>
+                        <td><fmt:formatDate value="${trainer.dateOfBirth}" pattern="dd.MM.yyyy"/></td>
+                        <td>${trainer.gym.cityName}</td>
+                        <td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <my:a href="/tournament/add/${tournament.id}" class="btn btn-primary"><f:message key="addtrainertotournament"/></my:a>
+       
+            
 </jsp:attribute>
 </my:pagetemplate>

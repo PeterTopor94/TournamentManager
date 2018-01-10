@@ -54,8 +54,12 @@ public class TrainerController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         TrainerDTO trainer = trainerFacade.getById(id);
-        trainerFacade.deleteTrainer(trainer);
-        redirectAttributes.addFlashAttribute("alert_success", "Trainer \"" + trainer.getName() + " " + trainer.getSurname() + "\" was deleted.");
+        if (trainer.getGym() == null) {
+            trainerFacade.deleteTrainer(trainer);
+            redirectAttributes.addFlashAttribute("alert_success", "Trainer \"" + trainer.getName() + " " + trainer.getSurname() + "\" was deleted.");
+        } else {
+            redirectAttributes.addFlashAttribute("alert_success", "Trainer \"" + trainer.getName() + " " + trainer.getSurname() + "\" is Gym Leader. Please delete gym" + trainer.getGym().getCityName() + " first.");
+        }
         return "redirect:" + uriBuilder.path("/trainer/list").toUriString();
     }
 

@@ -28,7 +28,10 @@ public class Trainer {
 
     @OneToMany(mappedBy = "owner")
     private List<Pokemon> pokemons = new ArrayList<>();
-
+    
+    @ManyToMany
+    private List<Tournament> placements = new ArrayList<>();
+    
     @NotNull
     @Column(nullable = false)
     private Date dateOfBirth;
@@ -40,7 +43,7 @@ public class Trainer {
     @Column
     private String passwordHash;
 
-    @OneToOne
+    @OneToOne(mappedBy = "gymLeader")
     private Gym gym;
     
     public Trainer(){
@@ -106,7 +109,7 @@ public class Trainer {
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
+   
     public List<Badge> getBadges() {
         return Collections.unmodifiableList(badges);
     }
@@ -130,7 +133,19 @@ public class Trainer {
     public void removePokemon(Pokemon p) {
         pokemons.remove(p);
     }
+    
+    public List<Tournament> getPlacements() {
+        return Collections.unmodifiableList(placements);
+    }
 
+    public void addPlacement(Tournament placement) {
+        this.placements.add(placement);
+    }
+    
+    public void removePlacement(Tournament placement) {
+        this.placements.remove(placement);
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
