@@ -12,10 +12,10 @@
                    modelAttribute="tournamentCreate" cssClass="form-horizontal">
             
                  <div class="form-group"  ${tournamentName_error?'has-error':''}>
-                <form:label path="tournamentName" cssClass="col-sm-2 control-label">Tournament name:</form:label>         
+                <form:label path="name" cssClass="col-sm-2 control-label">Tournament name:</form:label>         
                     <div class="col-sm-10">
-                    <form:input path="tournamentName" cssClass="form-control"/>
-                    <form:errors path="tournamentName" cssClass="help-block"/>
+                    <form:input path="name" cssClass="form-control"/>
+                    <form:errors path="name" cssClass="help-block"/>
                 </div>
             </div>
 
