@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.pokemons.controllers;
 import cz.muni.fi.pa165.pokemons.DTO.GymCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.facade.GymFacade;
 import cz.muni.fi.pa165.pokemons.facade.TrainerFacade;
@@ -19,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,7 +73,16 @@ public class GymController {
     @ModelAttribute("trainers")
     public List<TrainerDTO> trainers()
     {
-        return trainerFacade.getAllTrainers();
+        List<TrainerDTO> withoutGyms = new ArrayList<>();
+        for(TrainerDTO trainer : trainerFacade.getAllTrainers())
+        {
+            if(trainer.getGym() == null)
+            {
+                withoutGyms.add(trainer);
+            }
+        }
+
+        return withoutGyms;
     }
 
 
