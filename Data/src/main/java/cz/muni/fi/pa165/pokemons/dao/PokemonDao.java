@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author Roman
+ * @author Roman Gluszny
  */
 public interface PokemonDao {
     /**
