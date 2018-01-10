@@ -45,11 +45,18 @@ public class BadgeServiceImpl implements BadgeService {
 
     @Override
     public boolean addOwner(Trainer trainer, Badge badge) {
-	if (!badge.getOwners().contains(trainer)&& !trainer.getGym().equals(badge.getGym())) {
-			badge.addOwner(trainer);
-                        return true;
-		}  
-    return false;
+        if (!badge.getOwners().contains(trainer)) {
+            if (trainer.getGym() != null) {
+                if (!trainer.getBadges().contains(badge) && !trainer.getGym().equals(badge.getGym())) {
+                    badge.addOwner(trainer);
+                    return true;
+                }
+            } else {
+                badge.addOwner(trainer);
+                return true;
+            }
+        }
+        return false;
     }
 
 }

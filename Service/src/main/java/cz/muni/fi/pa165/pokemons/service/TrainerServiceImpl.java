@@ -19,9 +19,8 @@ import javax.persistence.NoResultException;
  */
 @Service
 public class TrainerServiceImpl implements TrainerService {
-    
-    public TrainerServiceImpl(TrainerDao trainerDao)
-    {
+
+    public TrainerServiceImpl(TrainerDao trainerDao) {
         this.trainerDao = trainerDao;
     }
 
@@ -63,18 +62,16 @@ public class TrainerServiceImpl implements TrainerService {
         return trainerDao.findByGym(gym);
     }
 
-
     @Override
     public boolean isTrainerQualifiedForTournament(Trainer trainer, Tournament tournament) {
-        return trainer.getBadges().size()>=tournament.getNumRequiredBadges();
+        return trainer.getBadges().size() >= tournament.getNumRequiredBadges();
     }
 
     @Override
     public Trainer findTrainerByLogin(String login) {
         try {
             return trainerDao.findByLogin(login);
-        }
-        catch(NoResultException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -84,11 +81,17 @@ public class TrainerServiceImpl implements TrainerService {
         Password password = new Password();
         return password.authenticate(plain, trainer.getPasswordHash());
     }
-    
+
     @Override
-	public void addBadge(Trainer trainer, Badge badge) {
-		if (!trainer.getBadges().contains(badge) && !trainer.getGym().equals(badge.getGym())) {
-			trainer.addBadge(badge);
-		}
-	}
+    public void addBadge(Trainer trainer, Badge badge) {
+        if (!trainer.getBadges().contains(badge)) {
+            if (trainer.getGym() != null) {
+                if (!trainer.getBadges().contains(badge) && !trainer.getGym().equals(badge.getGym())) {
+                    trainer.addBadge(badge);
+                }
+            } else {
+                trainer.addBadge(badge);
+            }
+        }
+    }
 }
