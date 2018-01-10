@@ -19,5 +19,5 @@ public interface BadgeFacade {
     
     BadgeDTO getById(Long id);
 
-    public void addOwner(Long trainerId, Long badgeId);
+    public boolean addOwner(Long trainerId, Long badgeId);
 }

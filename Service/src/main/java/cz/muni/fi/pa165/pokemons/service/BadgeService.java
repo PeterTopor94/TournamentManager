@@ -18,6 +18,6 @@ public interface BadgeService {
 
     public void deleteBadge(Badge b);
 
-    public void addOwner(Trainer findTrainerById, Badge findById);
+    public boolean addOwner(Trainer findTrainerById, Badge findById);
 
 }
