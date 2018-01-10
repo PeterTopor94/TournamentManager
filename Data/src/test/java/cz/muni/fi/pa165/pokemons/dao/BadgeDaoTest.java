@@ -133,9 +133,5 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         List<Badge> badges = badgeDao.findAll();
         Assert.assertEquals(badges.size(), 1);
     }
-    /*
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void addBadgeToOriginalGymLeader() {
-        b1.addOwner(t1);
-    }*/
+
 }
