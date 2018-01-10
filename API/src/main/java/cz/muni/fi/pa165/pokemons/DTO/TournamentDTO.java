@@ -15,6 +15,7 @@ public class TournamentDTO {
     private Long id;
     private String tournamentName;
     private int numRequiredBadges;
+    
     @JsonBackReference
     private List<TrainerDTO> trainers = new ArrayList<TrainerDTO>();
     
@@ -29,8 +30,13 @@ public class TournamentDTO {
    
     private boolean verifyTrainer(TrainerDTO trainer){
     
-    return (trainer.getBadges().size() >= numRequiredBadges);
-}    
+       return (trainer.getBadges().size() >= numRequiredBadges);
+    }  
+    
+    private boolean checkExistance(TrainerDTO trainer){
+    
+    return (trainers.contains(trainer));
+    } 
     
     public void addTrainer(TrainerDTO t){
     if (verifyTrainer(t)){
@@ -40,9 +46,10 @@ public class TournamentDTO {
     
     public void removeTrainer(TrainerDTO t)
     {
-        trainers.remove(t);
+        if(checkExistance(t)){
+           trainers.remove(t);
+        }
     }    
-
 
     public String getName()
     {
@@ -64,6 +71,14 @@ public class TournamentDTO {
         this.numRequiredBadges = numRequiredBadges;
     }
    
+    public List<TrainerDTO> getTrainers() {
+        return trainers;
+    }
+
+    public void setTrainers(List<TrainerDTO> trainers) {
+        this.trainers = trainers;
+    }  
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

@@ -35,4 +35,8 @@ public interface TrainerService {
     boolean login(Trainer trainer, String password);
 
     public void addBadge(Trainer trainer, Badge badge);
+    
+    public void addPlacement(Tournament tournament, Trainer trainer);
+    
+    public void removePlacement(Tournament tournament, Trainer trainer);
 }

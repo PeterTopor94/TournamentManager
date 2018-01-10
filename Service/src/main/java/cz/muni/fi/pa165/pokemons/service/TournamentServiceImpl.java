@@ -44,17 +44,18 @@ public class TournamentServiceImpl implements TournamentService {
     
     @Override
     public void addTrainer(Tournament tournament, Trainer trainer) {
-        if (verifyTrainer(trainer,tournament)){
-        tournament.addTrainer(trainer);
-        tournamentDao.update(tournament);
+        if ((verifyTrainer(trainer,tournament)) && (!tournament.getTrainers().contains(trainer))){
+            tournament.addTrainer(trainer);
+            tournamentDao.update(tournament);
         }
     }
     
     @Override
-    public void removeTrainer(Tournament tournament, Trainer trainer) {     
-        tournament.removeTrainer(trainer);
-        tournamentDao.update(tournament);
-     
+    public void removeTrainer(Tournament tournament, Trainer trainer) {
+        if((tournament.getTrainers() != null) && (tournament.getTrainers().contains(trainer))){
+            tournament.removeTrainer(trainer);
+            tournamentDao.update(tournament);
+        }
     }
 
     @Override
