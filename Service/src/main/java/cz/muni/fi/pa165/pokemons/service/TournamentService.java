@@ -14,7 +14,7 @@ public interface TournamentService {
     Tournament createTournament(Tournament tournament);
    
     void addTrainer(Tournament tournament, Trainer trainer); 
-     
+    
     void removeTrainer(Tournament tournament, Trainer trainer); 
              
     void removeTournament(Tournament tournament);
@@ -28,4 +28,6 @@ public interface TournamentService {
     Tournament findTournmanetById(Long id);
    
     Tournament findTournamentByName(String name);
+    
+    
 }

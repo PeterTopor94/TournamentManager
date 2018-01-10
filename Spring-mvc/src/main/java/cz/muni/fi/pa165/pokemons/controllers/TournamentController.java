@@ -110,7 +110,10 @@ public class TournamentController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder,
                          RedirectAttributes redirectAttributes) {
+        
+        
         tournamentFacade.removeTournament(id);
+        
 
         redirectAttributes.addFlashAttribute("alert_success", "Tournament " + id + " was deleted");
         return "redirect:" + uriBuilder.path("/tournament/list").toUriString();

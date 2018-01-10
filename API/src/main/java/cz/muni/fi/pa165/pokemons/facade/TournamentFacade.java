@@ -15,6 +15,8 @@ public interface TournamentFacade {
     void addTrainerToTournament(Long idTournament, Long idTrainer);
     
     void removTrainer(Long idTournament, Long idTrainer);
+    
+ 
      
     void removeTournament(Long id);
     
