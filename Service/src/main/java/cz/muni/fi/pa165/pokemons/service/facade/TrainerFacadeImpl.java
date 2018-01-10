@@ -124,12 +124,27 @@ public class TrainerFacadeImpl implements TrainerFacade {
     @Override
     public boolean login(AuthenticateTrainerDTO trainer)
     {
-        return trainerService.login(trainerService.findTrainerByLogin(trainer.getLogin()), trainer.getPassword());
+        return trainerService.login(trainerService.findTrainerByLogin(trainer.getLogin()), 
+                trainer.getPassword());
     }
     
     @Override
-	public void addBadge(Long trainerId, Long badgeId) {
-		trainerService.addBadge(trainerService.findTrainerById(trainerId),
-				badgeService.findById(badgeId));
-	}
+    public void addBadge(Long trainerId, Long badgeId) {
+	trainerService.addBadge(trainerService.findTrainerById(trainerId),
+            badgeService.findById(badgeId));
+    }
+
+    @Override
+    public void addPlacement(Long tournamentId, Long trainerId) {
+        trainerService.addPlacement(tournamentService.findTournmanetById(tournamentId),
+	    trainerService.findTrainerById(trainerId)); 
+    }  
+
+    @Override
+    public void removePlacement(Long tournamentId, Long trainerId) {
+         trainerService.removePlacement(tournamentService.findTournmanetById(tournamentId),
+	    trainerService.findTrainerById(trainerId)); 
+   
+        }
+    
 }
