@@ -93,6 +93,7 @@ public class TrainerServiceImpl implements TrainerService {
                 trainer.addBadge(badge);
             }
         }
+    }
 
     @Override
     public void addPlacement(Tournament tournament, Trainer trainer) {
