@@ -137,10 +137,14 @@ public class TrainerController {
             return "trainer/add";
         }
         Long id = formBean.getTrainerId();
-        trainerFacade.addBadge(formBean.getTrainerId(), formBean.getBadgeId());
-        badgeFacade.addOwner(formBean.getTrainerId(), formBean.getBadgeId());
 
-        redirectAttributes.addFlashAttribute("alert_success", "Badge " + formBean.getBadgeId() + " was added");
+        if (badgeFacade.addOwner(formBean.getTrainerId(), formBean.getBadgeId())) {
+            redirectAttributes.addFlashAttribute("alert_success", "Badge " + formBean.getBadgeId() + " was added");
+        } else {
+            redirectAttributes.addFlashAttribute("alert_success", "Trainer cannot have badge from gym where he leads");
+
+        }
+
         return "redirect:" + uriBuilder.path("/trainer/view/{id}").buildAndExpand(id).encode().toUriString();
     }
 

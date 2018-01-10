@@ -65,8 +65,8 @@ public class BadgeFacadeImpl implements BadgeFacade {
     }
 
     @Override
-    public void addOwner(Long trainerId, Long badgeId) {
-	badgeService.addOwner(trainerService.findTrainerById(trainerId),
+    public boolean addOwner(Long trainerId, Long badgeId) {
+	return badgeService.addOwner(trainerService.findTrainerById(trainerId),
 				badgeService.findById(badgeId));    }
     
 }

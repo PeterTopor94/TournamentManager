@@ -87,7 +87,7 @@ public class TrainerServiceImpl implements TrainerService {
     
     @Override
 	public void addBadge(Trainer trainer, Badge badge) {
-		if (!trainer.getBadges().contains(badge)) {
+		if (!trainer.getBadges().contains(badge) && !trainer.getGym().equals(badge.getGym())) {
 			trainer.addBadge(badge);
 		}
 	}
