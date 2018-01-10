@@ -24,6 +24,9 @@ public class TrainerDTO {
     @JsonBackReference
     private List<PokemonDTO> pokemons = new ArrayList<>();
     
+    @JsonBackReference
+    private List<TournamentDTO> placements = new ArrayList<>();
+    
     private Date dateOfBirth;
     
     private GymDTO gym;
@@ -96,6 +99,14 @@ public class TrainerDTO {
         this.gym = gym;
     }
 
+    public List<TournamentDTO> getPlacements() {
+        return placements;
+    }
+
+    public void setPlacements(List<TournamentDTO> placements) {
+        this.placements = placements;
+    }
+    
     /**
      * placeholder for demo purposes
      * @return
