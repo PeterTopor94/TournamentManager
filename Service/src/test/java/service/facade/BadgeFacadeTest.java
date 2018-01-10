@@ -5,15 +5,18 @@ import cz.muni.fi.pa165.pokemons.DTO.BadgeDTO;
 import cz.muni.fi.pa165.pokemons.DTO.GymDTO;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.facade.BadgeFacade;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BeanMappingService;
 import cz.muni.fi.pa165.pokemons.service.GymService;
+import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 import cz.muni.fi.pa165.pokemons.service.facade.BadgeFacadeImpl;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import static org.mockito.Matchers.any;
@@ -45,23 +48,33 @@ public class BadgeFacadeTest {
     @Mock
     private GymService gymService;
 
+    @Mock
+    private TrainerService trainerService;
+
     private BadgeFacade badgeFacade;
 
     private GymDTO gymDTO;
     private Gym gym;
     private BadgeDTO badgeDTO;
+    private Trainer trainer;
     private Badge badge;
     private BadgeCreateDTO badgeCreateDTO;
-    
+
     @BeforeClass
     public void setup() throws ServiceException {
         MockitoAnnotations.initMocks(this);
 
-        badgeFacade = new BadgeFacadeImpl(gymService, mappingService, badgeService);
+        badgeFacade = new BadgeFacadeImpl(gymService, mappingService, badgeService, trainerService);
     }
 
     @BeforeMethod
     public void prepareBadges() {
+
+        trainer = new Trainer();
+        trainer.setName("Phill");
+        trainer.setSurname("Collins");
+        trainer.setDateOfBirth(new Date());
+
         gym = new Gym();
         gym.setTypology(PokemonType.POISON);
         gym.setCityName("Bratislava");
@@ -106,6 +119,22 @@ public class BadgeFacadeTest {
         badgeDTO.setId(8L);
         badgeFacade.removeBadge(badgeDTO);
         verify(badgeService, times(1)).deleteBadge(badge);
+    }
+
+    @Test
+    public void getBadgeById() {
+        when(badgeService.findById(8L)).thenReturn(badge);
+        when(mappingService.mapTo(badge, BadgeDTO.class)).thenReturn(badgeDTO);
+        BadgeDTO b = badgeFacade.getById(8L);
+        Assert.assertEquals(badgeDTO, b);
+    }
+
+    @Test
+    public void addOwner() {
+        when(badgeService.findById(8L)).thenReturn(badge);
+        when(trainerService.findTrainerById(6L)).thenReturn(trainer);
+            badgeFacade.addOwner(6L, 8L);
+            verify(badgeService, times(1)).addOwner(trainer, badge);
     }
 
 }

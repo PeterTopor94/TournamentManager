@@ -133,6 +133,7 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         List<Badge> badges = badgeDao.findAll();
         Assert.assertEquals(badges.size(), 1);
     }
+
     
     @Test
     public void update() {
@@ -150,4 +151,5 @@ public class BadgeDaoTest extends AbstractTestNGSpringContextTests {
         Badge badge = badgeDao.findById(b1.getId());
         Assert.assertEquals(badge.getId(), b1.getId());
     }
+
 }

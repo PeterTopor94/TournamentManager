@@ -45,8 +45,9 @@ public class BadgeServiceImpl implements BadgeService {
 
     @Override
     public void addOwner(Trainer trainer, Badge badge) {
-	if (!badge.getOwners().contains(trainer)) {
-			badge.addOwner(trainer);
-		}    }
+        if (!badge.getOwners().contains(trainer)) {
+            badge.addOwner(trainer);
+        }
+    }
 
 }

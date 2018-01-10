@@ -1,14 +1,18 @@
 package service;
 
 import cz.muni.fi.pa165.pokemons.dao.BadgeDao;
+import cz.muni.fi.pa165.pokemons.dao.TrainerDao;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
+import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.service.BadgeService;
 import cz.muni.fi.pa165.pokemons.service.BadgeServiceImpl;
+import cz.muni.fi.pa165.pokemons.service.TrainerService;
 import cz.muni.fi.pa165.pokemons.service.config.ServiceConfiguration;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.Mock;
@@ -32,11 +36,16 @@ public class BadgeServiceTest {
     @Mock
     private BadgeDao badgeDao;
 
-    
+    @Mock
+    private TrainerDao trainerDao;
+
     private BadgeService badgeService;
-    
+
+    private TrainerService trainerService;
+
     private Badge tBadge;
     private Gym tGym;
+    private Trainer tTrainer;
 
     @BeforeClass
     public void setup() throws ServiceException {
@@ -54,6 +63,11 @@ public class BadgeServiceTest {
         tBadge = new Badge();
         tBadge.setCityOfOrigin(tGym.getCityName());
         tBadge.setGym(tGym);
+
+        tTrainer = new Trainer();
+        tTrainer.setName("Freddie");
+        tTrainer.setSurname("Mercury");
+        tTrainer.setDateOfBirth(new Date());
 
     }
 
@@ -82,4 +96,5 @@ public class BadgeServiceTest {
         badgeService.deleteBadge(tBadge);
         verify(badgeDao, times(1)).remove(tBadge);
     }
+
 }
