@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.pokemons.sampledata;
 import cz.muni.fi.pa165.pokemons.entities.Badge;
 import cz.muni.fi.pa165.pokemons.entities.Gym;
 import cz.muni.fi.pa165.pokemons.entities.Pokemon;
+import cz.muni.fi.pa165.pokemons.entities.Tournament;
 import cz.muni.fi.pa165.pokemons.entities.Trainer;
 import cz.muni.fi.pa165.pokemons.enums.PokemonType;
 import cz.muni.fi.pa165.pokemons.service.*;
@@ -28,7 +29,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
     private PokemonService pokemonService;
     @Inject
     private BadgeService badgeService;
-
+    @Inject
+    private TournamentService tournamentService;
 
     @Override
     public void loadData() throws IOException
@@ -45,9 +47,25 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade
 
         Badge badge1 = badge(gym1);
         Badge badge2 = badge(gym2);
+        
+        Tournament grassTournament = tournament("Grass Tournament", trainer, badge1);
 
     }
+    
+     private Tournament tournament(String name,Trainer trainer, Badge badge)
+    {
+        trainer.addBadge(badge);
+        Tournament tournament = new Tournament();
+        tournament.setName(name);
+        tournament.setNumRequiredBadges(1);
+        tournament.addTrainer(trainer);
+        
+        tournamentService.createTournament(tournament);
 
+        return tournament;
+
+    }
+    
     private Badge badge(Gym gym)
     {
         Badge badge = new Badge();

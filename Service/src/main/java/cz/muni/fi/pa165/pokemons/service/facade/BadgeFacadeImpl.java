@@ -27,17 +27,18 @@ public class BadgeFacadeImpl implements BadgeFacade {
 
     @Autowired
     private BadgeService badgeService;
-    
+
     @Autowired
     private TrainerService trainerService;
 
     @Autowired
     private BeanMappingService beanMappingService;
 
-    public BadgeFacadeImpl(GymService gymService, BeanMappingService beanMappingService, BadgeService badgeService) {
+    public BadgeFacadeImpl(GymService gymService, BeanMappingService beanMappingService, BadgeService badgeService, TrainerService trainerService) {
         this.gymService = gymService;
         this.beanMappingService = beanMappingService;
         this.badgeService = badgeService;
+        this.trainerService = trainerService;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class BadgeFacadeImpl implements BadgeFacade {
 
     @Override
     public BadgeDTO getById(Long id) {
-       Badge badge = badgeService.findById(id);
+        Badge badge = badgeService.findById(id);
         return (badge == null) ? null : beanMappingService.mapTo(badge, BadgeDTO.class);
     }
 

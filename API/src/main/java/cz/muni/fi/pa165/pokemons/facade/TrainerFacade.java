@@ -32,4 +32,8 @@ public interface TrainerFacade {
     boolean login(AuthenticateTrainerDTO trainer);
     
     public void addBadge(Long trainerId, Long badgeId);
+    
+    public void addPlacement(Long tournamentId, Long trainerId);
+    
+    public void removePlacement(Long tournamentId, Long trainerId);
 }
