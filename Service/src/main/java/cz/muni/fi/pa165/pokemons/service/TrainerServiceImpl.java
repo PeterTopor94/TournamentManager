@@ -93,19 +93,18 @@ public class TrainerServiceImpl implements TrainerService {
                 trainer.addBadge(badge);
             }
         }
-    }
 
     @Override
     public void addPlacement(Tournament tournament, Trainer trainer) {
-        if (trainer.getPlacements() == null || trainer.getPlacements().size() == 0) {
-            trainer.addPlacement(tournament);
-        }
+          if (trainer.getPlacements()== null ||  trainer.getPlacements().size() == 0) {
+			trainer.addPlacement(tournament);
+		}    
     }
 
     @Override
     public void removePlacement(Tournament tournament, Trainer trainer) {
-        if (trainer.getPlacements().contains(tournament)) {
-            trainer.removePlacement(tournament);
-        }
+         if (trainer.getPlacements().contains(tournament)) {
+			trainer.removePlacement(tournament);
+		}
     }
 }
