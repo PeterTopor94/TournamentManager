@@ -43,7 +43,7 @@ public class Trainer {
     @Column
     private String passwordHash;
 
-    @OneToOne
+    @OneToOne(mappedBy = "gymLeader")
     private Gym gym;
     
     public Trainer(){

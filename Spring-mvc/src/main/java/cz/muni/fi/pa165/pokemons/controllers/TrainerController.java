@@ -54,8 +54,16 @@ public class TrainerController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder, RedirectAttributes redirectAttributes) {
         TrainerDTO trainer = trainerFacade.getById(id);
-        trainerFacade.deleteTrainer(trainer);
-        redirectAttributes.addFlashAttribute("alert_success", "Trainer \"" + trainer.getName() + " " + trainer.getSurname() + "\" was deleted.");
+        if (trainer.getGym() != null) {
+            redirectAttributes.addFlashAttribute("alert_success", "Trainer \"" + trainer.getName() + " " + trainer.getSurname() + "\" is Gym Leader. Please delete gym" + trainer.getGym().getCityName() + " first.");
+        }
+        if(!trainer.getPokemons().isEmpty()){
+            redirectAttributes.addFlashAttribute("alert_success", "Trainer \"" + trainer.getName() + " " + trainer.getSurname() + "\" has pokemon. Please delete all pokemon first.");    
+        }
+        if(trainer.getGym() == null && trainer.getPokemons().isEmpty()){
+            trainerFacade.deleteTrainer(trainer);
+            redirectAttributes.addFlashAttribute("alert_success", "Trainer \"" + trainer.getName() + " " + trainer.getSurname() + "\" was deleted.");           
+        }
         return "redirect:" + uriBuilder.path("/trainer/list").toUriString();
     }
 
@@ -133,10 +141,14 @@ public class TrainerController {
             return "trainer/add";
         }
         Long id = formBean.getTrainerId();
-        trainerFacade.addBadge(formBean.getTrainerId(), formBean.getBadgeId());
-        badgeFacade.addOwner(formBean.getTrainerId(), formBean.getBadgeId());
 
-        redirectAttributes.addFlashAttribute("alert_success", "Badge " + formBean.getBadgeId() + " was added");
+        if (badgeFacade.addOwner(formBean.getTrainerId(), formBean.getBadgeId())) {
+            redirectAttributes.addFlashAttribute("alert_success", "Badge " + formBean.getBadgeId() + " was added");
+        } else {
+            redirectAttributes.addFlashAttribute("alert_success", "Trainer cannot have badge from gym where he leads");
+
+        }
+
         return "redirect:" + uriBuilder.path("/trainer/view/{id}").buildAndExpand(id).encode().toUriString();
     }
 

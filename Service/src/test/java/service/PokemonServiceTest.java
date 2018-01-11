@@ -93,9 +93,26 @@ public class PokemonServiceTest {
     }
     
     @Test
+    public void setOwnerNullValue(){
+        pokemonService.setOwner(pokemon, null);
+        verify(pokemonDao, times(0)).create(pokemon);
+    }
+    
+    @Test
     public void setLevel(){
         pokemonService.setLevel(pokemon, 15);
         verify(pokemonDao, times(1)).create(pokemon);
+    }
+    
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void setLevelLower(){
+        pokemonService.setLevel(pokemon, 9);
+    }
+    
+    @Test
+    public void setLevelSame(){
+        pokemonService.setLevel(pokemon, 10);
+        verify(pokemonDao, times(0)).create(pokemon);
     }
     
     @Test
@@ -105,14 +122,44 @@ public class PokemonServiceTest {
     }
     
     @Test
+    public void setNameNullValue(){
+        pokemonService.setName(pokemon, null);
+        verify(pokemonDao, times(0)).create(pokemon);
+    }
+    
+    @Test
+    public void setNameEmptyValue(){
+        pokemonService.setName(pokemon, "");
+        verify(pokemonDao, times(0)).create(pokemon);
+    }
+    
+    @Test
     public void setNickname(){
         pokemonService.setNickname(pokemon, "nick");
         verify(pokemonDao, times(1)).create(pokemon);
     }
     
     @Test
-    public void setPokemonType(){
+    public void setNicknameNullValue(){
+        pokemonService.setName(pokemon, null);
+        verify(pokemonDao, times(0)).create(pokemon);
+    }
+    
+    @Test
+    public void setNicknameEmptyValue(){
+        pokemonService.setName(pokemon, "");
+        verify(pokemonDao, times(0)).create(pokemon);
+    }
+    
+    @Test
+    public void setPokemonType(){     
         pokemonService.setPokemonType(pokemon, PokemonType.BUG);
         verify(pokemonDao, times(3)).create(pokemon);
+    }
+    
+    @Test
+    public void setPokemonTypeNullValue(){
+        pokemonService.setPokemonType(pokemon, null);
+        verify(pokemonDao, times(1)).create(pokemon);
     }
 }

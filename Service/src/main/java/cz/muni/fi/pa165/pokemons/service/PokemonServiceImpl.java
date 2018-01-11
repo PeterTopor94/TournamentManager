@@ -46,6 +46,9 @@ public class PokemonServiceImpl implements PokemonService{
     
     @Override
     public void setOwner(Pokemon pokemon, Trainer trainer){
+        if(trainer == null){
+            return;
+        }
         pokemon.setOwner(trainer);
         pokemonDao.create(pokemon);
     }
@@ -55,24 +58,36 @@ public class PokemonServiceImpl implements PokemonService{
         if(pokemon.getLevel() > level){
             throw new IllegalArgumentException("Level cannot be decreased");
         }
+        if(pokemon.getLevel() == level){
+            return;
+        }
         pokemon.setLevel(level);
         pokemonDao.create(pokemon);
     }
     
     @Override
     public void setName(Pokemon pokemon, String name){
+        if(name == null || name.equals("")){
+            return;
+        }
         pokemon.setName(name);
         pokemonDao.create(pokemon);
     }
     
     @Override
     public void setNickname(Pokemon pokemon, String nickname){
+        if(nickname == null || nickname.equals("")){
+            return;
+        }
         pokemon.setNickname(nickname);
         pokemonDao.create(pokemon);
     }
     
     @Override
     public void setPokemonType(Pokemon pokemon, PokemonType pokemonType){
+        if(pokemonType == null){
+            return;
+        }
         pokemon.setType(pokemonType);
         pokemonDao.create(pokemon);
     }
