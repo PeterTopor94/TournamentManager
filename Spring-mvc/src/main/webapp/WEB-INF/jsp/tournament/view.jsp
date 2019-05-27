@@ -22,7 +22,7 @@
         <thead>
         <tr>
             <th>id</th>
-            <th>tournamentName</th>
+            <th>Tournament Name</th>
             
         </tr>
         </thead>
@@ -59,6 +59,7 @@
             </tbody>
         </table>
         <my:a href="/tournament/add/${tournament.id}" class="btn btn-primary"><f:message key="addtrainertotournament"/></my:a>
+        <my:a href="/tournament/dellTrainer/${tournament.id}" class="btn btn-primary"><f:message key="delltrainerFromtournament"/></my:a>
        
             
 </jsp:attribute>

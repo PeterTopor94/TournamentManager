@@ -26,7 +26,16 @@ public class TournamentServiceImpl implements TournamentService {
     public TournamentServiceImpl() {
        
     }
-
+    
+    private void removeAllTrainers(Tournament tournament){
+        
+            List<Trainer> trainers = tournament.getTrainers();
+                for(Trainer trainer:trainers){
+                  removeTrainer(tournament, trainer);
+                 }
+        
+    }
+    
     @Override
     public Tournament createTournament(Tournament tournament) {       
         tournamentDao.create(tournament);
@@ -35,6 +44,9 @@ public class TournamentServiceImpl implements TournamentService {
 
     @Override
     public void removeTournament(Tournament tournament) {
+        removeAllTrainers(tournament);
+       
+        
         tournamentDao.remove(tournament);
     }
     

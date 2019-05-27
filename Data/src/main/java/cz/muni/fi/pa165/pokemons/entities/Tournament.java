@@ -52,11 +52,12 @@ public class Tournament {
     public List<Trainer> getTrainers() {
         return Collections.unmodifiableList(trainers);
     }
-
+    
     public void addTrainer(Trainer trainer) {
         this.trainers.add(trainer);
     }
     
+   
     public void removeTrainer(Trainer trainer) {
         this.trainers.remove(trainer);
     }

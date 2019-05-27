@@ -5,6 +5,7 @@
  */
 package cz.muni.fi.pa165.pokemons.controllers;
 import cz.muni.fi.pa165.pokemons.DTO.AddTrainerToTournamentDTO;
+import cz.muni.fi.pa165.pokemons.DTO.RemoveTrainerFromTournament;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentCreateDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TournamentDTO;
 import cz.muni.fi.pa165.pokemons.DTO.TrainerDTO;
@@ -90,6 +91,14 @@ public class TournamentController {
         return "tournament/add";
     }
     
+     @RequestMapping(value = "/dellTrainer/{id}", method = RequestMethod.POST)
+    public String dell(@PathVariable long id, Model model) {
+        RemoveTrainerFromTournament dellTrainer = new RemoveTrainerFromTournament();
+        dellTrainer.setTournamentId(id);
+        model.addAttribute("tournamentDell", dellTrainer);
+        return "tournament/dellTrainer";
+    }
+    
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute("tournamentCreate") TournamentCreateDTO form,
                          BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes,
@@ -110,7 +119,10 @@ public class TournamentController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable long id, Model model, UriComponentsBuilder uriBuilder,
                          RedirectAttributes redirectAttributes) {
+        
+        
         tournamentFacade.removeTournament(id);
+        
 
         redirectAttributes.addFlashAttribute("alert_success", "Tournament " + id + " was deleted");
         return "redirect:" + uriBuilder.path("/tournament/list").toUriString();
@@ -132,6 +144,24 @@ public class TournamentController {
         trainerFacade.addPlacement(formBean.getTournamentId(), formBean.getTrainerId());
 
         redirectAttributes.addFlashAttribute("alert_success", "Trainer " + formBean.getTrainerId() + " was added");
+        return "redirect:" + uriBuilder.path("/tournament/view/{id}").buildAndExpand(id).encode().toUriString();
+    }
+    
+    @RequestMapping(value = "/trainerDell", method = RequestMethod.POST)
+    public String trainerDell(@Valid @ModelAttribute("tournamentDell") RemoveTrainerFromTournament formBean, BindingResult bindingResult,
+            Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+        if (bindingResult.hasErrors()) {
+
+            for (FieldError fe : bindingResult.getFieldErrors()) {
+                model.addAttribute(fe.getField() + "_error", true);
+            }
+            return "tournament/dellTrainer";
+        }
+        Long id = formBean.getTournamentId();
+        tournamentFacade.removTrainer(formBean.getTournamentId(), formBean.getTrainerId());
+        trainerFacade.removePlacement(formBean.getTournamentId(), formBean.getTrainerId());
+
+        redirectAttributes.addFlashAttribute("alert_success", "Trainer " + formBean.getTrainerId() + " was delete");
         return "redirect:" + uriBuilder.path("/tournament/view/{id}").buildAndExpand(id).encode().toUriString();
     }
     

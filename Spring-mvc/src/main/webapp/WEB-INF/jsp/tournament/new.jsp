@@ -11,17 +11,21 @@
         <form:form method="post" action="${pageContext.request.contextPath}/tournament/create"
                    modelAttribute="tournamentCreate" cssClass="form-horizontal">
             
-                 <div class="form-group"  ${tournamentName_error?'has-error':''}>
+            <div class="form-group"  ${tournamentName_error?'has-error':''}>
                 <form:label path="name" cssClass="col-sm-2 control-label">Tournament name:</form:label>         
-                    <div class="col-sm-10">
+                  <div class="col-sm-10">
                     <form:input path="name" cssClass="form-control"/>
                     <form:errors path="name" cssClass="help-block"/>
-                </div>
+                  </div>
+                 
+                
             </div>
 
 
             <button class="btn btn-primary" type="submit">Create tournament</button>
         </form:form>
+        
+        
 
     </jsp:attribute>
 </my:pagetemplate>

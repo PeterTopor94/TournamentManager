@@ -28,7 +28,7 @@ public class TournamentDaoImpl implements TournamentDao{
     @Override
     public void remove(Tournament tournament) {
         
-        if (tournament == null || !getAllTournaments().contains(tournament)) {
+        if (tournament.getId() == null) {
             throw new IllegalArgumentException("Can't remove Tournament which is null or the tournament is not registered");
         }
         em.remove(tournament);
